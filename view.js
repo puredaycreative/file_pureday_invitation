@@ -190,7 +190,7 @@ app.get('/invitation/:slug', async (req, res) => {
             "{{galeri9}}": galeri9, "{{galeri10}}": galeri10, "{{galeri11}}": galeri11,
             "{{galeri12}}": galeri12,
             "{{waktu_acara}}": invitation.event_time,
-            "{{music}}": `https://cdn.jsdelivr.net/gh/puredaycreative/template_pureday_invitation@main/music/${invitation.music_file}`,
+            "{{music}}": `https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/music/${invitation.music_file}`,
             "{{event_times}}": eventTimesHTML,
             "{{comments}}": commentsHTML
         };
