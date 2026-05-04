@@ -5,7 +5,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3004;
 
 // Konfigurasi Environment (Sesuaikan dengan .env Anda)
 const BACKEND_URL = "https://www.puredayinvitation.my.id";

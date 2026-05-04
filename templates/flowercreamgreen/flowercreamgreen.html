@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Pureday Invitation: {{nama_pria}} & {{nama_wanita}}</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Bad+Script" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Allerta" rel="stylesheet">
+
         <link href="https://fonts.googleapis.com/css?family=Rouge+Script" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Baloo+Bhaina+2" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;700&family=Great+Vibes&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
@@ -1360,6 +1364,7 @@ html, body {
     display: block !important;
     line-height: 1 !important; /* Rapatkan baris */
     margin: 0 !important;
+      text-decoration: none !important; /* Menghapus garis bawah */
 }
 
 /* Nama Pemilik (Rapat di bawah nomor) */
@@ -1733,6 +1738,72 @@ html, body {
     position: relative;
     z-index: 10;
     width: 100%;
+}
+
+
+
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Bad+Script&family=Allerta&display=swap');
+
+.pureday-footer-section {
+    /* Memaksa elemen ini berada di urutan bawah alur dokumen */
+    display: block;
+    width: 100%;
+    position: relative;
+    clear: both;
+    margin: 0;
+    padding: 0;
+}
+
+.footer-container {
+    /* Efek Frame HP di Tengah */
+    width: 100%;
+    max-width: 450px; 
+    margin: 0 auto; /* Menjaga posisi di tengah saat landscape */
+    background-color: #d6cfc8; /* Warna nempel dengan konten atas */
+    text-align: center;
+    padding: 20px 20px;
+    box-sizing: border-box;
+}
+
+.footer-brand {
+    font-family: 'Allerta', sans-serif;
+    font-size: 15px;
+    color: #000000;
+    text-decoration: none !important; /* Menghapus garis bawah */
+  
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.footer-made-with {
+    font-family: 'Bad Script', cursive;
+    font-size: 15px;
+    color: #000000;
+    margin-bottom: 20px;
+}
+
+.heart-icon {
+    color: #4e0707;
+}
+
+.footer-socials {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.social-icon {
+    color: #000000;
+    font-size: 20px;
+    text-decoration: none !important;
+    transition: transform 0.3s ease;
+}
+
+.social-icon:hover {
+    transform: scale(1.1);
 }
 
 
@@ -2203,7 +2274,27 @@ html, body {
 </section>
 
 
+<footer class="pureday-footer">
+    <div class="footer-container">
+        <!-- Judul Besar -->
+        <!-- <h2 class="footer-logo">PUREDAY INVITATION</h2> -->
+        <a href="https://puredayinvitation.my.id" target="_blank" class="footer-brand">Pureday Invitation</a>
+        <!-- Teks Made With Love -->
+        <p class="footer-made-with">
+            Made with <span class="heart-icon">❤️</span> by Pureday Invitation
+        </p>
 
+        <!-- Icon Sosial Media -->
+        <div class="footer-socials">
+            <a href="https://www.instagram.com/pureday.creative?igsh=MTNtemNkMnBmNHByMg==" target="_blank" class="social-icon">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://wa.me/6285185085802" target="_blank" class="social-icon">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+        </div>
+    </div>
+</footer>
         <!-- <div style="height: 60px;"></div>
 
         <div class="bottom-nav-bar">
