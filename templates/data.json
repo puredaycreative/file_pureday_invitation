@@ -55,81 +55,78 @@
     "imageUrl": "https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/templates-preview/whitegold.png",
     "previewUrl": "https://www.puredayinvitation.com/undangan/tara-hani"
   },
-    {
-    "id": "huda-vivi",
+  {
+    "id": "full-photo",
     "name": "full photo",
     "category": "dekorasi",
     "imageUrl": "https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/templates-preview/fullphoto.png",
     "previewUrl": "https://www.puredayinvitation.com/undangan/fullphoto"
   },
-      {
-    "id": "huda-vivi",
+  {
+    "id": "flower-cream",
     "name": "flower cream",
     "category": "dekorasi",
     "imageUrl": "https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/templates-preview/flowercream.png",
     "previewUrl": "https://www.puredayinvitation.com/undangan/huda-vivi"
   },
-        {
-    "id": "huda-vivi",
+  {
+    "id": "adat-coklat-cream",
     "name": "Adat Coklat Cream",
     "category": "dekorasi",
     "imageUrl": "https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/templates-preview/adatcoklatcream.png",
     "previewUrl": "https://www.puredayinvitation.com/undangan/adatcoklatcream"
   },
-         {
+  {
     "id": "julio-yuli",
     "name": "flower cream black",
     "category": "dekorasi",
     "imageUrl": "https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/templates-preview/flowercreamblack.png",
     "previewUrl": "https://www.puredayinvitation.com/undangan/flowercreamblack"
   },
-           {
-    "id": "huda-vivi",
+  {
+    "id": "flower-red-deco",
     "name": "flower red",
     "category": "dekorasi",
     "imageUrl": "https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/templates-preview/flowerred.png",
     "previewUrl": "https://www.puredayinvitation.com/undangan/flowerred"
   },
-             {
-    "id": "huda-vivi",
+  {
+    "id": "flower-blue-pink",
     "name": "flower blue pink",
     "category": "dekorasi",
     "imageUrl": "https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/templates-preview/flowerbluepink.png",
     "previewUrl": "https://www.puredayinvitation.com/undangan/flowerbluepink"
   },
-               {
-    "id": "huda-vivi",
+  {
+    "id": "flower-cream-green",
     "name": "flower cream green",
     "category": "dekorasi",
     "imageUrl": "https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/templates-preview/flowercreamgreen.png",
     "previewUrl": "https://www.puredayinvitation.com/undangan/flowercreamgreen"
   },
-
-
-           {
+  {
     "id": "adat-jawa-3d",
     "name": "adat jawa 3d",
     "category": "3d motion",
     "imageUrl": "https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/templates-preview/adatjawa3d.png",
     "previewUrl": "https://www.puredayinvitation.com/undangan/adatjawa3d"
   },
-
-             {
+  {
     "id": "black-3d",
     "name": "black 3d",
     "category": "3d motion",
     "imageUrl": "https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/templates-preview/black3d.png",
     "previewUrl": "https://www.puredayinvitation.com/undangan/bagus-ratu"
   },
-               {
+  {
     "id": "adat-jawa-blue-pink-3d",
     "name": "adat jawa blue pink 3d",
     "category": "3d motion",
     "imageUrl": "https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/templates-preview/adatjawabluepink3d.png",
     "previewUrl": "https://www.puredayinvitation.com/undangan/adatjawabluepink3d"
   },
-             {
-    "id": "flower-red",
+  {
+    "id": "flower-red-3d",
     "name": "flower red",
     "category": "3d motion",
     "imageUrl": "https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/templates-preview/adatjawamerah3d.png",
