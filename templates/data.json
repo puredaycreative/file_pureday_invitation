@@ -103,5 +103,36 @@
     "category": "dekorasi",
     "imageUrl": "https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/templates-preview/flowercreamgreen.png",
     "previewUrl": "https://www.puredayinvitation.my.id/template/flowercreamgreen"
+  },
+
+
+           {
+    "id": "adat-jawa-3d",
+    "name": "adat jawa 3d",
+    "category": "3d motion",
+    "imageUrl": "https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/templates-preview/adatjawa3d.png",
+    "previewUrl": "https://www.puredayinvitation.my.id/template/adatjawa3d"
+  },
+
+             {
+    "id": "black-3d",
+    "name": "black 3d",
+    "category": "3d motion",
+    "imageUrl": "https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/templates-preview/black3d.png",
+    "previewUrl": "https://www.puredayinvitation.my.id/template/bagus-ratu"
+  },
+               {
+    "id": "adat-jawa-blue-pink-3d",
+    "name": "adat jawa blue pink 3d",
+    "category": "3d motion",
+    "imageUrl": "https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/templates-preview/adatjawabluepink3d.png",
+    "previewUrl": "https://www.puredayinvitation.my.id/template/adatjawabluepink3d"
+  },
+             {
+    "id": "flower-red",
+    "name": "flower red",
+    "category": "3d motion",
+    "imageUrl": "https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/templates-preview/adatjawamerah3d.png",
+    "previewUrl": "https://www.puredayinvitation.my.id/template/adatjawamerah3d"
   }
 ]
