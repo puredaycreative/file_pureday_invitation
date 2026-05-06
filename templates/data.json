@@ -131,5 +131,40 @@
     "category": "3d motion",
     "imageUrl": "https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/templates-preview/adatjawamerah3d.png",
     "previewUrl": "https://www.puredayinvitation.com/undangan/adatjawamerah3d"
+  },
+   {
+    "id": "hijau-3d",
+    "name": "hijau 3d",
+    "category": "3d motion",
+    "imageUrl": "https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/templates-preview/hijau3d.png",
+    "previewUrl": "https://www.puredayinvitation.com/undangan/hijau3d"
+  },
+     {
+    "id": "ungu-3d",
+    "name": "ungu 3d",
+    "category": "3d motion",
+    "imageUrl": "https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/templates-preview/ungu3d.png",
+    "previewUrl": "https://www.puredayinvitation.com/undangan/ungu3d"
+  },
+       {
+    "id": "cream-3d",
+    "name": "cream 3d",
+    "category": "3d motion",
+    "imageUrl": "https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/templates-preview/cream3d.png",
+    "previewUrl": "https://www.puredayinvitation.com/undangan/cream3d"
+  },
+    {
+    "id": "pink-3d",
+    "name": "pink 3d",
+    "category": "3d motion",
+    "imageUrl": "https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/templates-preview/pink3d.png",
+    "previewUrl": "https://www.puredayinvitation.com/undangan/pink3d"
+  },
+    {
+    "id": "biru-3d",
+    "name": "biru 3d",
+    "category": "3d motion",
+    "imageUrl": "https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/templates-preview/biru3d.png",
+    "previewUrl": "https://www.puredayinvitation.com/undangan/biru3d"
   }
 ]
