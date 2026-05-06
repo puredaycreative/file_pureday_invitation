@@ -5,7 +5,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 3004;
+const PORT = process.env.PORT || 3000;
 
 // Konfigurasi Environment (Sesuaikan dengan .env Anda)
 const BACKEND_URL = "https://www.puredayinvitation.my.id";
@@ -61,7 +61,7 @@ const pisahkanDataLengkap = (fullString) => {
 
 // --- END FUNGSI ---
 
-app.get('/invitation/:slug', async (req, res) => {
+app.get('/undangan/:slug', async (req, res) => {
     const { slug } = req.params;
     const guestName = req.query.to || 'Tamu Undangan';
 
