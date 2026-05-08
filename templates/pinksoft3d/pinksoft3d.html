@@ -112,7 +112,7 @@
 .subtitle-top {
     font-size: 0.75rem;
     letter-spacing: 3px;
-    color: #b17475;
+    color: #ffffff;
     text-transform: uppercase;
      text-align: center;
 }
@@ -120,7 +120,7 @@
 .main-title {
       font-family: 'Bilbo Swash Caps', cursive;
     font-size: 2.4rem;
-    color: #b17475;
+    color: #ffffff;
     margin: 10px 0 20px;
      text-align: center;
 }
@@ -547,7 +547,7 @@
 }
 
 .guest-label {
-    color: #b17475;
+    color: #1f1d1d;
     font-size: 1.1rem;
     font-family: Andada, serif;
     margin-top: 30px;
@@ -555,7 +555,7 @@
 
 .template-cover-guest-name {
      font-family: Andada, serif;
-    color: #b17475;
+    color: #1f1d1d;
     font-size: 1.1rem;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -572,7 +572,7 @@
 }
 
 .event-date {
-    color: #e2a4a5;
+    color: #1f1d1d;
     margin-top: 5px;
     font-family: Andada, serif;
 }
@@ -775,7 +775,7 @@ body {
 
 .wedding-title {
      font-family: Andada, serif;
-     color: #b17475;
+     color: #814d4e;
       font-size: 0.7rem;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -788,7 +788,7 @@ body {
     line-height: 1.2;    /* Mengatur kerapatan baris agar tidak terlalu renggang */
  font-size: 3rem;
     font-family: 'Rouge Script', cursive;
-    color: #b17475;
+    color: #814d4e;
 }
 
 
@@ -863,53 +863,58 @@ body {
     background: transparent; /* Biar tembus ke background body */
 }
 
-/* Kontainer Utama (Bentuk Arch Atas-Bawah) */
+/* Kontainer Utama (Presisi dengan Frame) */
 .content-detail-wrapper {
-   background-image: url("https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/pinksoft3d/bg3.jpg");
-    width: 100%; /* Memberi sedikit jarak di layar mobile */
-    background-size: cover;
+    background-image: url("https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/pinksoft3d/frame.jpg");
+    width: 100%;
+    /* KUNCI PRESISI: Gambar frame akan melar mengikuti isi konten tanpa terpotong */
+    background-size: 100% 100%; 
+    background-repeat: no-repeat;
+    background-position: center;
+    
     max-width: 420px; 
-    padding: 100px 25px; /* Kurangi padding samping jika foto terasa terlalu kecil */
-    border: 1.5px solid #b17475;
-    border-radius: 300px; /* Tetap melengkung atas dan bawah */
+    
+    /* PADDING: Sesuaikan agar konten teks & foto berada di tengah 'lubang' frame.
+       Padding atas dan bawah dibuat besar agar tidak menabrak ukiran frame. */
+    padding: 100px 40px 120px 40px; 
+    
+    /* Hilangkan border-radius 300px karena akan merusak gambar frame */
+    border-radius: 20px; 
     margin: 0 auto;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-
-/* Bingkai Foto Oval Responsif */
+/* Bingkai Foto Oval Tetap Dipertahankan */
 .card-image-wrapper {
-    /* Gunakan % agar lebar foto selalu proporsional dengan lebar kontainer */
     width: 100%; 
-    max-width: 210px; /* Ukuran maksimal di layar besar/MacBook M2 */
-    
-    /* Gunakan aspect-ratio agar bentuk oval tetap konsisten */
+    max-width: 190px; /* Sedikit dikecilkan agar proporsional di dalam frame */
     aspect-ratio: 2 / 3; 
-    
     margin: 0 auto 20px;
     border: 2px solid #b17475;
-    border-radius: 150px; /* Membuat bentuk oval sempurna */
+    border-radius: 150px; 
     overflow: hidden;
     position: relative;
     box-shadow: 0 10px 25px rgba(0,0,0,0.1);
 }
 
-/* Pastikan gambar di dalamnya memenuhi bingkai tanpa distorsi */
+/* Penyesuaian Spasi Konten agar tidak terlalu meluber */
+.couple-cards {
+    display: flex;
+    flex-direction: column !important; 
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 30px; /* Jarak antar mempelai */
+}
+
 .couple-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
-}
-
-.couple-cards {
-    display: flex;
-    /* WAJIB: Memaksa elemen di dalamnya (pria & wanita) untuk selalu ke bawah */
-    flex-direction: column !important; 
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    gap: 40px; /* Jarak antara foto pria dan wanita */
 }
 
 .card {
@@ -955,10 +960,15 @@ body {
     font-style: italic;
 }
 
+.quote-opening {
+padding-top: 130px;
+}
 /* Quote */
 .quote-opening, .quote-closing {
     font-family: Andada, serif;
     font-size: 13px;
+    padding-left: auto;
+    padding-right: auto;
     color: #444;
     line-height: 1.8;
     text-align: center;
@@ -970,6 +980,7 @@ body {
     font-weight: bold;
     color: #b17475;
      text-align: center;
+     padding-bottom: 100px;
 }
 
 
@@ -993,7 +1004,7 @@ body {
     min-height: 100vh;
     /* KUNCI TENGAH: margin auto kiri dan kanan */
     margin: 0 auto; 
-     background-image: url("https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/pinksoft3d/bg.jpg");
+     background-image: url("https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/pinksoft3d/bg3.jpg");
     box-shadow: 0 0 30px rgba(0,0,0,0.1);
     overflow: hidden;
     padding: 80px 20px;
@@ -1023,7 +1034,7 @@ body {
     width: 75px;
     height: 75px;
     background: rgba(255, 255, 255, 0.2); /* Memberikan sedikit kontras transparan */
-    border: 1px dashed #b17475;
+    border: 1px dashed white;
     border-radius: 50%; 
     display: flex;
     flex-direction: column;
@@ -1041,7 +1052,7 @@ body {
     font-size: 1.4rem; /* Sedikit lebih besar agar mudah dibaca */
     font-weight: bold;
     margin: 0;
-    color: #b17475; /* Putih agar kontras dengan background krem emas */
+    color: white; /* Putih agar kontras dengan background krem emas */
     line-height: 1;
 }
 
@@ -1049,7 +1060,7 @@ body {
     font-family: Andada, serif;
     font-size: 0.75rem;
     margin: 0;
-    color: #b17475;
+    color: white;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
@@ -1083,85 +1094,80 @@ body {
     z-index: 5;
     padding: 0;              /* Reset padding jika mengganggu centering */
 }
-
-/* --- Perbaikan Card Wrapper agar Benar-benar Center --- */
+/* --- Perbaikan Card Wrapper Presisi --- */
 .event-card-wrapper {
-      max-width: 450px; /* Menjaga agar tetap seukuran layar HP */
-    width: 80%;
-      margin-left: auto;
-    margin-right: auto;
-background-size: cover;
- background-image: url("https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/pinksoft3d/bg3.jpg");
-    border: 2px solid #b17475;
-    border-radius: 300px;
+    max-width: 420px; 
+    width: 95%;
+    margin: 50px auto;
+    
+    /* BACKGROUND KUNCI */
+    background-image: url("https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/pinksoft3d/frame.jpg");
+    background-size: 100% 100%; /* Frame melar mengikuti panjang detail acara */
+    background-repeat: no-repeat;
+    background-position: center;
+    
+    /* PADDING KUNCI: 
+       Berikan ruang atas & bawah yang cukup agar teks tidak menabrak ukiran frame 
+    */
+    padding: 100px 40px 120px 40px; 
+    
+    /* Lepas border-radius 300px agar frame tidak terpotong */
+    border: none; 
     overflow: hidden;
-    padding: 12px;
     box-sizing: border-box; 
-    /* Agar padding tidak menambah lebar elemen */
 }
 
-/* Pastikan Inner Border juga Center */
+/* Inner Border & Konten */
 .event-inner-border {
-    /* border: 1px solid #171616;
-    border-radius: 35px 3px 35px 3px; */
-    padding: 50px 20px;
+    padding: 0; /* Padding sudah dihandle oleh wrapper di atas */
     display: flex;
     flex-direction: column;
-     font-family: Andada, serif;
+    font-family: Andada, serif;
     text-align: center;
-    align-items: center;     /* Menengahkan teks di dalam kartu */
+    align-items: center;
+    width: 100%;
 }
 
 .ribbon-date {
-    font-family: Andada, serif;
-    padding: 10px 20px;
+    font-family: 'Andada', serif;
+    font-size: 1.1rem;
+    padding: 10px;
     color: #171616;
-    display: inline-block;
-    width: 90%;
-   margin-bottom: 20px;
+
+    width: 100%;
+    margin-bottom: 25px;
 }
 
 .event-item-list {
-    font-family: Abel, sans-serif;
-     color: #171616;
-    padding: 15px 0;
-    margin-bottom: 15px;
+    font-family: 'Abel', sans-serif;
+    color: #171616;
+    width: 100%;
+    margin-bottom: 20px;
     display: flex;
     flex-direction: column;
-    /* gap: 10px; */
+    gap: 8px;
 }
 
-/* Mengatur style isi dari {{event_times}} */
-.event-row {
-    font-family: Andada, serif;
-    font-size: 1rem;
-     color: #171616;
-    display: block;
-    margin-bottom: 5px;
-}
-
-.event-row b {
-     color: #171616;
-}
-
-/* --- TOMBOL MAPS --- */
+/* Tombol Maps yang Presisi */
 .btn-maps-link {
-    font-family: Andada, serif;
+    font-family: 'Andada', serif;
     background-color: #b17475;
-    color: #dee6ee;
+    color: #ffffff;
     text-decoration: none;
-    padding: 10px 25px;
+    padding: 12px 20px;
     display: inline-block;
-    width: 80%;
+    width: 100%; /* Mengikuti lebar area dalam frame */
+    max-width: 200px; /* Agar tombol tidak terlalu lebar ke samping */
+    border-radius: 50px; /* Membuat tombol lonjong elegan */
     font-weight: bold;
-   transition: 0.3s;
+    transition: 0.3s;
+    box-shadow: 0 4px 15px rgba(177, 116, 117, 0.3);
 }
 
 .btn-maps-link:hover {
     background-color: #e2a4a5;
-    color: #dee6ee;
+    transform: translateY(-2px);
 }
-
 
 /* --- Dekorasi Bunga Pojok Kiri Atas --- */
 .flower-top-left {
@@ -1354,7 +1360,7 @@ background-size: cover;
 /* --- Container Galeri --- */
 .section-gallery {
     padding: 60px 15px;
-   background-image: url("https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/pinksoft3d/bg.jpg");
+   background-image: url("https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/pinksoft3d/bg3.jpg");
     background-size: cover;
     min-height: 80vh;
 }
@@ -1425,48 +1431,51 @@ background-size: cover;
 }
 
 .gift-container {
-max-width: 450px;
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
+    max-width: 420px;
+    width: 95%;
+    margin: 50px auto;
     
-    /* Tambahkan ini untuk menurunkan elemen */
-    margin-top: 50px; /* Ubah angka px sesuai keinginan Anda */
-          margin-bottom: 50px;
-           background-size: cover;
-    background-image: url("https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/pinksoft3d/bg3.jpg");
-    border: 2px solid #b17475;
-    border-radius: 20px; 
-    overflow: hidden;
-    padding: 12px;
+    background-image: url("https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/pinksoft3d/frame.jpg");
+    background-size: 100% 100%; /* Menjaga frame tetap utuh mengikuti tinggi kartu */
+    background-repeat: no-repeat;
+    background-position: center;
+    
+    /* UPDATE PADDING: Menambah padding bawah agar ukiran frame bawah terlihat utuh */
+    padding: 85px 45px 220px 45px; 
+    
+    height: auto; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     box-sizing: border-box;
 }
 
 .bank-accounts-cards {
+    width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 15px; /* Jarak antar kartu sedikit dirapatkan */
-    margin-top: -10px;
+    gap: 20px;
+    /* Menghilangkan kemungkinan margin bawaan yang mengganggu presisi */
+    margin: 0; 
 }
 
 .bank-accounts-cards > div {
     background: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/asset/cardgrey2.png') center/cover no-repeat;
-    border-radius: 15px;
-    gap: 10px;
-    padding: 10px 20px; /* Padding vertikal dikurangi biar gepeng */
+    border-radius: 12px;
+    padding: 15px 20px;
     color: #333;
     position: relative;
-    /* KUNCI GEPENG */
-    height: 170px !important; 
-    min-height: 130px !important;
+    
+    width: 100%; 
+    height: 160px !important; 
+    
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Konten kumpul di tengah secara vertikal */
+    justify-content: center;
     box-sizing: border-box;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
     text-align: left;
 }
-
 /* Nama Bank (Rapat ke pojok kanan atas) */
 .card-top-row {
     position: absolute;
@@ -1648,7 +1657,7 @@ max-width: 450px;
     display: block;
     font-size: 0.9rem;
     font-family: Andada, serif;
-    color: #171616;
+    color: white;
     margin-bottom: 8px;
     font-weight: 500;
 }
@@ -1656,12 +1665,12 @@ max-width: 450px;
 /* Input & Textarea sesuai gambar */
 #comment-name-input, 
 #comment-message-input {
-    color: #171616;
+    color: white;
     width: 100%;
     padding: 12px 15px;
     border: 1px solid transparent;
     border-radius: 10px;
-    border-color: #171616;
+    border-color: white;
     background: rgba(255, 255, 255, 0);
     box-shadow: 0 4px 10px rgba(0,0,0,0.03);
     font-family: Andada, serif;
@@ -2023,13 +2032,13 @@ background-image: url("https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_
 
 
 <section class="section section-detail">
-    <div class="content-detail-wrapper">
+    <div class="content-detail-wrapper animate-left">
         
-        <p class="quote-opening">
+        <p class="quote-opening animate-right">
             Tanpa mengurangi rasa hormat, kami mengundang Bapak/Ibu/Saudara/i serta kerabat sekalian untuk menghadiri acara pernikahan kami.
         </p>
 
-        <div class="couple-cards">
+        <div class="couple-cards animate-left">
             <!-- Kartu Pria -->
             <div class="card">
                 <div class="card-image-wrapper">
@@ -2041,7 +2050,7 @@ background-image: url("https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_
             </div>
 
             <!-- Ampersand / Pembatas -->
-            <div class="ampersand-divider">
+            <div class="ampersand-divider animate-right">
                 <h2 class="ampersand-text">&</h2>
             </div>
 
@@ -2056,7 +2065,7 @@ background-image: url("https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_
             </div>
         </div>
 
-        <p class="quote-closing">
+        <p class="quote-closing animate-right">
             "Segala sesuatu Kami ciptakan berpasang-pasangan agar kamu mengingat (kebesaran Allah)."<br>
             <span>— QS Adz-Dzariyat: 49</span>
         </p>
@@ -2135,8 +2144,8 @@ background-image: url("https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_
         <section id="comments-section-id" class="section section-comments">
   
             <div class="container an">
-                <p class="subtitle-top2">UCAPAN & DO'A</p>
-                <h2 class="main-title2 font-cursive">Kirimkan Ucapan</h2>
+                <p class="subtitle-top">UCAPAN & DO'A</p>
+                <h2 class="main-title font-cursive">Kirimkan Ucapan</h2>
                 
                 <div class="detail-box animate-on-scroll" style="margin-bottom: 40px;">
                     <form id="comment-form" onsubmit="submitComment(event)">
@@ -2152,7 +2161,7 @@ background-image: url("https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_
                         </div>
                         <div class="form-group">
                             <label for="comment-message-input">Pesan Ucapan:</label>
-                            <textarea id="comment-message-input" placeholder="Tuliskan ucapan dan doa terbaik Anda..." required></textarea>
+                            <textarea id="comment-message-input" placeholder="" required></textarea>
                         </div>
                         
                         <div class="form-group">
@@ -2181,8 +2190,8 @@ background-image: url("https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_
      <section id="comments-list-section" class="section-comments-list">
 
         <div class="container animate-left">
-        <p class="subtitle-top">UCAPAN TAMU</p>
-        <h2 class="main-title font-cursive">Komentar Terbaru</h2>
+        <p class="subtitle-top2">UCAPAN TAMU</p>
+        <h2 class="main-title2 font-cursive">Komentar Terbaru</h2>
         
         <div class="comments-list-container">
             <div class="comments-scroll-box">
