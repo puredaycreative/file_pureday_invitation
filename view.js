@@ -134,7 +134,7 @@ app.get('/undangan/:slug', async (req, res) => {
               if (isAddress) {
                   return `
                     <div class="address-card">
-                        <p class="gift-title">Kirim Kado Kesini</p>
+                        <p class="address-title">Kirim Kado Kesini</p>
                         <button class="copy-address-btn" onclick="copyText('${accountId}', '')">
                             <i class="fas fa-map-marker-alt"></i> Salin Alamat
                         </button>
