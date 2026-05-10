@@ -1574,9 +1574,84 @@ max-width: 450px;
 }
 
 
+/* 1. alamat kado */
+/* Container Utama Alamat */
+.address-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Mengetengahkan konten secara horizontal */
+    justify-content: center; /* Mengetengahkan konten secara vertikal */
+    text-align: center;
+    padding: 20px;
+    border: 2px dashed #d1b894; /* Garis putus-putus estetis */
+    border-radius: 15px;
+    background-color: #fffaf0;
+    margin: 20px auto;
+    max-width: 400px; /* Batas lebar kartu */
+    position: relative;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+/* Judul dengan Ikon Kado */
+.address-title {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #8b6e4b;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Menambahkan Logo Kado menggunakan Font Awesome di atas teks */
+.address-title::before {
+    content: '\f06b'; /* Kode Font Awesome untuk 'gift' */
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    font-size: 2rem;
+    color: #d1b894;
+}
+
+/* Tombol Salin Alamat */
+.copy-address-btn {
+    background-color: #d1b894;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.copy-address-btn:hover {
+    background-color: #bfa37e;
+    transform: translateY(-2px);
+}
+
+/* Nama Penerima */
+.receiver-name {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #333;
+    margin: 5px 0;
+}
+
+/* Detail Alamat */
+.address-detail-text {
+    font-size: 0.95rem;
+    color: #666;
+    line-height: 1.5;
+    margin-top: 5px;
+}
 
     /* --- Section Comments (Ucapan) --- */
-/* 1. KEYFRAMES: Fokus ke gerakan turun dari pojok luar */
+
 @keyframes turunKiri {
     from { 
         transform: translate(-100px, -100px); 
@@ -1788,7 +1863,7 @@ background-image: url("https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_
 /* --- 3. KARTU KOMENTAR (ITEM) --- */
 .comments-scroll-box > div, 
 .comment-item {
-    background: rgba(255, 255, 255, 0.88); 
+    background: #bbaa908b; 
     border: 1px solid #171616;
     border-radius: 15px;
   padding:-42px 15px;
