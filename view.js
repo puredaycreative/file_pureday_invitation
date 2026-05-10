@@ -151,7 +151,7 @@ app.get('/undangan/:slug', async (req, res) => {
 
               // TAMPILAN JIKA BANK (bank_name terisi)
               return `
-                <div class="bank-card">
+                <div class="bank-accounts-cards">
                     <button class="copy-btn" onclick="copyText('${accountId}', '')">
                         <i class="fas fa-copy"></i> Salin
                     </button>

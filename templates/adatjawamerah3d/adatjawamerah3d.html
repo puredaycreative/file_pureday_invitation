@@ -1586,9 +1586,12 @@ max-width: 450px;
 .address-card {
     background-color: #ffffff;
     border-radius: 15px;
-    padding: 20px;
+    /* padding: 20px; */
     margin: 15px 0;
     text-align: center;
+     padding-top: 15px; /* Mengurangi padding atas agar teks naik */
+    padding-bottom: 40px; /* Memberi ruang kosong di bawah agar teks terlihat 'terangkat' */
+
     position: relative;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
     transition: transform 0.3s ease;
@@ -1604,7 +1607,7 @@ max-width: 450px;
       font-weight: bold;
     font-size: 1.5rem;
     color: #242322;
-    margin-bottom: 15px;
+    margin-bottom: 55px;
 
     letter-spacing: 1px;
     text-align: center;
@@ -1612,16 +1615,14 @@ max-width: 450px;
 
 /* Tombol Salin Khusus Alamat */
 .copy-address-btn {
-      position: absolute;
-      align-items: center;
-      right: 10px;
-
+   position: absolute;
+    right: 15px;
     bottom: 10px;
-    background:  rgb(208, 205, 205);
+    background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(4px);
     color: #2d2c2c;
     border: 1px solid rgba(255, 255, 255, 0.4);
- 
+    padding: 4px 10px;
     border-radius: 6px;
     font-size: 0.6rem;
     font-family: 'Montserrat', sans-serif;
@@ -1629,8 +1630,6 @@ max-width: 450px;
     font-weight: 700;
     cursor: pointer;
     z-index: 5;
-   
-    padding: 5px 110px;
    
 }
 
@@ -1646,29 +1645,31 @@ max-width: 450px;
 
 /* Nama Penerima */
 .receiver-name {
-   font-family: Andada, serif;
+      font-family: Andada, serif;
     font-size: 0.9rem; 
     letter-spacing: 1px;
     text-transform: uppercase;
     opacity: 0.9;
     text-align: center;
     color: #2d2c2c;
-    margin: 0 !important;
-    line-height: 1 !important;
+    
+    /* Gunakan margin-top negatif atau margin-bottom untuk mendorong ke atas */
+    margin-top: -50px !important; 
+    margin-bottom: 5px !important;
+    line-height: 1.2 !important;
 }
 
 /* Detail Teks Alamat */
 .address-detail-text {
-     font-family: Andada, serif;
-    font-size: 0.9rem;
+    font-family: Andada, serif;
+    font-size: 0.85rem;
     text-align: center;
     color: #444343;
-    line-height: 1.5;
-    margin: 0 auto;
-    max-width: 250px; /* Supaya teks alamat tidak terlalu melebar */
+    line-height: 1.4;
+    margin: 0 auto 30px auto; /* Margin bawah 30px memberi ruang untuk tombol di pojok */
+    max-width: 250px;
     word-wrap: break-word;
 }
-
 
 
 
