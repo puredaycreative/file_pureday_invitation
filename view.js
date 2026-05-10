@@ -123,23 +123,53 @@ app.get('/undangan/:slug', async (req, res) => {
             : "";
 
         // 8. Buat HTML Bank Card
-        const bankCardHTML = Array.isArray(invitation.bank_accounts)
-            ? invitation.bank_accounts
-                .map((ba, index) => {
-                    const accountId = `rek-${ba.bank_name.toLowerCase().replace(/\s/g, '-')}-${index}`;
-                    return `
-                        <div class="bank-card">
-                            <button class="copy-btn" onclick="copyText('${accountId}', '')">
-                                <i class="fas fa-copy"></i> Salin
-                            </button>
-                            <p class="bank-name">${ba.bank_name}</p>
-                            <p class="bank-name">${ba.account_name || ''}</p>
-                            <p id="${accountId}" class="account-number-text">${ba.account_number || "Nomor Tidak Ditemukan"}</p>
-                        </div>`;
-                })
-                .join("")
-            : "";
+  const bankCardHTML = Array.isArray(invitation.bank_accounts)
+    ? invitation.bank_accounts
+          .map((ba, index) => {
+              // Membuat ID unik yang aman (menggunakan index agar tidak error jika bank_name kosong)
+              const accountId = `data-${index}`;
+              const isAddress = !ba.bank_name || ba.bank_name.trim() === "";
 
+              // TAMPILAN JIKA ALAMAT (bank_name kosong)
+              if (isAddress) {
+                  return `
+                    <div class="address-card">
+                        <p class="gift-title">Kirim Kado Kesini</p>
+                        <button class="copy-address-btn" onclick="copyText('${accountId}', '')">
+                            <i class="fas fa-map-marker-alt"></i> Salin Alamat
+                        </button>
+                        
+                        <p class="receiver-name">
+                            ${ba.account_name || ''}
+                        </p>
+                        
+                        <p id="${accountId}" class="address-detail-text">
+                            ${ba.account_number || "Alamat Tidak Ditemukan"}
+                        </p>
+                    </div>`;
+              }
+
+              // TAMPILAN JIKA BANK (bank_name terisi)
+              return `
+                <div class="bank-card">
+                    <button class="copy-btn" onclick="copyText('${accountId}', '')">
+                        <i class="fas fa-copy"></i> Salin
+                    </button>
+                    
+                    <p class="bank-name">
+                        ${ba.bank_name}
+                    </p>
+                    <p class="bank-name">
+                        ${ba.account_name || ''}
+                    </p>
+                    
+                    <p id="${accountId}" class="account-number-text">
+                        ${ba.account_number || "Nomor Tidak Ditemukan"}
+                    </p>
+                </div>`;
+          })
+          .join("")
+    : "";
         // 9. Pemrosesan Data Orang Tua & IG
         const hasilPria = pisahkanDataLengkap(invitation.instagram_groom);
         const hasilWanita = pisahkanDataLengkap(invitation.instagram_bride);
