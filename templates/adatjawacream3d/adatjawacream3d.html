@@ -472,7 +472,10 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url("https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/adatjawacream3d/bgcream.webp");
+    background-image: url({{cover}});
+    background-color: rgba(0, 0, 0, 0.5); /* Warna penggelap */
+    background-blend-mode: multiply; /* Menyatukan warna dengan gambar */
+    /* background-image: url("https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/adatjawacream3d/bgcream.webp"); */
     background-size: cover;
     background-position: center;
     transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
@@ -541,7 +544,7 @@
 }
 
 .guest-label {
-    color: #2d2c2b;
+    color: #fdf6e9;
     font-size: 1.1rem;
     font-family: Andada, serif;
     margin-bottom: 5px;
@@ -549,7 +552,7 @@
 
 .template-cover-guest-name {
      font-family: Andada, serif;
-    color: #2d2c2b;
+    color: #fdf6e9;
     font-size: 1.1rem;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -559,13 +562,13 @@
 .template-cover-title {
     font-family: 'Rouge Script', cursive;
     font-size: 3.8rem;
-    color: #2d2c2b;
+    color: #fdf6e9;
     line-height: 1.1;
-    text-shadow: 1px 1px 0px rgba(255,255,255,0.8);
+    /* text-shadow: 1px 1px 0px rgba(41, 39, 39, 0.8); */
 }
 
 .event-date {
-    color: #2d2c2b;
+    color: #fdf6e9;
     margin-top: 15px;
     font-family: Andada, serif;
 }
@@ -1976,9 +1979,9 @@ background-image: url("https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_
    <div id="transition-overlay" class="cover-transition-gate"></div>
     <div class="cover-bg-base"></div>
 
-    <div class="flower-top animate-down">
+    <!-- <div class="flower-top animate-down">
         <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/adatjawacream3d/bungaatas.webp" alt="Ornamen Atas">
-    </div>
+    </div> -->
 
     <div class="template-cover-content-wrapper animate-down">
         <div class="pureday-content-locker">
@@ -1990,9 +1993,9 @@ background-image: url("https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_
         </div>
     </div>
 
-    <div class="flower-bottom animate-up">
+    <!-- <div class="flower-bottom animate-up">
         <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/adatjawacream3d/bungabawah.webp" alt="Ornamen Bawah">
-    </div>
+    </div> -->
 </div>
 
     <div id="main-content">
@@ -2341,7 +2344,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const body = document.body;
 
     // 1. Kunci scroll saat halaman pertama kali dibuka
-     body.classList.add('lock-scroll');
+    //  body.classList.add('lock-scroll');
 
     video.onended = function() {
         // 2. Munculkan teks
@@ -2467,7 +2470,7 @@ document.getElementById('open-invitation-btn').addEventListener('click', functio
     // 4. Setelah animasi tarik (1 detik), hapus cover dari display
     setTimeout(() => {
         cover.style.display = 'none';
-        body.classList.remove('scroll-locked');
+         body.classList.remove('scroll-locked');
         
         if (typeof initIntersectionObserver === 'function') initIntersectionObserver();
         if (typeof startCountdown === 'function') startCountdown();

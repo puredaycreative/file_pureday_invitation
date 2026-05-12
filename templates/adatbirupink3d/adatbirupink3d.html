@@ -2462,7 +2462,7 @@ document.getElementById('open-invitation-btn').addEventListener('click', functio
     // 4. Setelah animasi tarik (1 detik), hapus cover dari display
     setTimeout(() => {
         cover.style.display = 'none';
-        body.classList.remove('scroll-locked');
+        // body.classList.remove('scroll-locked');
         
         if (typeof initIntersectionObserver === 'function') initIntersectionObserver();
         if (typeof startCountdown === 'function') startCountdown();
