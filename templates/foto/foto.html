@@ -16,6 +16,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <link href="https://fonts.googleapis.com/css?family=Aclonica" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Architects+Daughter" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Andada" rel="stylesheet">
+ <link href="https://fonts.googleapis.com/css?family=Rouge+Script" rel="stylesheet">
+  
 <style>
     /* Animasi Fade In dari Bawah ke Atas */
 @keyframes fadeInUp {
@@ -144,7 +147,8 @@
     width: 100%;
     max-width: 1200px; /* Ukuran HP */
     height: 100vh;
-    
+        background-color: rgba(0, 0, 0, 0.5); 
+    background-blend-mode: multiply;  
     /* BACKGROUND HANYA DI PANEL INI */
     background: url({{cover}}) center/cover no-repeat;
     
@@ -217,7 +221,7 @@
     text-decoration: none;
     font-size: 1rem;
     border-radius: 50px;
-    font-family: 'Baloo Bhaina 2', cursive;
+    font-family: Andada, serif;
     
     /* Tambahan agar lebih smooth saat disentuh/hover */
     transition: all 0.3s ease;
@@ -316,7 +320,7 @@ body {
 
 /* --- TIPOGRAFI --- */
 .wedding-title {
-    font-family: 'Baloo Bhaina 2', cursive;
+    font-family: Andada, serif;
     writing-mode: vertical-rl;
     transform: rotate(180deg) translateX(100px); /* Tetap bawa state awal */
     font-size: 0.8rem;
@@ -336,7 +340,7 @@ body {
 }
 
 .opening-quote {
-    font-family: 'Baloo Bhaina 2', cursive;
+    font-family: Andada, serif;
     font-size: 14px;
     letter-spacing: 0.3pt;
     position: absolute;
@@ -482,7 +486,7 @@ body {
 
 /* TIPOGRAFI */
 .card-name {
-    font-family: 'Baloo Bhaina 2', cursive;
+    font-family: Andada, serif;
     font-size: 1.4rem;
     color: #ffffff;
     letter-spacing: 2px;
@@ -491,7 +495,7 @@ body {
 }
 
 .parent-info {
-  font-family: 'Baloo Bhaina 2', cursive;
+  font-family: Andada, serif;
     font-size: 0.85rem;
     color: rgba(255,255,255,0.9);
     margin: 0;
@@ -608,15 +612,15 @@ body {
 }
 
 .time-box { 
-    font-family: 'Baloo Bhaina 2', cursive;
+    font-family: Andada, serif;
     text-align: center; }
 .time-number { 
-    font-family: 'Baloo Bhaina 2', cursive;
+    font-family: Andada, serif;
     font-size: 1.8rem; font-weight: bold; margin: 0; }
-.time-label { font-family: 'Baloo Bhaina 2', cursive; font-size: 1rem; opacity: 0.8; margin: 0; }
+.time-label { font-family: Andada, serif; font-size: 1rem; opacity: 0.8; margin: 0; }
 
 .event-card-wrapper {
-    font-family: 'Baloo Bhaina 2', cursive;
+    font-family: Andada, serif;
     /* Tambahkan ini agar teks dinamis di dalamnya tidak berantakan */
     line-height: 1.4; 
     color: #fff;
@@ -628,7 +632,7 @@ body {
 .event-item-list, 
 .event-location-address, 
 .ribbon-date {
-    font-family: 'Baloo Bhaina 2', cursive;
+    font-family: Andada, serif;
 }
 
 
@@ -821,149 +825,248 @@ body {
     z-index: 2;
 }
 
-/* --- PANEL KONTEN KANAN --- */
+
+
+
+
 .gift-container {
-    width: 100%;
-    max-width: 1200px; 
-    min-height: 100vh;
-    padding: 10px 25px 350px 25px;
-    position: relative;
-    /* Pastikan z-index lebih tinggi dari ::before dan ::after */
-    z-index: 10; 
+max-width: 450px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+      z-index: 10; 
+    /* Tambahkan ini untuk menurunkan elemen */
+    margin-top: 50px; /* Ubah angka px sesuai keinginan Anda */
+          margin-bottom: 100px;
+    border-radius: 20px; 
+    overflow: hidden;
+    padding: 12px;
     box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    /* Shadow tetap di sini */
-    box-shadow: -10px 0 30px rgba(0,0,0,0.05); 
 }
+
 .bank-accounts-cards {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 15px; /* Jarak antar kartu sedikit dirapatkan */
     margin-top: -10px;
 }
 
 .bank-accounts-cards > div {
-    background: url('https://file.puredayinvitation.com/asset/cardgrey.png') center/cover no-repeat;
-    border-radius: 15px; /* Radius kartu ATM standar tidak terlalu bulat */
-    padding: 20px;
-    color: #2d2c2c;
+    background: url('https://file.puredayinvitation.com/asset/cardgrey2.png') center/cover no-repeat;
+    border-radius: 15px;
+    gap: 10px;
+    padding: 10px 20px; /* Padding vertikal dikurangi biar gepeng */
+
     position: relative;
-    min-height: 220px;
+    /* KUNCI GEPENG */
+    height: 170px !important; 
+    min-height: 130px !important;
     display: flex;
     flex-direction: column;
+    justify-content: center; /* Konten kumpul di tengah secara vertikal */
     box-sizing: border-box;
     box-shadow: 0 15px 35px rgba(0,0,0,0.3);
     text-align: left;
 }
 
-/* Baris Atas: Biasanya cuma ada Nama Bank */
+/* Nama Bank (Rapat ke pojok kanan atas) */
 .card-top-row {
+    position: absolute;
+    top: 10px;
+    right: 20px;
     display: flex;
-    justify-content: flex-end; /* Bank biasanya di pojok kanan atas */
-    width: 100%;
+    justify-content: flex-end;
+    width: auto;
 }
 
 .bank-name { 
+    color: #333 !important;
     font-family: 'Montserrat', sans-serif;
-    font-weight: 800; /* Lebih tebal biar tegas */
-    font-size: 14px;
+    font-weight: 800;
+    font-size: 12px; /* Ukuran disesuaikan dengan kartu gepeng */
     letter-spacing: 1px;
+    text-shadow: -1px -1px 1px rgba(255,255,255,0.3), 1px 1px 1px rgba(0,0,0,0.8);
     text-transform: uppercase;
-    font-style: italic; /* Beberapa logo bank pakai style miring */
+    margin: 0 !important;
 }
 
-/* Chip Kartu: Posisinya harus di tengah kiri */
+/* Chip Kartu (Tengah Kiri) */
 .bank-accounts-cards > div::after {
     content: "";
-    width: 50px; 
-    height: 40px;
-    background: url('https://file.puredayinvitation.com/flowercream/pin-card.png') no-repeat center / contain;
-    margin-top: 10px;
-    margin-bottom: 20px;
-    filter: brightness(1.2); /* Biar chip lebih 'nyala' */
+    width: 40px; 
+    height: 30px;
+    background: url('https://file.puredayinvitation.com/flowercream/pin-card.webp') no-repeat center / contain;
+    display: block;
+    margin: 0 0 2px 0 !important; /* Rapatkan ke nomor di bawahnya */
+    filter: brightness(1.2);
 }
 
-/* Nomor Rekening: Elemen Utama */
+/* Nomor Rekening (Rapat di bawah chip) */
 .account-number-text { 
-   font-family: 'Consolas', 'Courier New', monospace; /* Font teknis */
-    font-size: 1.4rem !important; 
-    letter-spacing: 2px; /* Spasi antar angka khas kartu */
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+    font-family: 'OCR A', 'Courier Prime', monospace;
+    font-size: 1.15rem !important; 
+    letter-spacing: 1px;
+    text-shadow: -1px -1px 1px rgba(255,255,255,0.3), 1px 1px 1px rgba(0,0,0,0.8);
     font-weight: 700 !important; 
-    letter-spacing: 2px !important; 
     color: #2d2c2c !important;
     display: block !important;
-    opacity: 1 !important;
-    visibility: visible !important;   
+    line-height: 1 !important; /* Rapatkan baris */
+    margin: 0 !important;
 }
 
-/* Baris Bawah: Nama Pemilik & Tombol Copy */
+/* Nama Pemilik (Rapat di bawah nomor) */
 .card-bottom-row {
     display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
+    justify-content: flex-start;
     width: 100%;
-    margin-top: auto; /* Paksa ke paling bawah kartu */
+    margin-top: 2px !important; /* Jarak sangat tipis dari nomor */
 }
 
 .holder-name { 
     font-family: 'Roboto Mono', monospace;
-    font-size: 0.85rem; 
+    font-size: 0.75rem; 
     letter-spacing: 1px;
     text-transform: uppercase;
     opacity: 0.9;
+    text-shadow: -1px -1px 1px rgba(255,255,255,0.3), 1px 1px 1px rgba(0,0,0,0.8);
     color: #2d2c2c;
-        max-width: 70%; /* Batasi lebar nama agar tidak tumpang tindih dengan tombol */
-    margin-bottom: 0;
+    margin: 0 !important;
+    line-height: 1 !important;
 }
 
-/* Update pada Button Copy */
+/* Tombol Copy (Tetap di pojok) */
 .copy-btn {
-    /* Gunakan Absolute agar mengunci posisi */
     position: absolute;
-    right: 20px; /* Jarak dari kanan kartu */
-    bottom: 20px; /* Jarak dari bawah kartu */
-    
+    right: 15px;
+    bottom: 10px;
     background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(4px);
     color: #2d2c2c;
     border: 1px solid rgba(255, 255, 255, 0.4);
-    padding: 6px 14px;
-    border-radius: 6px; /* Lebih rapi sedikit kotak */
-    font-size: 0.65rem;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 0.6rem;
     font-family: 'Montserrat', sans-serif;
     text-transform: uppercase;
     font-weight: 700;
-    letter-spacing: 1px;
     cursor: pointer;
-    transition: all 0.3s ease;
     z-index: 5;
 }
-
 .copy-btn:hover {
     background: #ffffff72;
     color: #000;
     transform: translateY(-2px); /* Efek angkat sedikit saat hover */
 }
 
-
 .gift-text {
-    font-family: 'Baloo Bhaina 2', cursive;
+    font-family: Andada, serif;
     font-size: 15px;
     line-height: 1.5;
     text-align: center;
-    color: white;
+    color: #f7f7f7;
     position: relative;
-    
+    font-weight: 700;
     /* JARAK ATAS DAN BAWAH */
-    margin-top: -20px;    /* Jarak dari Judul "Kirim Hadiah" */
+    margin-top: 0px;    /* Jarak dari Judul "Kirim Hadiah" */
     margin-bottom: 40px; /* Jarak ke Kartu Bank (Mencegah Tabrakan) */
     
     padding: 0 10px;
     box-sizing: border-box;
     transition: opacity 1s ease 1s;
 }
+
+
+/* 1. alamat kado */
+/* Container Utama untuk Alamat */
+.address-card {
+    background-color: #ffffff;
+    border-radius: 15px;
+    /* padding: 20px; */
+    margin: 15px 0;
+    text-align: center;
+     padding-top: 15px; /* Mengurangi padding atas agar teks naik */
+    padding-bottom: 40px; /* Memberi ruang kosong di bawah agar teks terlihat 'terangkat' */
+
+    position: relative;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.address-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Judul: Kirim Kado Kesini */
+.address-title {
+    font-family: 'Bilbo Swash Caps', cursive;
+      font-weight: bold;
+    font-size: 1.5rem;
+    color: #242322;
+    margin-bottom: 55px;
+
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+/* Tombol Salin Khusus Alamat */
+.copy-address-btn {
+   position: absolute;
+    right: 15px;
+    bottom: 10px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(4px);
+    color: #2d2c2c;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 0.6rem;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    font-weight: 700;
+    cursor: pointer;
+    z-index: 5;
+   
+}
+
+.copy-address-btn:hover {
+   background:  rgb(190, 187, 187);
+    color: #000;
+    transform: translateY(-2px); /* Efek angkat sedikit saat hover */
+}
+
+.copy-address-btn i {
+    font-size: 0.9rem;
+}
+
+/* Nama Penerima */
+.receiver-name {
+      font-family: Andada, serif;
+    font-size: 0.8rem; 
+    letter-spacing: 1px;
+    /* text-transform: uppercase; */
+    opacity: 0.9;
+    text-align: center;
+    color: #2d2c2c;
+    
+    /* Gunakan margin-top negatif atau margin-bottom untuk mendorong ke atas */
+    margin-top: -50px !important; 
+    margin-bottom: 5px !important;
+    line-height: 1.2 !important;
+}
+
+/* Detail Teks Alamat */
+.address-detail-text {
+    font-family: Andada, serif;
+    font-size: 0.65rem;
+    text-align: center;
+    color: #444343;
+    line-height: 1.4;
+    margin: 0 auto 30px auto; /* Margin bawah 30px memberi ruang untuk tombol di pojok */
+    max-width: 250px;
+    word-wrap: break-word;
+}
+
+
 
 
 
@@ -1024,7 +1127,7 @@ body {
 #comment-form label {
     display: block;
     font-size: 0.9rem;
-    font-family: 'Baloo Bhaina 2', cursive;
+    font-family: Andada, serif;
     color: #f4f2f2;
     margin-bottom: 8px;
     font-weight: 500;
@@ -1041,7 +1144,7 @@ body {
     border-color: white;
     background: rgba(255, 255, 255, 0);
     box-shadow: 0 4px 10px rgba(0,0,0,0.03);
-    font-family: 'Baloo Bhaina 2', cursive;
+    font-family: Andada, serif;
     box-sizing: border-box;
 }
 
@@ -1066,14 +1169,14 @@ body {
     cursor: pointer;
     font-size: 0.85rem;
     transition: 0.3s;
-    font-family: 'Baloo Bhaina 2', cursive;
+    font-family: Andada, serif;
     box-shadow: 0 4px 10px rgba(0,0,0,0.03);
 }
 
 .template-status-btn.status-active {
     background: #ffffff3a; /* Warna coklat tema */
     color: rgb(255, 255, 255);
-    font-family: 'Baloo Bhaina 2', cursive;
+    font-family: Andada, serif;
     
 }
 
@@ -1166,7 +1269,7 @@ body {
 /* --- 4. NAMA PENGIRIM --- */
 .comments-scroll-box > div strong, 
 .comment-name {
-    font-family: 'Baloo Bhaina 2', cursive;
+    font-family: Andada, serif;
     font-size: 1.05rem;
     color: white;
     font-weight: 700;
@@ -1190,7 +1293,7 @@ body {
 /* --- 6. ISI PESAN --- */
 .comments-scroll-box p,
 .comment-text {
-    font-family: 'Baloo Bhaina 2', cursive;
+    font-family: Andada, serif;
     font-size: 0.95rem;
     color: white;
     line-height: 1.4;
@@ -1201,7 +1304,7 @@ body {
 
 /* --- 7. TANGGAL --- */
 .comment-date {
-    font-family: 'Baloo Bhaina 2', cursive;
+    font-family: Andada, serif;
     text-align: right; 
     color: rgba(255, 255, 255, 0.6);
     margin-top: 12px;
@@ -1274,7 +1377,7 @@ body {
 }
 
 .footer-text {
-    font-family: 'Baloo Bhaina 2', cursive;
+    font-family: Andada, serif;
     font-size: 0.65rem;
     color: #8d754e;
     opacity: 0.6;
@@ -1287,7 +1390,7 @@ body {
 }
 
 .footer-ig {
-    font-family: 'Baloo Bhaina 2', cursive;
+    font-family: Andada, serif;
     font-size: 0.65rem;
     color: #8d754e;
     text-decoration: none;
@@ -1350,23 +1453,23 @@ body {
         opacity: 0;
         transition: opacity 0.5s ease-in-out;
         font-size: 0.9rem;
-        font-family: 'Baloo Bhaina 2', cursive;
+        font-family: Andada, serif;
         pointer-events: none;
         min-width: 250px;
     }
 
     #toast-message.show {
         opacity: 1;
-        font-family: 'Baloo Bhaina 2', cursive;
+        font-family: Andada, serif;
     }
 #toast-message.error {
     background-color: #565c566f;
-    font-family: 'Baloo Bhaina 2', cursive;
+    font-family: Andada, serif;
 }
 
 #toast-message.success {
     background-color: #565c566f;
-    font-family: 'Baloo Bhaina 2', cursive;
+    font-family: Andada, serif;
 }
 
 
@@ -1395,7 +1498,7 @@ body {
    <div id="cover-page" class="template-cover-container">
     <div class="template-cover-overlay"></div>
     <div class="template-cover-content-wrapper">
-        <p style="color: #ebe9e9; font-size: 1.1rem; margin-bottom: 5px;    font-family: 'Baloo Bhaina 2', cursive;">Kepada Yth:</p>
+        <p style="color: #ebe9e9; font-size: 1.1rem; margin-bottom: 5px;    font-family: Andada, serif;">Kepada Yth:</p>
         <h3 class="template-cover-guest-name" id="guest-name-display">TAMU UNDANGAN</h3>
         
         <h1 class="template-cover-title">{{nama_pria}} & {{nama_wanita}}</h1>
