@@ -2552,8 +2552,8 @@ window.submitComment = async function(event) {
                  window.showToast('Gagal menyalin.', "error");
                  return;
             }
-            
-            const textToCopy = element.textContent;
+            const textToCopy = element.innerText;
+            // const textToCopy = element.innerText;
             
             // Simplified copy logic for modern browsers
             navigator.clipboard.writeText(textToCopy).then(() => {

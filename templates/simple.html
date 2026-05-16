@@ -1295,7 +1295,7 @@ body.scroll-locked {
             const element = document.getElementById(elementId);
             if (!element) return;
             
-            const textToCopy = element.textContent;
+            const textToCopy = element.innerText;
             
             // Use execCommand for broader compatibility in sandboxed environments
             const tempInput = document.createElement('textarea');

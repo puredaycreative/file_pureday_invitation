@@ -1034,7 +1034,7 @@ window.submitComment = async function(event) {
                  return;
             }
             
-            const textToCopy = element.textContent;
+            const textToCopy = element.innerText;
             
             // Simplified copy logic for modern browsers
             navigator.clipboard.writeText(textToCopy).then(() => {
