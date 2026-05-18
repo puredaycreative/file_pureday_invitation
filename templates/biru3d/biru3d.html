@@ -556,10 +556,12 @@
 .template-cover-guest-name {
      font-family: Andada, serif;
     color: #446090;
-    font-size: 1.1rem;
+    font-size: 0.9rem;
     letter-spacing: 2px;
     text-transform: uppercase;
     margin-bottom: 25px;
+      margin-left: 50px;
+    margin-right: 50px;
 }
 
 .template-cover-title {
@@ -1353,6 +1355,7 @@ background-size: cover;
 /* 2. CONTAINER GALLERY */
 /* --- Container Galeri --- */
 .section-gallery {
+display: none;
     padding: 60px 15px;
    background-image: url("https://file.puredayinvitation.com/biru3d/bg.jpg");
     background-size: cover;
@@ -2332,6 +2335,34 @@ document.addEventListener("DOMContentLoaded", function() {
 })();
 
 
+
+(function() {
+    try {
+        window.addEventListener('DOMContentLoaded', function() {
+            const section = document.getElementById('gallery-section-id');
+            // Mengambil wrapper tempat {{galeri}} berada
+            const container = document.querySelector('.scrapbook-wrapper'); 
+
+            if (container && section) {
+                const rawContent = container.innerHTML.trim();
+                
+                // CEK VALIDASI DATA:
+                // Jika tidak kosong, panjang karakter lebih dari 15, 
+                // dan tidak berisi teks template mentah '{{galeri}}'
+                if (rawContent !== "" && rawContent.length > 15 && !rawContent.includes('{{galeri}}')) {
+                    // Tampilkan kembali karena data galeri valid / ada isinya
+                    section.style.setProperty('display', 'block', 'important');
+                    console.log("Gallery Section: Foto ditemukan, menampilkan galeri.");
+                } else {
+                    // Tetap biarkan tersembunyi
+                    console.log("Gallery Section: Data {{galeri}} kosong, tetap disembunyikan.");
+                }
+            }
+        });
+    } catch (err) {
+        console.error("Gallery Script Error: ", err);
+    }
+})();
 
     const video = document.getElementById('introVideo');
     const textContainer = document.getElementById('delayedText');
