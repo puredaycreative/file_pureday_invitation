@@ -22,6 +22,10 @@
     <link href="https://fonts.googleapis.com/css?family=Bilbo+Swash+Caps" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=OCR+A&family=Courier+Prime:wght@700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Andada" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css?family=Bad+Script" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Allerta" rel="stylesheet">
+
 <style>
     /* Animasi Fade In dari Bawah ke Atas */
 /* --- ANIMASI TEKS --- */
@@ -556,10 +560,12 @@
 .template-cover-guest-name {
      font-family: Andada, serif;
     color: #746446;
-    font-size: 1.1rem;
+    font-size: 0.9rem;
     letter-spacing: 2px;
     text-transform: uppercase;
     margin-bottom: 25px;
+       margin-left: 50px;
+    margin-right: 50px;
 }
 
 .template-cover-title {
@@ -1561,9 +1567,9 @@ max-width: 450px;
     font-size: 15px;
     line-height: 1.5;
     text-align: center;
-    color: #171616;
+    color: #2d2c2c;
     position: relative;
-    
+    font-weight: 700;
     /* JARAK ATAS DAN BAWAH */
     margin-top: 0px;    /* Jarak dari Judul "Kirim Hadiah" */
     margin-bottom: 40px; /* Jarak ke Kartu Bank (Mencegah Tabrakan) */
@@ -1571,6 +1577,97 @@ max-width: 450px;
     padding: 0 10px;
     box-sizing: border-box;
     transition: opacity 1s ease 1s;
+}
+
+
+/* 1. alamat kado */
+/* Container Utama untuk Alamat */
+.address-card {
+    background-color: #ffffff;
+    border-radius: 15px;
+    /* padding: 20px; */
+    margin: 15px 0;
+    text-align: center;
+     padding-top: 15px; /* Mengurangi padding atas agar teks naik */
+    padding-bottom: 40px; /* Memberi ruang kosong di bawah agar teks terlihat 'terangkat' */
+
+    position: relative;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.address-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Judul: Kirim Kado Kesini */
+.address-title {
+    font-family: 'Bilbo Swash Caps', cursive;
+      font-weight: bold;
+    font-size: 1.5rem;
+    color: #242322;
+    margin-bottom: 55px;
+
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+/* Tombol Salin Khusus Alamat */
+.copy-address-btn {
+   position: absolute;
+    right: 15px;
+    bottom: 10px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(4px);
+    color: #2d2c2c;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 0.6rem;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    font-weight: 700;
+    cursor: pointer;
+    z-index: 5;
+   
+}
+
+.copy-address-btn:hover {
+   background:  rgb(190, 187, 187);
+    color: #000;
+    transform: translateY(-2px); /* Efek angkat sedikit saat hover */
+}
+
+.copy-address-btn i {
+    font-size: 0.9rem;
+}
+
+/* Nama Penerima */
+.receiver-name {
+      font-family: Andada, serif;
+    font-size: 0.8rem; 
+    letter-spacing: 1px;
+    /* text-transform: uppercase; */
+    opacity: 0.9;
+    text-align: center;
+    color: #2d2c2c;
+    
+    /* Gunakan margin-top negatif atau margin-bottom untuk mendorong ke atas */
+    margin-top: -50px !important; 
+    margin-bottom: 5px !important;
+    line-height: 1.2 !important;
+}
+
+/* Detail Teks Alamat */
+.address-detail-text {
+    font-family: Andada, serif;
+    font-size: 0.65rem;
+    text-align: center;
+    color: #444343;
+    line-height: 1.4;
+    margin: 0 auto 30px auto; /* Margin bawah 30px memberi ruang untuk tombol di pojok */
+    max-width: 250px;
+    word-wrap: break-word;
 }
 
 
@@ -1792,11 +1889,12 @@ background-image: url("https://file.puredayinvitation.com/cream3d/bg.jpg");
     border-radius: 15px;
   padding:-42px 15px;
   padding-left: 20px !important;
+    padding-right: 20px !important;
     margin-bottom: 10px;
     display: flex;
     flex-direction: column;
     align-items: flex-start; /* SEMUA RATA KIRI */
-    text-align: left;
+    text-align: justify;
     box-sizing: border-box;
 }
 
@@ -1828,7 +1926,7 @@ background-image: url("https://file.puredayinvitation.com/cream3d/bg.jpg");
 .comments-scroll-box p,
 .comment-text {
     font-family: Andada, serif;
-    font-size: 0.95rem;
+    font-size: 0.7rem;
     color: #171616;
   margin: 10px 0; 
     /* Line-height merapatkan jarak antar baris kalimat */
@@ -1886,6 +1984,67 @@ background-image: url("https://file.puredayinvitation.com/cream3d/bg.jpg");
     width: 100%;
 }
 
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Bad+Script&family=Allerta&display=swap');
+
+.pureday-footer-section {
+    /* Memaksa elemen ini berada di urutan bawah alur dokumen */
+    display: block;
+    width: 100%;
+    position: relative;
+    clear: both;
+    margin: 0;
+    padding: 0;
+}
+
+.footer-container {
+    /* Efek Frame HP di Tengah */
+    width: 100%;
+    max-width: 450px; 
+    margin: 0 auto; /* Menjaga posisi di tengah saat landscape */
+    background-color: #d6cfc8; /* Warna nempel dengan konten atas */
+    text-align: center;
+   padding: 15px 20px 60px 20px;
+    box-sizing: border-box;
+}
+
+.footer-brand {
+    font-family: 'Allerta', sans-serif;
+    font-size: 15px;
+    color: #000000;
+    text-decoration: none !important; /* Menghapus garis bawah */
+  
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.footer-made-with {
+    font-family: 'Bad Script', cursive;
+    font-size: 15px;
+    color: #000000;
+    margin-bottom: 20px;
+}
+
+.heart-icon {
+    color: #4e0707;
+}
+
+.footer-socials {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.social-icon {
+    color: #000000;
+    font-size: 20px;
+    text-decoration: none !important;
+    transition: transform 0.3s ease;
+}
+
+.social-icon:hover {
+    transform: scale(1.1);
+}
 
 
     /* --- Floating Music Toggle --- */
@@ -2197,6 +2356,27 @@ background-image: url("https://file.puredayinvitation.com/cream3d/bg.jpg");
 </section>
 
 
+<footer class="pureday-footer">
+    <div class="footer-container">
+        <!-- Judul Besar -->
+        <!-- <h2 class="footer-logo">PUREDAY INVITATION</h2> -->
+        <a href="https://puredayinvitation.com" target="_blank" class="footer-brand">Pureday Invitation</a>
+        <!-- Teks Made With Love -->
+        <p class="footer-made-with">
+            Made with <span class="heart-icon">❤️</span> by Pureday Invitation
+        </p>
+
+        <!-- Icon Sosial Media -->
+        <div class="footer-socials">
+            <a href="https://www.instagram.com/pureday.invitation?igsh=MTNtemNkMnBmNHByMg%3D%3D&utm_source=qr" target="_blank" class="social-icon">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://wa.me/6285185085802" target="_blank" class="social-icon">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+        </div>
+    </div>
+</footer>
 
         <!-- <div style="height: 60px;"></div>
 
