@@ -1230,7 +1230,7 @@ window.submitComment = async function(event) {
     const invitationId = localStorage.getItem('invitationId'); 
     if (!invitationId) {
         console.error("invitationId not found in localStorage.");
-        window.showToast("Gagal: ID undangan tidak ditemukan.", "error");
+        window.showToast("gagal kirim pesan, silahkan refresh halaman", "error");
         return;
     }
     
@@ -1290,7 +1290,7 @@ window.submitComment = async function(event) {
             
             // Simplified copy logic for modern browsers
             navigator.clipboard.writeText(textToCopy).then(() => {
-                window.showToast(`Nomor rekening ${bankName} berhasil disalin!`, "success");
+                window.showToast(`Data berhasil disalin! silahkan cek`, "success");
             }).catch(err => {
                 // Fallback for older browsers
                 const tempInput = document.createElement('textarea');

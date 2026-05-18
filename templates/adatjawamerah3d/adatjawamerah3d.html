@@ -1893,19 +1893,22 @@ background-image: url("https://file.puredayinvitation.com/adatjawamerah3d/bg.jpg
     background: #bbaa908b; 
     border: 1px solid #171616;
     border-radius: 15px;
+    /* max-width: 320px;
+    margin: 0 auto 10px auto; */
   padding:-42px 15px;
   padding-left: 20px !important;
+  padding-right: 20px !important;
     margin-bottom: 10px;
     display: flex;
     flex-direction: column;
     align-items: flex-start; /* SEMUA RATA KIRI */
-    text-align: left;
+    text-align: justify;
     box-sizing: border-box;
 }
 
 /* --- 4. NAMA PENGIRIM --- */
 .comments-scroll-box > div strong, 
-.comment-name {
+.author-name {
     font-family: Andada, serif;
     font-size: 0.8rem;
     color: #171616;
@@ -1917,7 +1920,7 @@ background-image: url("https://file.puredayinvitation.com/adatjawamerah3d/bg.jpg
 /* STATUS (DI SEBELAH NAMA) */
 .comments-scroll-box span, 
 .comments-scroll-box small,
-    .comment-status {
+    .attendance-status {
         display: inline !important; /* Paksa satu baris, jangan enter */
         font-family: 'Baloo Bhaina 2', cursive !important;
         font-size: 0.7rem !important;
@@ -1929,9 +1932,9 @@ background-image: url("https://file.puredayinvitation.com/adatjawamerah3d/bg.jpg
 
 /* --- 6. ISI PESAN --- */
 .comments-scroll-box p,
-.comment-text {
+.comment-message {
     font-family: Andada, serif;
-    font-size: 0.95rem;
+    font-size: 0.7rem;
     color: #171616;
   margin: 10px 0; 
     /* Line-height merapatkan jarak antar baris kalimat */
@@ -2831,7 +2834,7 @@ window.submitComment = async function(event) {
     const invitationId = localStorage.getItem('invitationId'); 
     if (!invitationId) {
         console.error("invitationId not found in localStorage.");
-        window.showToast("Gagal: ID undangan tidak ditemukan.", "error");
+        window.showToast("gagal kirim pesan, silahkan refresh halaman", "error");
         return;
     }
     

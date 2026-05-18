@@ -1476,7 +1476,7 @@ body {
             const invitationId = localStorage.getItem('invitationId'); 
             if (!invitationId) {
                 console.error("invitationId not found in localStorage.");
-                window.showToast("Gagal: ID undangan tidak ditemukan.", "error");
+                window.showToast("gagal kirim pesan, silahkan refresh halaman", "error");
                 return;
             }
             

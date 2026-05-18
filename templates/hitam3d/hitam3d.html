@@ -559,18 +559,21 @@
 .template-cover-guest-name {
      font-family: Andada, serif;
     color: #fdf6e9;
-    font-size: 1.1rem;
+    font-size: 0.9rem;
     letter-spacing: 2px;
     text-transform: uppercase;
     margin-bottom: 25px;
+       margin-left: 50px;
+    margin-right: 50px;
 }
 
 .template-cover-title {
    font-family: 'Rouge Script', cursive;
-    font-size: 3.8rem;
+    font-size: 3.5rem;
     color: #b39055;
-    margin: 10px 0;
-    font-weight: 400;
+        margin: 10px 0;
+    font-weight: 300;
+    margin-top: 0px;
 }
 
 .event-date {
@@ -1509,7 +1512,6 @@ max-width: 450px;
     display: block !important;
     line-height: 1 !important; /* Rapatkan baris */
     margin: 0 !important;
-    text-decoration: none !important; /* Menghapus garis bawah */
 }
 
 /* Nama Pemilik (Rapat di bawah nomor) */
@@ -1561,9 +1563,9 @@ max-width: 450px;
     font-size: 15px;
     line-height: 1.5;
     text-align: center;
-    color: #171616;
+    color: #2d2c2c;
     position: relative;
-    
+    font-weight: 700;
     /* JARAK ATAS DAN BAWAH */
     margin-top: 0px;    /* Jarak dari Judul "Kirim Hadiah" */
     margin-bottom: 40px; /* Jarak ke Kartu Bank (Mencegah Tabrakan) */
@@ -1572,6 +1574,98 @@ max-width: 450px;
     box-sizing: border-box;
     transition: opacity 1s ease 1s;
 }
+
+
+/* 1. alamat kado */
+/* Container Utama untuk Alamat */
+.address-card {
+    background-color: #ffffff;
+    border-radius: 15px;
+    /* padding: 20px; */
+    margin: 15px 0;
+    text-align: center;
+     padding-top: 15px; /* Mengurangi padding atas agar teks naik */
+    padding-bottom: 40px; /* Memberi ruang kosong di bawah agar teks terlihat 'terangkat' */
+
+    position: relative;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.address-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Judul: Kirim Kado Kesini */
+.address-title {
+    font-family: 'Bilbo Swash Caps', cursive;
+      font-weight: bold;
+    font-size: 1.5rem;
+    color: #242322;
+    margin-bottom: 55px;
+
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+/* Tombol Salin Khusus Alamat */
+.copy-address-btn {
+   position: absolute;
+    right: 15px;
+    bottom: 10px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(4px);
+    color: #2d2c2c;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 0.6rem;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    font-weight: 700;
+    cursor: pointer;
+    z-index: 5;
+   
+}
+
+.copy-address-btn:hover {
+   background:  rgb(190, 187, 187);
+    color: #000;
+    transform: translateY(-2px); /* Efek angkat sedikit saat hover */
+}
+
+.copy-address-btn i {
+    font-size: 0.9rem;
+}
+
+/* Nama Penerima */
+.receiver-name {
+      font-family: Andada, serif;
+    font-size: 0.8rem; 
+    letter-spacing: 1px;
+    /* text-transform: uppercase; */
+    opacity: 0.9;
+    text-align: center;
+    color: #2d2c2c;
+    
+    /* Gunakan margin-top negatif atau margin-bottom untuk mendorong ke atas */
+    margin-top: -50px !important; 
+    margin-bottom: 5px !important;
+    line-height: 1.2 !important;
+}
+
+/* Detail Teks Alamat */
+.address-detail-text {
+    font-family: Andada, serif;
+    font-size: 0.65rem;
+    text-align: center;
+    color: #444343;
+    line-height: 1.4;
+    margin: 0 auto 30px auto; /* Margin bawah 30px memberi ruang untuk tombol di pojok */
+    max-width: 250px;
+    word-wrap: break-word;
+}
+
 
 
 
@@ -1794,12 +1888,14 @@ background-image: url("https://file.puredayinvitation.com/hitam3d/bg2.jpg");
     border: 1px solid #171616;
     border-radius: 15px;
   padding:-42px 15px;
+    padding-left: 20px !important;
+   padding-right: 20px !important;
   padding-left: 20px !important;
     margin-bottom: 10px;
     display: flex;
     flex-direction: column;
     align-items: flex-start; /* SEMUA RATA KIRI */
-    text-align: left;
+    text-align: justify;
     box-sizing: border-box;
 }
 
@@ -1831,7 +1927,7 @@ background-image: url("https://file.puredayinvitation.com/hitam3d/bg2.jpg");
 .comments-scroll-box p,
 .comment-text {
     font-family: Andada, serif;
-    font-size: 0.95rem;
+    font-size: 0.7rem;
     color: #171616;
   margin: 10px 0; 
     /* Line-height merapatkan jarak antar baris kalimat */
@@ -2633,7 +2729,7 @@ window.submitComment = async function(event) {
     const invitationId = localStorage.getItem('invitationId'); 
     if (!invitationId) {
         console.error("invitationId not found in localStorage.");
-        window.showToast("Gagal: ID undangan tidak ditemukan.", "error");
+        window.showToast("gagal kirim pesan, silahkan refresh halaman", "error");
         return;
     }
     
@@ -2693,7 +2789,7 @@ window.submitComment = async function(event) {
             
             // Simplified copy logic for modern browsers
             navigator.clipboard.writeText(textToCopy).then(() => {
-                window.showToast(`Nomor rekening ${bankName} berhasil disalin!`);
+                window.showToast(`Data berhasil disalin! silahkan cek`);
             }).catch(err => {
                 // Fallback for older browsers
                 const tempInput = document.createElement('textarea');
@@ -2702,7 +2798,7 @@ window.submitComment = async function(event) {
                 tempInput.select();
                 try {
                     document.execCommand('copy');
-                     window.showToast(`Nomor rekening ${bankName} berhasil disalin!`);
+                     window.showToast(`Data berhasil disalin! silahkan cek`);
                 } catch (e) {
                      window.showToast('Gagal menyalin. Silakan salin manual.', "error");
                 }
