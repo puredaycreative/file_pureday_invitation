@@ -586,6 +586,7 @@ html, body {
     .section-event-timer,
     .section-event,
     .section-gallery,
+    .section-love-story,
     .section-gift,
     .section-comments,
     .section-comments-list
@@ -1253,6 +1254,156 @@ html, body {
 
 .scrapbook-wrapper > *:nth-child(3n) img {
     aspect-ratio: 16 / 10 !important; /* Foto lebar */
+}
+
+
+
+
+
+
+/* --- Background & Kontainer Utama Section --- */
+
+.section-love-story {
+    background-color: #fdf6e9; /* Warna cokelat muda/khaki hangat sesuai gambar */
+    padding: 60px 16px;
+    font-family: Andada, serif;
+    display: flex;
+    justify-content: center;
+}
+
+.love-story-container {
+    width: 100%;
+    max-width: 600px; /* Membatasi lebar agar pas dengan layout mobile/tablet */
+    margin: 0 auto;
+}
+
+/* --- Struktur Timeline Jaringan Garis --- */
+.love-story-timeline {
+    position: relative;
+    padding: 10px 0;
+}
+
+/* Membuat garis vertikal lurus abu-abu di sisi kiri */
+.love-story-timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 40px; /* Jarak pas dari kiri untuk menyelaraskan garis */
+    width: 4px;
+    background-color: #929292; /* Warna abu-abu solid sesuai gambar */
+    z-index: 1;
+}
+
+/* --- Item Bungkus per Cerita (Dinamis) --- */
+.ls-item {
+    position: relative;
+    margin-bottom: 40px;
+    padding-left: 95px; /* Memberi ruang di kiri agar kartu tidak menabrak lingkaran hati */
+}
+
+/* Menghilangkan margin bawah untuk item cerita terakhir */
+.ls-item:last-child {
+    margin-bottom: 0;
+}
+
+/* --- Lingkaran Putih + Icon Hati --- */
+.ls-icon-heart {
+    position: absolute;
+    left: 22px; /* Mengatur posisi pas di tengah-tengah garis vertikal */
+    top: 0;
+    width: 30px;
+    height: 30px;
+    background-color: #ffffff;
+    border: 4px solid #929292; /* Frame abu-abu tebal sesuai gambar */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+
+/* Karakter Hati Hitam di Tengah Lingkaran */
+.ls-icon-heart::before {
+    content: '♥';
+    color: #000000;
+    font-size: 1.5rem;
+}
+
+/* --- Kartu Putih Konten (Scrapbook Card) --- */
+.ls-card {
+    background-color: #ffffff;
+    border-radius: 20px; /* Sudut melengkung halus sesuai gambar */
+    padding: 24px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* Shadow tipis agar smooth */
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Pembungkus Foto di Dalam Kartu */
+.ls-card-img {
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 24px;
+}
+
+.ls-card-img img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+/* --- Tipografi & Teks --- */
+.ls-card-title {
+    font-size: 1rem;
+    font-family: Andada, serif;
+    color: #000000;
+    margin: 0 0 12px 0;
+    font-weight: 400;
+}
+
+.ls-card-date {
+    font-size: 1.05rem;
+    font-family: Andada, serif;
+    color: #222222;
+    margin-bottom: 24px;
+}
+
+.ls-card-body {
+    font-family: Andada, serif;
+    font-size: 0.7rem;
+    line-height: 1.6;
+    color: #111111;
+    margin: 0;
+    text-align: justify; /* Rata kiri sesuai gaya teks di gambar */
+}
+
+/* --- Optimasi Khusus Layar HP Kecil --- */
+@media (max-width: 480px) {
+    .love-story-timeline::before {
+        left: 25px; /* Geser garis lebih ke kiri pada mobile */
+    }
+    
+    .ls-item {
+        padding-left: 68px; /* Potong padding agar area teks kartu tetap luas */
+    }
+    
+    .ls-icon-heart {
+        left: 3px;
+        width: 48px;
+        height: 48px;
+        border-width: 3px;
+    }
+    
+    .ls-icon-heart::before {
+        font-size: 1.2rem;
+    }
+    
+    .ls-card {
+        padding: 16px;
+    }
 }
 
 
@@ -2186,6 +2337,17 @@ html, body {
         </div>
     </div>
 </section>
+
+<section id="love-story-section-id" class="section-love-story">
+    <div class="love-story-container animate-left">
+        <p class="subtitle-top2">OUR SWEER STORY</p>
+        <h2 class="main-title2 font-cursive">Perjalanan Cinta</h2>
+        
+        <div class="love-story-timeline animate-left">
+            {{lovestori}}
+        </div>
+    </div>
+</section>
         
     
 <section id="gift-section-id" class="section-gift">
@@ -2521,6 +2683,88 @@ document.addEventListener("DOMContentLoaded", function() {
         console.error("Gift Script Error: ", err);
     }
 })();
+
+
+
+(function() {
+    try {
+        // Fungsi utama untuk memeriksa isi galeri
+        function cekGaleri() {
+            var section = document.getElementById('gallery-section-id');
+            
+            // Cari semua tag gambar (img) yang berada di dalam section galeri
+            if (section) {
+                var daftarGambar = section.getElementsByTagName('img');
+
+                // JIKA ditemukan minimal ada 1 gambar di dalam section tersebut
+                if (daftarGambar.length > 0) {
+                    // JIKA ADA ISINYA = SECTION HIDUP!
+                    section.style.setProperty('display', 'block', 'important');
+                    console.log("Galeri terisi: " + daftarGambar.length + " foto ditemukan. Section HIDUP.");
+                } else {
+                    // JIKA GAADA ISINYA = SECTION MATI
+                    section.style.setProperty('display', 'none', 'important');
+                    console.log("Galeri kosong: Tidak ada foto. Section MATI.");
+                }
+            }
+        }
+
+        // Jalankan pengecekan pertama saat halaman selesai dimuat
+        window.addEventListener('load', cekGaleri);
+
+        // Cadangan: Jalankan ulang setelah 2 detik untuk mengantisipasi 
+        // sistem template/slider yang loading-nya lambat (Asynchronous)
+        setTimeout(cekGaleri, 2000);
+
+    } catch (e) {
+        console.error("Gallery Script Bypass: ", e);
+    }
+})();
+
+
+
+(function() {
+    try {
+        // Fungsi utama untuk memeriksa isi Perjalanan Cinta
+        function cekLoveStory() {
+            var section = document.getElementById('love-story-section-id');
+            var container = document.querySelector('.love-story-timeline');
+
+            if (container && section) {
+                // CARI ELEMEN NYATA: Kita cek apakah ada class 'ls-item' di dalam timeline
+                var elemenCerita = container.getElementsByClassName('ls-item');
+
+                // JIKA ditemukan minimal ada 1 item cerita nyata
+                if (elemenCerita.length > 0) {
+                    // JIKA ADA ISINYA = SECTION HIDUP!
+                    section.style.setProperty('display', 'block', 'important');
+                    console.log("Love Story terisi: " + elemenCerita.length + " cerita ditemukan. Section HIDUP.");
+                } else {
+                    // JIKA GAADA ISINYA = SECTION MATI
+                    section.style.setProperty('display', 'none', 'important');
+                    console.log("Love Story kosong: Tidak ada item cerita. Section MATI.");
+                }
+            }
+        }
+
+        // Jalankan pengecekan pertama saat halaman selesai dimuat
+        window.addEventListener('load', cekLoveStory);
+
+        // Cadangan 1: Jalankan setelah 1 detik
+        setTimeout(cekLoveStory, 1000);
+
+        // Cadangan 2: Jalankan setelah 2.5 detik (mengantisipasi sistem template yang lambat)
+        setTimeout(cekLoveStory, 2500);
+
+    } catch (e) {
+        console.error("Love Story Script Bypass Error: ", e);
+    }
+})();
+
+
+
+
+
 // --- Music Toggle Logic ---
 
 const music = document.getElementById('background-music');
