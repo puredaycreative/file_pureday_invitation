@@ -8,7 +8,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Konfigurasi Environment (Sesuaikan dengan .env Anda)
-const BACKEND_URL = "https://www.puredayinvitation.my.id";
+const BACKEND_URL = "https://www.puredayinvitation.com";
 const HOST_TEMPLATE = "http://localhost:3003";
 const API = `${BACKEND_URL}/api`;
 
