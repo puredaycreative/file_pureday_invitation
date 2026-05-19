@@ -745,7 +745,7 @@ html, body {
 /* Container Utama */
 .couple-cards {
     display: flex;
-    flex-direction: row; /* Membuat sejajar kiri-kanan */
+    flex-direction: column; /* Membuat sejajar kiri-kanan */
     justify-content: center; /* Presisi di tengah secara horizontal */
     align-items: center; /* Presisi di tengah secara vertical */
     gap: 15px; /* Jarak antar dua bingkai */
@@ -805,6 +805,8 @@ html, body {
     font-size: 2.2rem;
     color: #545454;
     margin-bottom: 8px;
+    margin: 10px 0;
+    font-weight: 400;
 }
 
 .parent-info {
@@ -835,6 +837,19 @@ html, body {
     margin-top: 10px;
     font-weight: bold;
 }
+
+.ampersand-divider {
+    margin: -50px -50px;
+}
+
+.ampersand-text {
+    font-family: 'Rouge Script', cursive;
+    font-size: 48px;
+    color: #545454;
+    font-style: italic;
+}
+
+
 
 /* Animasi sederhana untuk bunga di card */
 @keyframes sway {
@@ -2239,6 +2254,10 @@ html, body {
                 <p class="parent-info">Putra dari Bapak {{nama_bapak_pria}} & Ibu {{nama_ibu_pria}}</p>
                 <p class="address-info">{{alamat_pria}}</p>
             </div>
+
+                <div class="ampersand-divider">
+                <h2 class="ampersand-text">&</h2>
+            </div>
             
             <div class="card animate-left">
                 <div class="card-image-wrapper">
@@ -2684,7 +2703,49 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 })();
 
+(function() {
+    try {
+        function cekFotoPengantin() {
+            // Mengambil semua kartu pengantin (Pria & Wanita)
+            var cards = document.querySelectorAll('.couple-cards .card');
 
+            cards.forEach(function(card) {
+                var img = card.querySelector('.couple-img');
+                var wrapper = card.querySelector('.card-image-wrapper');
+
+                if (img && wrapper) {
+                    // Ambil isi dari src gambar, ubah ke huruf kecil semua agar aman
+                    var src = (img.getAttribute('src') || '').trim().toLowerCase();
+
+                    // SYARAT MATI (Dihilangkan tanpa sisa jarak):
+                    // 1. Jika src kosong ("")
+                    // 2. Jika src berisi teks "null"
+                    // 3. Jika src masih berupa kode template mentah {{foto_...}}
+                    if (src === "" || src === "null" || src.includes('{{foto_')) {
+                        
+                        // Hilangkan pembungkus fotonya total agar teks di bawahnya langsung naik
+                        wrapper.style.setProperty('display', 'none', 'important');
+                        console.log("Detail Section: Foto berstatus null/kosong. Jarak dihilangkan.");
+                        
+                    } else {
+                        // Jika ada foto asli, biarkan tampil normal
+                        wrapper.style.setProperty('display', 'block', 'important');
+                    }
+                }
+            });
+        }
+
+        // Jalankan pengecekan saat halaman selesai dimuat
+        window.addEventListener('load', cekFotoPengantin);
+
+        // Cadangan: Jalankan ulang jika sistem render web Anda butuh waktu proses
+        setTimeout(cekFotoPengantin, 1000);
+        setTimeout(cekFotoPengantin, 2500);
+
+    } catch (e) {
+        console.error("Detail Foto Script Error: ", e);
+    }
+})();
 
 (function() {
     try {
