@@ -744,13 +744,21 @@ html, body {
 /* Card Styling */
 /* Container Utama */
 .couple-cards {
-    display: flex;
-    flex-direction: column; /* Membuat sejajar kiri-kanan */
-    justify-content: center; /* Presisi di tengah secara horizontal */
-    align-items: center; /* Presisi di tengah secara vertical */
-    gap: 15px; /* Jarak antar dua bingkai */
-    width: 100%;
-    padding: 20px 10px;
+    display: flex !important;
+    flex-direction: column !important; /* Paksa mutlak harus atas-bawah */
+    justify-content: center; 
+    align-items: center; 
+    gap: 15px; 
+    width: 100% !important;
+    padding: 50px 5px; /* Padding kanan-kiri yang sempit */
+    box-sizing: border-box;
+}
+
+/* PAKSA semua elemen di dalam .couple-cards untuk patah baris (berjejer ke bawah) */
+.couple-cards > * {
+    display: block !important; 
+    width: 100% !important; /* Mengambil 100% lebar layar landscape */
+    max-width: 420px; /* Supaya pas di HP landscape dan tidak terlalu melar */
     box-sizing: border-box;
 }
 
