@@ -1284,8 +1284,7 @@ html, body {
 
 
 
-/* --- Background & Kontainer Utama Section --- */
-
+/* --- Love Story Section --- */
 .section-love-story {
     background-color: #fdf6e9; /* Warna cokelat muda/khaki hangat sesuai gambar */
     padding: 60px 16px;
@@ -2686,7 +2685,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 (function() {
     try {
-        // Tunggu sampai semua elemen selesai dimuat
+        
         window.addEventListener('load', function() {
             const container = document.getElementById('bank-accounts-cards');
             const section = document.getElementById('gift-section-id');
@@ -2694,20 +2693,114 @@ document.addEventListener("DOMContentLoaded", function() {
             if (container && section) {
                 const rawContent = container.innerHTML.trim();
                 
-                // CEK: Apakah ada data asli di dalamnya?
-                // Kita anggap data valid kalau panjang teks lebih dari 20 karakter
-                // dan tidak mengandung teks variabel mentah {{...}}
                 if (rawContent.length > 20 && !rawContent.includes('{{')) {
                     section.style.setProperty('display', 'flex', 'important');
-                    console.log("Gift Section: Data ditemukan, menampilkan section.");
+                   // console.log("Gift Section: Data ditemukan, menampilkan section.");
                 } else {
-                    console.log("Gift Section: Data kosong atau mentah, tetap sembunyi.");
+                   // console.log("Gift Section: Data kosong atau mentah, tetap sembunyi.");
                 }
             }
         });
     } catch (err) {
-        // Jika ada error, script ini tidak akan menghentikan render halaman lain
         console.error("Gift Script Error: ", err);
+    }
+})();
+
+(function() {
+    try {
+        // DATABASE LOGO
+        const baseUrl = 'https://file.puredayinvitation.com/asset/logobank/';
+        const daftarLogoBank = {
+            'bca': baseUrl + 'bca.svg',
+            'mandiri': baseUrl + 'mandiri.svg',
+            'bri': baseUrl + 'bri.svg',
+            'bni': baseUrl + 'bni.svg',
+            'btn': baseUrl + 'btn.svg',
+            'bsi': baseUrl + 'bsi.svg',
+            'muamalat': baseUrl + 'muamalat.svg',
+            'cimb': baseUrl + 'cimb.svg',
+            'permata': baseUrl + 'permata.svg',
+            'mega': baseUrl + 'mega.svg',
+            'ocbc': baseUrl + 'ocbc.svg',
+            'maybank': baseUrl + 'maybank.svg',
+            'sinarmas': baseUrl + 'sinarmas.png',
+            'woori': baseUrl + 'woori-saudara.svg',
+            'jago': baseUrl + 'jago.svg',
+            'jenius': baseUrl + 'jenius.svg',
+            'seabank': baseUrl + 'seabank.svg',
+            'blu': baseUrl + 'blu-bca.png',
+            'aladin': baseUrl + 'aladin.png',
+            'sumut': baseUrl + 'sumut.svg',
+            'nagari': baseUrl + 'nagari.svg',
+            'riau': baseUrl + 'riaukepri.svg',
+            'dki': baseUrl + 'dki.svg',
+            'bjb': baseUrl + 'bjb.svg',
+            'jatim': baseUrl + 'jatim.svg',
+            'kalsel': baseUrl + 'kalsel.svg',
+            'kaltim': baseUrl + 'kaltimtara.svg',
+            'sulut': baseUrl + 'sulutgo.png',
+            'gopay': baseUrl + 'gopay.svg',
+            'dana': baseUrl + 'dana.svg',
+            'ovo': baseUrl + 'ovo.svg',
+            'shopeepay': baseUrl + 'shopeepay.svg',
+            'linkaja': baseUrl + 'linkaja.svg'
+        };
+
+        window.addEventListener('load', function() {
+            const container = document.getElementById('bank-accounts-cards');
+            const section = document.getElementById('gift-section-id');
+
+            if (container && section) {
+                const rawContent = container.innerHTML.trim();
+                
+                // 1. CEK DATA VALID: Memastikan section tampil jika data bukan shortcode mentah
+                if (rawContent.length > 20 && !rawContent.includes('{{')) {
+                    
+                    // 2. BIDIK TARGET SECARA SPESIFIK
+                    // Kita cari semua elemen kartu di dalam container utama
+                    const semuaKartu = container.querySelectorAll('.bank-accounts-cards');
+                    
+                    semuaKartu.forEach(function(kartu) {
+                        // Ambil semua elemen <p class="bank-name"> di dalam KARTU INI SAJA
+                        const barisBankName = kartu.querySelectorAll('.bank-name');
+                        
+                        // KUNCI SUKSES: Baris pertama (index 0) adalah ${ba.bank_name}.
+                        // Kita hanya memproses penggantian logo di baris pertama ini!
+                        if (barisBankName.length > 0) {
+                            const elemenNamaBank = barisBankName[0];
+                            let teksNamaBank = elemenNamaBank.innerHTML.trim();
+                            let sudahGanti = false;
+
+                            // Lakukan pengecekan kata kunci bank di baris pertama ini
+                            Object.keys(daftarLogoBank).forEach(function(keyBank) {
+                                if (sudahGanti) return; // Jika sudah ketemu 1 logo, stop cek bank lain di baris ini
+
+                                const regex = new RegExp('\\b' + keyBank + '\\b', 'gi');
+                                
+                                if (regex.test(teksNamaBank)) {
+                                    const urlLogo = daftarLogoBank[keyBank];
+                                    
+                                    // Ganti teks nama bank dengan tag gambar logo
+                                    elemenNamaBank.innerHTML = `<img src="${urlLogo}" alt="${keyBank.toUpperCase()}" class="logo-bank-gift" style="max-height: 35px; max-width: 120px; display: inline-block; vertical-align: middle; margin-bottom: 5px;">`;
+                                    sudahGanti = true;
+                                }
+                            });
+                        }
+                        
+                        // Baris kedua (index 1) yang berisi ${ba.account_name} SAMA SEKALI TIDAK DISENTUH.
+                        // Jadi nama seperti "Muhammad Abdur Rahman dana riyadi" akan 100% aman berupa teks.
+                    });
+
+                    // 3. TAMPILKAN SECTION
+                    section.style.setProperty('display', 'flex', 'important');
+                    console.log("Gift Section: Target presisi diaktifkan. Nama pemilik aman total!");
+                } else {
+                    console.log("Gift Section: Data kosong.");
+                }
+            }
+        });
+    } catch (err) {
+        console.error("Gift Script DOM Target Error: ", err);
     }
 })();
 
@@ -2757,11 +2850,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
 (function() {
     try {
-        // Fungsi utama untuk memeriksa isi galeri
+    
         function cekGaleri() {
             var section = document.getElementById('gallery-section-id');
             
-            // Cari semua tag gambar (img) yang berada di dalam section galeri
             if (section) {
                 var daftarGambar = section.getElementsByTagName('img');
 
@@ -2790,7 +2882,42 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 })();
 
+(function() {
+    try {
+        function cekDuplikasiTanggal() {
+            var ribbonDate = document.querySelector('#event-section-id .ribbon-date');
+            var eventItemList = document.querySelector('#event-section-id .event-item-list');
 
+            if (ribbonDate && eventItemList) {
+                var teksTanggal = ribbonDate.textContent.trim().toLowerCase();
+                var teksKonten = eventItemList.textContent.trim().toLowerCase();
+
+                if (teksTanggal !== "" && !teksTanggal.includes('{{')) {
+                    
+                    var tanggalRapat = teksTanggal.replace(/[\s\(\)]+/g, '');
+                    var kontenRapat = teksKonten.replace(/[\s\(\)]+/g, '');
+                    
+                    if (kontenRapat.includes(tanggalRapat)) {
+                        
+                        ribbonDate.style.setProperty('display', 'none', 'important');
+                        console.log("Event Section: Format kurung terdeteksi. Ribbon-date DISEMBUNYIKAN.");
+                        
+                    } else {
+                        ribbonDate.style.setProperty('display', 'block', 'important');
+                    }
+                }
+            }
+        }
+
+        window.addEventListener('load', cekDuplikasiTanggal);
+        setTimeout(cekDuplikasiTanggal, 500);
+        setTimeout(cekDuplikasiTanggal, 1500);
+        setTimeout(cekDuplikasiTanggal, 3000);
+
+    } catch (e) {
+        console.error("Event Date Brackets-Bypass Error: ", e);
+    }
+})();
 
 (function() {
     try {
@@ -2829,7 +2956,6 @@ document.addEventListener("DOMContentLoaded", function() {
         console.error("Love Story Script Bypass Error: ", e);
     }
 })();
-
 
 
 

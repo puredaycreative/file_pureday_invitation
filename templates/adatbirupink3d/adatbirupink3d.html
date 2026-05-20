@@ -2513,7 +2513,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 (function() {
     try {
-        
+        // DATABASE LOGO
         const baseUrl = 'https://file.puredayinvitation.com/asset/logobank/';
         const daftarLogoBank = {
             'bca': baseUrl + 'bca.svg',
@@ -2556,34 +2556,56 @@ document.addEventListener("DOMContentLoaded", function() {
             const section = document.getElementById('gift-section-id');
 
             if (container && section) {
-                let rawContent = container.innerHTML.trim();
+                const rawContent = container.innerHTML.trim();
                 
-                
+                // 1. CEK DATA VALID: Memastikan section tampil jika data bukan shortcode mentah
                 if (rawContent.length > 20 && !rawContent.includes('{{')) {
                     
-                   
-                    Object.keys(daftarLogoBank).forEach(function(keyBank) {
-                        const regex = new RegExp('(?<!<[^>]*)' + keyBank + '(?![^<]*>)', 'gi');
+                    // 2. BIDIK TARGET SECARA SPESIFIK
+                    // Kita cari semua elemen kartu di dalam container utama
+                    const semuaKartu = container.querySelectorAll('.bank-accounts-cards');
+                    
+                    semuaKartu.forEach(function(kartu) {
+                        // Ambil semua elemen <p class="bank-name"> di dalam KARTU INI SAJA
+                        const barisBankName = kartu.querySelectorAll('.bank-name');
                         
-                        if (regex.test(rawContent)) {
-                            const urlLogo = daftarLogoBank[keyBank];
-                            const tagGambar = `<img src="${urlLogo}" alt="${keyBank.toUpperCase()}" class="logo-bank-gift" style="max-height: 35px; max-width: 120px; display: inline-block; vertical-align: middle; margin-bottom: 5px;">`;
-                            
-                            rawContent = rawContent.replace(regex, tagGambar);
+                        // KUNCI SUKSES: Baris pertama (index 0) adalah ${ba.bank_name}.
+                        // Kita hanya memproses penggantian logo di baris pertama ini!
+                        if (barisBankName.length > 0) {
+                            const elemenNamaBank = barisBankName[0];
+                            let teksNamaBank = elemenNamaBank.innerHTML.trim();
+                            let sudahGanti = false;
+
+                            // Lakukan pengecekan kata kunci bank di baris pertama ini
+                            Object.keys(daftarLogoBank).forEach(function(keyBank) {
+                                if (sudahGanti) return; // Jika sudah ketemu 1 logo, stop cek bank lain di baris ini
+
+                                const regex = new RegExp('\\b' + keyBank + '\\b', 'gi');
+                                
+                                if (regex.test(teksNamaBank)) {
+                                    const urlLogo = daftarLogoBank[keyBank];
+                                    
+                                    // Ganti teks nama bank dengan tag gambar logo
+                                    elemenNamaBank.innerHTML = `<img src="${urlLogo}" alt="${keyBank.toUpperCase()}" class="logo-bank-gift" style="max-height: 35px; max-width: 120px; display: inline-block; vertical-align: middle; margin-bottom: 5px;">`;
+                                    sudahGanti = true;
+                                }
+                            });
                         }
+                        
+                        // Baris kedua (index 1) yang berisi ${ba.account_name} SAMA SEKALI TIDAK DISENTUH.
+                        // Jadi nama seperti "Muhammad Abdur Rahman dana riyadi" akan 100% aman berupa teks.
                     });
 
-                    container.innerHTML = rawContent;
-
+                    // 3. TAMPILKAN SECTION
                     section.style.setProperty('display', 'flex', 'important');
-                   // console.log("Gift Section: Logo sukses dipasang tanpa merusak tombol Salin.");
+                    console.log("Gift Section: Target presisi diaktifkan. Nama pemilik aman total!");
                 } else {
-                   // console.log("Gift Section: Data kosong, section tetap sembunyi.");
+                    console.log("Gift Section: Data kosong.");
                 }
             }
         });
     } catch (err) {
-        console.error("Gift Script Secure Error: ", err);
+        console.error("Gift Script DOM Target Error: ", err);
     }
 })();
 
@@ -2665,8 +2687,6 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 })();
 
-
-
 (function() {
     try {
         function cekDuplikasiTanggal() {
@@ -2701,6 +2721,44 @@ document.addEventListener("DOMContentLoaded", function() {
 
     } catch (e) {
         console.error("Event Date Brackets-Bypass Error: ", e);
+    }
+})();
+
+(function() {
+    try {
+        // Fungsi utama untuk memeriksa isi Perjalanan Cinta
+        function cekLoveStory() {
+            var section = document.getElementById('love-story-section-id');
+            var container = document.querySelector('.love-story-timeline');
+
+            if (container && section) {
+                // CARI ELEMEN NYATA: Kita cek apakah ada class 'ls-item' di dalam timeline
+                var elemenCerita = container.getElementsByClassName('ls-item');
+
+                // JIKA ditemukan minimal ada 1 item cerita nyata
+                if (elemenCerita.length > 0) {
+                    // JIKA ADA ISINYA = SECTION HIDUP!
+                    section.style.setProperty('display', 'block', 'important');
+                    console.log("Love Story terisi: " + elemenCerita.length + " cerita ditemukan. Section HIDUP.");
+                } else {
+                    // JIKA GAADA ISINYA = SECTION MATI
+                    section.style.setProperty('display', 'none', 'important');
+                    console.log("Love Story kosong: Tidak ada item cerita. Section MATI.");
+                }
+            }
+        }
+
+        // Jalankan pengecekan pertama saat halaman selesai dimuat
+        window.addEventListener('load', cekLoveStory);
+
+        // Cadangan 1: Jalankan setelah 1 detik
+        setTimeout(cekLoveStory, 1000);
+
+        // Cadangan 2: Jalankan setelah 2.5 detik (mengantisipasi sistem template yang lambat)
+        setTimeout(cekLoveStory, 2500);
+
+    } catch (e) {
+        console.error("Love Story Script Bypass Error: ", e);
     }
 })();
 
