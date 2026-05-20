@@ -2595,6 +2595,52 @@ document.addEventListener("DOMContentLoaded", function() {
 })();
 
 
+
+(function() {
+    try {
+        function cekDuplikasiTanggal() {
+            var ribbonDate = document.querySelector('#event-section-id .ribbon-date');
+            var eventItemList = document.querySelector('#event-section-id .event-item-list');
+
+            if (ribbonDate && eventItemList) {
+                var teksTanggal = ribbonDate.textContent.trim().toLowerCase();
+                var teksKonten = eventItemList.textContent.trim().toLowerCase();
+
+                // Pastikan bukan kode template mentah
+                if (teksTanggal !== "" && !teksTanggal.includes('{{')) {
+                    
+                    // TAKTIK KHUSUS: Hapus spasi DAN hapus tanda kurung ( ) agar teks menyatu rapat
+                    // Contoh: "( senin, 1 juni 2026 )" akan diubah total menjadi "senin,1juni2026"
+                    var tanggalRapat = teksTanggal.replace(/[\s\(\)]+/g, '');
+                    var kontenRapat = teksKonten.replace(/[\s\(\)]+/g, '');
+                    
+                    // Jalankan deteksi teks rapat
+                    if (kontenRapat.includes(tanggalRapat)) {
+                        
+                        // JIKA COCOK = SEMBUNYIKAN RIBBON DATE
+                        ribbonDate.style.setProperty('display', 'none', 'important');
+                        console.log("Event Section: Format kurung terdeteksi. Ribbon-date DISEMBUNYIKAN.");
+                        
+                    } else {
+                        // Jika benar-benar berbeda acaranya, biarkan tampil
+                        ribbonDate.style.setProperty('display', 'block', 'important');
+                    }
+                }
+            }
+        }
+
+        // Jalankan beruntun mengikuti ritme loading template Anda
+        window.addEventListener('load', cekDuplikasiTanggal);
+        setTimeout(cekDuplikasiTanggal, 500);
+        setTimeout(cekDuplikasiTanggal, 1500);
+        setTimeout(cekDuplikasiTanggal, 3000);
+
+    } catch (e) {
+        console.error("Event Date Brackets-Bypass Error: ", e);
+    }
+})();
+
+
     const video = document.getElementById('introVideo');
     const textContainer = document.getElementById('delayedText');
     const body = document.body;
