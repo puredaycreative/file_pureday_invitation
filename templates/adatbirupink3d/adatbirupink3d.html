@@ -2515,6 +2515,84 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 })();
 
+(function() {
+    try {
+        function cekFotoPengantin() {
+            // Mengambil semua kartu pengantin (Pria & Wanita)
+            var cards = document.querySelectorAll('.couple-cards .card');
+
+            cards.forEach(function(card) {
+                var img = card.querySelector('.couple-img');
+                var wrapper = card.querySelector('.card-image-wrapper');
+
+                if (img && wrapper) {
+                    // Ambil isi dari src gambar, ubah ke huruf kecil semua agar aman
+                    var src = (img.getAttribute('src') || '').trim().toLowerCase();
+
+                    // SYARAT MATI (Dihilangkan tanpa sisa jarak):
+                    // 1. Jika src kosong ("")
+                    // 2. Jika src berisi teks "null"
+                    // 3. Jika src masih berupa kode template mentah {{foto_...}}
+                    if (src === "" || src === "null" || src.includes('{{foto_')) {
+                        
+                        // Hilangkan pembungkus fotonya total agar teks di bawahnya langsung naik
+                        wrapper.style.setProperty('display', 'none', 'important');
+                        console.log("Detail Section: Foto berstatus null/kosong. Jarak dihilangkan.");
+                        
+                    } else {
+                        // Jika ada foto asli, biarkan tampil normal
+                        wrapper.style.setProperty('display', 'block', 'important');
+                    }
+                }
+            });
+        }
+
+        // Jalankan pengecekan saat halaman selesai dimuat
+        window.addEventListener('load', cekFotoPengantin);
+
+        // Cadangan: Jalankan ulang jika sistem render web Anda butuh waktu proses
+        setTimeout(cekFotoPengantin, 1000);
+        setTimeout(cekFotoPengantin, 2500);
+
+    } catch (e) {
+        console.error("Detail Foto Script Error: ", e);
+    }
+})();
+
+(function() {
+    try {
+        // Fungsi utama untuk memeriksa isi galeri
+        function cekGaleri() {
+            var section = document.getElementById('gallery-section-id');
+            
+            // Cari semua tag gambar (img) yang berada di dalam section galeri
+            if (section) {
+                var daftarGambar = section.getElementsByTagName('img');
+
+                // JIKA ditemukan minimal ada 1 gambar di dalam section tersebut
+                if (daftarGambar.length > 0) {
+                    // JIKA ADA ISINYA = SECTION HIDUP!
+                    section.style.setProperty('display', 'block', 'important');
+                    console.log("Galeri terisi: " + daftarGambar.length + " foto ditemukan. Section HIDUP.");
+                } else {
+                    // JIKA GAADA ISINYA = SECTION MATI
+                    section.style.setProperty('display', 'none', 'important');
+                    console.log("Galeri kosong: Tidak ada foto. Section MATI.");
+                }
+            }
+        }
+
+        // Jalankan pengecekan pertama saat halaman selesai dimuat
+        window.addEventListener('load', cekGaleri);
+
+        // Cadangan: Jalankan ulang setelah 2 detik untuk mengantisipasi 
+        // sistem template/slider yang loading-nya lambat (Asynchronous)
+        setTimeout(cekGaleri, 2000);
+
+    } catch (e) {
+        console.error("Gallery Script Bypass: ", e);
+    }
+})();
 
 
     const video = document.getElementById('introVideo');
