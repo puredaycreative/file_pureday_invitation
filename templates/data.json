@@ -138,6 +138,78 @@
 
 
 
+
+
+  {
+    "id": "basic cream",
+    "name": "basic cream",
+    "category": "basic",
+    "imageUrl": "https://file.puredayinvitation.com/templates-preview/basiccream.jpg",
+    "previewUrl": "https://www.puredayinvitation.com/undangan/basiccream"
+  },
+  {
+    "id": "basic blue",
+    "name": "basic blue",
+    "category": "basic",
+    "imageUrl": "https://file.puredayinvitation.com/templates-preview/basicblue.jpg",
+    "previewUrl": "https://www.puredayinvitation.com/undangan/basicblue"
+  },
+  {
+    "id": "basic pink",
+    "name": "basic pink",
+    "category": "basic",
+    "imageUrl": "https://file.puredayinvitation.com/templates-preview/basicpink.jpg",
+    "previewUrl": "https://www.puredayinvitation.com/undangan/basicpink"
+  },
+  {
+    "id": "basic red",
+    "name": "basic red",
+    "category": "basic",
+    "imageUrl": "https://file.puredayinvitation.com/templates-preview/basicred.jpg",
+    "previewUrl": "https://www.puredayinvitation.com/undangan/basicred"
+  },
+  {
+    "id": "basic black",
+    "name": "basic black",
+    "category": "basic",
+    "imageUrl": "https://file.puredayinvitation.com/templates-preview/basicblack.jpg",
+    "previewUrl": "https://www.puredayinvitation.com/undangan/basicblack"
+  },
+  {
+    "id": "basic purple",
+    "name": "basic purple",
+    "category": "basic",
+    "imageUrl": "https://file.puredayinvitation.com/templates-preview/basicpurple.jpg",
+    "previewUrl": "https://www.puredayinvitation.com/undangan/basicpurple"
+  },
+  {
+    "id": "basic yellow",
+    "name": "basic yellow",
+    "category": "basic",
+    "imageUrl": "https://file.puredayinvitation.com/templates-preview/basicyellow.jpg",
+    "previewUrl": "https://www.puredayinvitation.com/undangan/basicyellow"
+  },
+  {
+    "id": "basic green",
+    "name": "basic green",
+    "category": "basic",
+    "imageUrl": "https://file.puredayinvitation.com/templates-preview/basicgreen.jpg",
+    "previewUrl": "https://www.puredayinvitation.com/undangan/basicgreen"
+  },
+  {
+    "id": "basic grey",
+    "name": "basic grey",
+    "category": "basic",
+    "imageUrl": "https://file.puredayinvitation.com/templates-preview/basicgrey.jpg",
+    "previewUrl": "https://www.puredayinvitation.com/undangan/basicgrey"
+  },
+  {
+    "id": "basic gold",
+    "name": "basic gold",
+    "category": "basic",
+    "imageUrl": "https://file.puredayinvitation.com/templates-preview/basicgold.jpg",
+    "previewUrl": "https://www.puredayinvitation.com/undangan/basicgold"
+  },
     {
     "id": "dhoni-erna",
     "name": "lavender gold",
