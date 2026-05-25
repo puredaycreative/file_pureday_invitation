@@ -306,7 +306,7 @@
 
 
 .template-cover-guest-name {
-    font-size: 1.2rem;
+    font-size: 1rem;
     margin-bottom: 15px;
 }
 
@@ -322,7 +322,7 @@
 .template-cover-guest-name {
     font-family: Andada, serif;
     font-weight: bold;
-    font-size: 1.1rem;
+    font-size:0.9rem;
     margin-top: -3px; /* Menaikkan posisi sedikit */
     
     /* --- Tambahkan kode di bawah ini --- */
@@ -769,29 +769,31 @@
 .section-gift {
     position: relative;
     width: 100%;
-    /* UBAH: Jangan gunakan height: 100vh agar bisa memanjang ke bawah jika kartu banyak */
+    
+    /* Gunakan min-height saja, hilangkan height: auto */
     min-height: 100vh; 
-    height: auto; 
     
     margin-left: auto;
     margin-right: 0;
     
-    /* Background & Dekorasi */
     background-image: url('https://file.puredayinvitation.com/adatcoklatcream/bg.png'); 
     background-size: cover;
     background-position: center;
-    background-attachment: fixed; /* Menjaga background tetap tenang saat di-scroll */
+    background-attachment: fixed;
     box-shadow: -10px 0 30px rgba(0,0,0,0.05);
     
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* UBAH: Gunakan flex-start agar konten mulai dari atas, bukan dipaksa di tengah */
     justify-content: flex-start; 
-    overflow-y: auto; /* Izinkan scroll vertikal */
+    
+    /* PENTING: Gunakan padding agar margin elemen anak tidak keluar */
+    padding-top: 20px; 
     padding-bottom: 50px; 
+    
+    /* Ubah ke visible agar tidak memicu scrollbar di level elemen ini */
+    overflow-y: visible; 
 }
-
 .bank-accounts-cards {
     display: flex;
     flex-direction: column;
@@ -1218,7 +1220,7 @@
     background-color: #9f3b0f;
     
     /* Ruang kosong di bawah agar tidak menabrak form */
-    padding: 60px 20px 280px 20px; 
+    padding: 20px 20px 280px 20px; 
     box-sizing: border-box;
     display: block;
     overflow: visible; 
@@ -2045,10 +2047,10 @@ document.addEventListener("DOMContentLoaded", function() {
     try {
         function cekFotoPengantin() {
             // Mengambil semua kartu pengantin (Pria & Wanita)
-            var cards = document.querySelectorAll('.couple-cards .card');
+            var cards = document.querySelectorAll('.card groom-card .couple-cards .card');
 
             cards.forEach(function(card) {
-                var img = card.querySelector('.couple-img');
+                var img = card.querySelector('.card groom-card');
                 var wrapper = card.querySelector('.card-image-wrapper');
 
                 if (img && wrapper) {
