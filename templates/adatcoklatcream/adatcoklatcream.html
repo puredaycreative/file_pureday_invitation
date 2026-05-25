@@ -21,6 +21,12 @@
 <link href="https://fonts.googleapis.com/css?family=Allerta" rel="stylesheet">
 
 <style>
+    html, body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Mencegah scroll horizontal */
+}
     /* Animasi Fade In dari Bawah ke Atas */
 /* --- ANIMASI TEKS --- */
 @keyframes fadeInUp {
@@ -154,6 +160,27 @@
         transform: translateY(-1px);
     }
     
+
+    @media (min-aspect-ratio: 1/1) {
+    body {
+        /* Memastikan BG tetap di tengah layout 450px saat landscape */
+        background-size: 450px 100%;
+          margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    overflow-x: hidden !important;
+    /* background-color: #1e1e1e; */
+    }
+
+    .section-intro, 
+    .section-detail,
+    .section-event,
+    .section-gift {
+        max-width: 450px;
+        margin: 0 auto !important;
+    }
+}
     /* --- COVER SECTION --- */
 /* Container Utama */
 .template-cover-container {
