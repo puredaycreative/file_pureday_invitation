@@ -2855,27 +2855,6 @@ window.toggleMusic = function() {
     }
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    
-    const isMusicShouldPlay = localStorage.getItem('isMusicPlaying') === 'true';
-    if (isMusicShouldPlay) {
-        music.muted = false;
-        
-        music.play().then(() => {
-            
-            updateMusicIcon(true);
-        }).catch(error => {
-            
-            // console.log("Autoplay blocked on load.", error);
-            localStorage.setItem('isMusicPlaying', 'false');
-            updateMusicIcon(false);
-            
-        });
-    } else {
-        // Tampilkan status PAUSED (ikon mute)
-        updateMusicIcon(false);
-    }
-});
 
 document.getElementById('open-invitation-btn').addEventListener('click', function() {
     const cover = document.getElementById('cover-page');
