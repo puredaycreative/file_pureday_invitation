@@ -85,35 +85,29 @@
         box-sizing: border-box;
     }
 
-    html, body {
-    width: 100%;
-    overflow-x: hidden; /* Mengunci scroll horizontal */
-    margin: 0;
-    padding: 0;
+   /* --- TAMPILAN DEFAULT (MOBILE PORTRAIT) --- */
+.template-cover-container, .section-intro, 
+.section-detail, .section-event-timer,
+.section-event, .section-gallery,
+.section-gift, .section-comments,
+.section-comments-list {
+    width: 100%; /* Memenuhi layar HP sepenuhnya */
+    margin-left: 0;
+    margin-right: 0;
     box-sizing: border-box;
 }
 
-*, *:before, *:after {
-    box-sizing: inherit; /* Memastikan semua elemen menghitung padding dengan benar */
-}
-   @media (min-aspect-ratio: 1/1) {
+/* --- TAMPILAN PC / LANDSCAPE (Dibatasi 450px + Bayangan) --- */
+@media (min-aspect-ratio: 1/1) {
     .template-cover-container, .section-intro, 
-    .section-detail,
-    .section-event-timer,
-    .section-event,
-    .section-gallery,
-    .section-gift,
-    .section-comments,
-    .section-comments-list
-
-     {
-        width: 100%;
-    max-width: 450px; /* Ukuran standar HP agar ramping */
-    margin-left: auto !important;
-    margin-right: auto !important;
-    position: relative;
-    box-sizing: border-box;
-        box-shadow: 0 0 100px rgba(0,0,0,0.5); /* Efek bayangan di kanan kiri */
+    .section-detail, .section-event-timer,
+    .section-event, .section-gallery,
+    .section-gift, .section-comments,
+    .section-comments-list {
+        max-width: 450px; /* Membatasi lebar di PC agar mirip HP */
+        margin-left: auto !important;
+        margin-right: auto !important;
+        box-shadow: 0 0 100px rgba(0,0,0,0.5);
     }
 }
     
