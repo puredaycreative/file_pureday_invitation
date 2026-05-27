@@ -261,26 +261,37 @@
 .template-cover-content-wrapper {
     position: relative;
     z-index: 20;
-    width: 1000000px;
-    max-width: 400px;
+    width: 100%;          /* Mengembalikan ukuran ke 100% lebar layar HP agar aman */
+    max-width: 400px;     /* Menjadi jangkar batas ukuran mobile */
+    margin: 0 auto;       /* Menjaga wadah utama tetap presisi di tengah */
+    padding: 0;           /* Dibuat 0 agar frame di dalamnya bebas mekar */
+    box-sizing: border-box;
 }
+
 /* Container Frame (Bingkai Kipas/Gunungan) */
 .frame-center {
     position: relative;
     background: url('https://file.puredayinvitation.com/adatcoklatcream/kipastengahteks.png') no-repeat center;
-    background-size: contain;
-    padding: 0px 60px; 
+    background-size: 100% 100%; /* Memaksa gambar latar mengikuti ukuran fisik baru yang besar */
+    padding: 60px 80px;         /* Padding dalam dipertebal agar konten teks terkunci rapi di tengah kipas */
     text-align: center;
     z-index: 20;
-    width: 490px;      
-    height: 1390px;
     
-    /* UBAH DI SINI */
-    margin: 0 0 0 -50px; /* Atur angka 50px ini: makin kecil makin ke kiri */
+    /* --- SOLUSI STRATEGIS: MEMBUAT FRAME JAUH LEBIH BESAR SECARA FISIK --- */
+    width: 130%;                /* Diperbesar 30% lebih besar dari lebar HP (Setara ~500px) */
+    max-width: 130%;
+    height: auto;               /* Ubah ke auto agar tidak kaku/melar di HP */
+    min-height: 720px;          /* Tinggi proporsional untuk mengimbangi lebarnya yang raksasa */
+    
+    /* --- JURUS ANTI OVERFLOW SAFARI (PENGGANTI MARGIN MINUS) --- */
+    margin: 0;
+transform: translateX(calc(-15% + 20px));
     
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;        /* Mengunci elemen anak agar tegak lurus di tengah */
+    box-sizing: border-box;
 }
 
 /* Wrapper Teks agar lebih rapi di tengah */
@@ -288,6 +299,8 @@
     position: relative;
     letter-spacing: normal;
     z-index: 25;
+    width: 100%;                /* Memaksa teks mengunci lebar ruang dalam frame, tidak akan keluar jalur */
+    box-sizing: border-box;
 }
 
 /* Base Style Bunga */
