@@ -244,10 +244,13 @@
 }
 html, body {
     width: 100%;
+    max-width: 100%;
     margin: 0;
     padding: 0;
-    overflow-x: hidden !important; /* Wajib pakai !important untuk Safari */
+    overflow-x: hidden !important; /* Mengunci paksa scroll kanan kiri di iOS */
+    position: relative;
     box-sizing: border-box;
+    -webkit-overflow-scrolling: touch;
 }
 /* 4. Frame Tengah & Konten Dinamis */
 .template-cover-content-wrapper {
@@ -263,13 +266,23 @@ html, body {
 .frame-center {
     position: relative;
     background: url('https://file.puredayinvitation.com/adatcoklatcream/kipastengahteks.png') no-repeat center;
-    background-size: contain;
+    background-size: contain; /* Memastikan gambar kipas mengecil mengikuti lebar HP */
     padding: 0px 60px; 
     text-align: center;
     z-index: 20;
-    width: 490px;      
-    height: 1390px;
-    margin: 0 0 0 -75px;
+    
+    /* --- PERBAIKAN LEBAR AGAR TIDAK JEBOL DI IPHONE --- */
+    width: 100%;          /* Mengikuti lebar pembungkus utama (max 400px) */
+    max-width: 100%;      /* Melarang keras elemen menjadi lebih besar dari layar HP */
+    height: auto;         /* Diubah ke auto agar tinggi menyesuaikan secara proporsional */
+    min-height: 580px;    /* Memberikan ruang vertikal yang cukup untuk teks dan tombol */
+    
+    /* --- PENGATURAN POSISI AKURAT --- */
+    /* Menghilangkan margin minus statis (-75px) yang merusak layout Safari.
+       Sebagai gantinya, gunakan transform untuk menggeser posisi "kurang ke kiri sedikit" dengan aman */
+    margin: 0 auto; 
+    transform: translateX(-15px); /* Geser angka ini: -20px jika ingin lebih ke kiri, -5px jika ingin lebih ke kanan */
+    
     display: flex;
     flex-direction: column;
     justify-content: center;
