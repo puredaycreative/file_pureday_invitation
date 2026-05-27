@@ -2899,62 +2899,42 @@ window.toggleMusic = function() {
     }
 }
 
-document.addEventListener('DOMContentLoaded', function() {
+// document.addEventListener('DOMContentLoaded', function() {
     
-    const isMusicShouldPlay = localStorage.getItem('isMusicPlaying') === 'true';
-    if (isMusicShouldPlay) {
-        music.muted = false;
+//     const isMusicShouldPlay = localStorage.getItem('isMusicPlaying') === 'true';
+//     if (isMusicShouldPlay) {
+//         music.muted = false;
         
-        music.play().then(() => {
+//         music.play().then(() => {
             
-            updateMusicIcon(true);
-        }).catch(error => {
+//             updateMusicIcon(true);
+//         }).catch(error => {
             
-            // console.log("Autoplay blocked on load.", error);
-            localStorage.setItem('isMusicPlaying', 'false');
-            updateMusicIcon(false);
+//             // console.log("Autoplay blocked on load.", error);
+//             localStorage.setItem('isMusicPlaying', 'false');
+//             updateMusicIcon(false);
             
-        });
-    } else {
-        // Tampilkan status PAUSED (ikon mute)
-        updateMusicIcon(false);
-    }
-});
-
+//         });
+//     } else {
+//         // Tampilkan status PAUSED (ikon mute)
+//         updateMusicIcon(false);
+//     }
+// });
 
 document.getElementById('open-invitation-btn').addEventListener('click', function() {
-    // --- KHUSUS IOS / BROWSER UMUM: PUTAR MUSIK DI BARIS PALING ATAS ---
-    if (music) {
-        const wasPlaying = localStorage.getItem('isMusicPlaying');
-        
-        // Jika belum pernah diset (kunjungan pertama) ATAU nilainya true, langsung putar
-        if (wasPlaying === null || wasPlaying === 'true') {
-            music.play().then(() => {
-                if (typeof updateMusicIcon === 'function') updateMusicIcon(true);
-                localStorage.setItem('isMusicPlaying', 'true'); // Amankan status di storage
-            }).catch(e => {
-                if (typeof updateMusicIcon === 'function') updateMusicIcon(false);
-                console.log("iOS Autoplay Blocked:", e);
-            });
-        } else {
-            if (typeof updateMusicIcon === 'function') updateMusicIcon(false);
-        }
-    }
-
-    // --- SISANYA ADALAH KODE ANIMASI ASLI ANDA (TIDAK BERUBAH) ---
     const cover = document.getElementById('cover-page');
     const bgBase = document.querySelector('.cover-bg-base');
     const content = document.querySelector('.template-cover-content-wrapper');
     const flowerTop = document.querySelector('.flower-top');
     const flowerBottom = document.querySelector('.flower-bottom');
     const mainContent = document.getElementById('main-content');
+    const body = document.body;
 
-    // 1. Tampilkan konten utama di bawah
-    if (mainContent) {
-        mainContent.style.visibility = 'visible';
-        mainContent.style.opacity = '1';
-    }
-    if (floatingMusicToggle) floatingMusicToggle.classList.add('visible');
+    // 1. Tampilkan konten utama di bawah (masih tertutup cover)
+    mainContent.style.visibility = 'visible';
+    mainContent.style.opacity = '1';
+       floatingMusicToggle.classList.add('visible'); // Tampilkan tombol mengambang
+
 
     // 2. Tarik semua elemen cover ke atas
     if (bgBase) bgBase.classList.add('bg-pull-up');
@@ -2962,18 +2942,37 @@ document.getElementById('open-invitation-btn').addEventListener('click', functio
     if (flowerTop) flowerTop.classList.add('content-pull-up');
     if (flowerBottom) flowerBottom.classList.add('content-pull-up');
 
-    // 3. Efek fade out cover
-    if (cover) {
-        cover.style.transition = 'opacity 1s';
-        cover.style.opacity = '0';
-    }
+    // 3. Tambahkan efek fade out sedikit pada container agar halus
+    cover.style.transition = 'opacity 1s';
+    cover.style.opacity = '0';
 
-    // 4. Hapus cover dari display setelah 1 detik
+    // 4. Setelah animasi tarik (1 detik), hapus cover dari display
     setTimeout(() => {
-        if (cover) cover.style.display = 'none';
+        cover.style.display = 'none';
+        // body.classList.remove('scroll-locked');
+        
         if (typeof initIntersectionObserver === 'function') initIntersectionObserver();
         if (typeof startCountdown === 'function') startCountdown();
     }, 1000); 
+    
+    
+       // Logic untuk memutar musik saat undangan dibuka:
+    const wasPlaying = localStorage.getItem('isMusicPlaying') !== 'false';
+    if (wasPlaying) {
+         // Panggil play secara langsung untuk memulai musik, update icon akan mengikuti
+        music.play().then(() => {
+            updateMusicIcon(true);
+        }).catch(e => {
+            // Jika gagal (autoplay block), tetap tampilkan ikon mute
+            updateMusicIcon(false);
+            console.log("Autoplay blocked, user must click the floating button.");
+        });
+    } else {
+        updateMusicIcon(false); // Pastikan ikon tetap mute jika sebelumnya dimatikan
+    }
+
+    startCountdown();
+    
 });
 
 
