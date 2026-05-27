@@ -615,7 +615,8 @@
     .section-gallery,
     .section-gift,
     .section-comments,
-    .section-comments-list
+    .section-comments-list,
+    .section-closing
 
      {
         width: 100%;
@@ -1703,9 +1704,7 @@ max-width: 450px;
     margin-left: auto;
     margin-right: 0;
     
-    /* PENTING: Hapus background-image dari sini agar tidak double */
-  background-image: url("https://file.puredayinvitation.com/templates/basiccream/bg.jpg");
-    
+    /* 1. HAPUS background-image dari sini agar tidak double/salah kaprah */
     box-shadow: -10px 0 30px rgba(0,0,0,0.05);
     overflow: hidden;
     padding: 80px 20px 180px 20px;
@@ -1722,12 +1721,17 @@ max-width: 450px;
     right: 0;
     bottom: 0;
     
+    /* 2. PINDAHKAN gambarnya ke sini */
+    background-image: url("https://file.puredayinvitation.com/templates/basiccream/bg.jpg");
     background-size: cover;
     background-position: center;
     
-    z-index: -1; /* Meletakkan gambar di belakang konten */}
-
-
+    /* 3. TAMBAHKAN efek blur jika diinginkan */
+    /* filter: blur(8px); */ 
+    /* transform: scale(1.1); */ /* Opsional: untuk menghilangkan garis putih di pinggir akibat blur */
+    
+    z-index: -1; /* Meletakkan gambar di belakang konten */
+}
 
 /* --- FORM & INPUT STYLING --- */
 .detail-box {
@@ -1986,6 +1990,69 @@ background-image: url("https://file.puredayinvitation.com/templates/basiccream/b
 
 
 
+/* Styling Section Penutup */
+.section-closing {
+    padding: 60px 0px;
+   background-image: url("https://file.puredayinvitation.com/templates/basiccream/bg.jpg");
+   background-size: cover;
+
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.content-closing-wrapper {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.closing-statement, .thanks-statement {
+  
+    line-height: 1.6;
+    margin-bottom: 20px;
+    font-weight: 500;
+     font-family: Andada, serif;
+    font-size: 13px;
+    color: #444;
+    line-height: 1.8;
+    text-align: center;
+    padding: 0 15%; /* Semakin besar persentasenya, semakin rapat teks ke tengah */
+    display: block;
+}
+
+.salam-closing {
+    font-family: 'Great Vibes', cursive; /* Gunakan font latin/script */
+    font-size: 1.5rem;
+    margin: 30px 0;
+    font-weight: normal;
+    text-align: center;
+    color: #634e34; /* Warna cokelat tua sesuai gambar */
+   
+}
+
+.signature-wrapper {
+    margin-top: 40px;
+      text-align: center;
+}
+
+.regards-text {
+       font-family: Andada, serif;
+    font-size: 13px;
+    color: #444;
+    line-height: 1.8;
+  
+    margin-bottom: 10px;
+}
+
+.couple-nickname {
+        line-height: 0.9;    /* Mengatur kerapatan baris agar tidak terlalu renggang */
+ font-size: 2rem;
+    font-family: 'Rouge Script', cursive;
+    color: #634e34;
+  
+}
+
+
+
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Bad+Script&family=Allerta&display=swap');
 
 .pureday-footer-section {
@@ -2167,6 +2234,9 @@ background-image: url("https://file.puredayinvitation.com/templates/basiccream/b
 
 <section class="section section-detail">
     <div class="content-detail-wrapper">
+           <h4 class="salam-closing animate-left">
+            Assalamu'alaikum Wr. Wb.
+        </h4>
         
         <p class="quote-opening">
             Tanpa mengurangi rasa hormat, kami mengundang Bapak/Ibu/Saudara/i serta kerabat sekalian untuk menghadiri acara pernikahan kami.
@@ -2326,6 +2396,29 @@ background-image: url("https://file.puredayinvitation.com/templates/basiccream/b
 
  
   
+</section>
+
+<section class="section section-closing">
+    <div class="content-closing-wrapper">
+            <div class="card-image-wrapper animate-left">
+                   <img src="{{cover}}" alt="cover" class="couple-img">
+                </div>
+      
+
+        <p class="thanks-statement animate-left">
+          Kehadiran Bapak/Ibu/Saudara sekalian merupakan kebahagiaan tersendiri bagi kami. Terima kasih atas kesediaannya meluangkan waktu serta memberikan doa restu bagi pernikahan kami.
+        </p>
+
+        <h4 class="salam-closing animate-left">
+            Wassalamu'alaikum Wr. Wb.
+        </h4>
+
+        <div class="signature-wrapper animate-left">
+            <p class="regards-text">Yang Berbahagia</p>
+            <h2 class="couple-nickname">{{nama_pria}}  &  {{nama_wanita}}</h2>
+        </div>
+
+    </div>
 </section>
 
 
@@ -2583,39 +2676,47 @@ document.addEventListener("DOMContentLoaded", function() {
 (function() {
     try {
         function cekFotoPengantin() {
-            // Mengambil semua kartu pengantin (Pria & Wanita)
+            // 1. CEK FOTO PENGANTIN (PROSES LAMA)
             var cards = document.querySelectorAll('.couple-cards .card');
-
             cards.forEach(function(card) {
                 var img = card.querySelector('.couple-img');
                 var wrapper = card.querySelector('.card-image-wrapper');
 
                 if (img && wrapper) {
-                    // Ambil isi dari src gambar, ubah ke huruf kecil semua agar aman
                     var src = (img.getAttribute('src') || '').trim().toLowerCase();
-
-                    // SYARAT MATI (Dihilangkan tanpa sisa jarak):
-                    // 1. Jika src kosong ("")
-                    // 2. Jika src berisi teks "null"
-                    // 3. Jika src masih berupa kode template mentah {{foto_...}}
                     if (src === "" || src === "null" || src.includes('{{foto_')) {
-                        
-                        // Hilangkan pembungkus fotonya total agar teks di bawahnya langsung naik
                         wrapper.style.setProperty('display', 'none', 'important');
-                        console.log("Detail Section: Foto berstatus null/kosong. Jarak dihilangkan.");
-                        
+                        console.log("Detail Section: Foto pengantin null/kosong. Jarak dihilangkan.");
                     } else {
-                        // Jika ada foto asli, biarkan tampil normal
                         wrapper.style.setProperty('display', 'block', 'important');
                     }
                 }
             });
+
+            // 2. CEK FOTO COVER / CLOSING (PROSES BARU)
+            var closingSection = document.querySelector('.section-closing');
+            if (closingSection) {
+                var closingImg = closingSection.querySelector('.couple-img');
+                var closingWrapper = closingSection.querySelector('.card-image-wrapper');
+
+                if (closingImg && closingWrapper) {
+                    var closingSrc = (closingImg.getAttribute('src') || '').trim().toLowerCase();
+
+                    // Syarat jika cover kosong, berstatus null, atau masih berupa template {{cover}}
+                    if (closingSrc === "" || closingSrc === "null" || closingSrc.includes('{{cover}}')) {
+                        closingWrapper.style.setProperty('display', 'none', 'important');
+                        console.log("Closing Section: Foto cover null/kosong. Jarak dihilangkan.");
+                    } else {
+                        closingWrapper.style.setProperty('display', 'block', 'important');
+                    }
+                }
+            }
         }
 
         // Jalankan pengecekan saat halaman selesai dimuat
         window.addEventListener('load', cekFotoPengantin);
 
-        // Cadangan: Jalankan ulang jika sistem render web Anda butuh waktu proses
+        // Cadangan jika render butuh waktu
         setTimeout(cekFotoPengantin, 1000);
         setTimeout(cekFotoPengantin, 2500);
 
