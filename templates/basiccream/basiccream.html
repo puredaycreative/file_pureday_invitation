@@ -2933,8 +2933,24 @@ document.getElementById('open-invitation-btn').addEventListener('click', functio
     // 1. Tampilkan konten utama di bawah (masih tertutup cover)
     mainContent.style.visibility = 'visible';
     mainContent.style.opacity = '1';
-       floatingMusicToggle.classList.add('visible'); // Tampilkan tombol mengambang
+    if (floatingMusicToggle) floatingMusicToggle.classList.add('visible'); // Tampilkan tombol mengambang
 
+    // Logic untuk memutar musik saat undangan dibuka (Dinaikkan ke atas agar terdeteksi sebagai interaksi langsung oleh browser):
+    if (music) {
+        const wasPlaying = localStorage.getItem('isMusicPlaying') !== 'false';
+        if (wasPlaying) {
+            // Panggil play secara langsung untuk memulai musik, update icon akan mengikuti
+            music.play().then(() => {
+                if (typeof updateMusicIcon === 'function') updateMusicIcon(true);
+            }).catch(e => {
+                // Jika gagal (autoplay block), tetap tampilkan ikon mute
+                if (typeof updateMusicIcon === 'function') updateMusicIcon(false);
+                console.log("Autoplay blocked, user must click the floating button.", e);
+            });
+        } else {
+            if (typeof updateMusicIcon === 'function') updateMusicIcon(false); // Pastikan ikon tetap mute jika sebelumnya dimatikan
+        }
+    }
 
     // 2. Tarik semua elemen cover ke atas
     if (bgBase) bgBase.classList.add('bg-pull-up');
@@ -2954,24 +2970,6 @@ document.getElementById('open-invitation-btn').addEventListener('click', functio
         if (typeof initIntersectionObserver === 'function') initIntersectionObserver();
         if (typeof startCountdown === 'function') startCountdown();
     }, 1000); 
-    
-    
-       // Logic untuk memutar musik saat undangan dibuka:
-    const wasPlaying = localStorage.getItem('isMusicPlaying') !== 'false';
-    if (wasPlaying) {
-         // Panggil play secara langsung untuk memulai musik, update icon akan mengikuti
-        music.play().then(() => {
-            updateMusicIcon(true);
-        }).catch(e => {
-            // Jika gagal (autoplay block), tetap tampilkan ikon mute
-            updateMusicIcon(false);
-            console.log("Autoplay blocked, user must click the floating button.");
-        });
-    } else {
-        updateMusicIcon(false); // Pastikan ikon tetap mute jika sebelumnya dimatikan
-    }
-
-    startCountdown();
     
 });
 
