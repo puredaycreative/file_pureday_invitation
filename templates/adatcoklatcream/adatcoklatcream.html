@@ -85,7 +85,19 @@
         box-sizing: border-box;
     }
 
-   @media (min-aspect-ratio: 1/1) {
+    body {
+        font-family: 'Playfair Display', serif;
+        color: var(--color-text-dark);
+        margin: 0;
+        padding: 0;
+        background-color: var(--color-bg-light);
+        text-align: center;
+        overflow-x: hidden;
+        /* Menyembunyikan scrollbar awal */
+        /* overflow-y: hidden; */
+        transition: background-color 0.5s;
+    }
+    @media (min-aspect-ratio: 1/1) {
     .template-cover-container, .section-intro, 
     .section-detail,
     .section-event-timer,
@@ -93,7 +105,8 @@
     .section-gallery,
     .section-gift,
     .section-comments,
-    .section-comments-list
+    .section-comments-list,
+    .section-closing
 
      {
         width: 100%;
@@ -105,6 +118,7 @@
         box-shadow: 0 0 100px rgba(0,0,0,0.5); /* Efek bayangan di kanan kiri */
     }
 }
+
     
     .scroll-locked {
         overflow: hidden !important;
@@ -242,46 +256,27 @@
     from { transform: rotate(-8deg); }
     to { transform: rotate(8deg); }
 }
-html, body {
-    width: 100%;
-    max-width: 100%;
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden !important; /* Mengunci paksa scroll kanan kiri di iOS */
-    position: relative;
-    box-sizing: border-box;
-    -webkit-overflow-scrolling: touch;
-}
+
 /* 4. Frame Tengah & Konten Dinamis */
 .template-cover-content-wrapper {
     position: relative;
     z-index: 20;
-    width: 100%;
+    width: 1000000px;
     max-width: 400px;
-    margin: 0 auto; /* Menjaga pembungkus utama tetap di tengah */
-    padding: 0 20px;
-    box-sizing: border-box;
 }
 /* Container Frame (Bingkai Kipas/Gunungan) */
 .frame-center {
     position: relative;
     background: url('https://file.puredayinvitation.com/adatcoklatcream/kipastengahteks.png') no-repeat center;
-    background-size: contain; /* Memastikan gambar kipas mengecil mengikuti lebar HP */
+    background-size: contain;
     padding: 0px 60px; 
     text-align: center;
     z-index: 20;
+    width: 490px;      
+    height: 1390px;
     
-    /* --- PERBAIKAN LEBAR AGAR TIDAK JEBOL DI IPHONE --- */
-    width: 100%;          /* Mengikuti lebar pembungkus utama (max 400px) */
-    max-width: 100%;      /* Melarang keras elemen menjadi lebih besar dari layar HP */
-    height: auto;         /* Diubah ke auto agar tinggi menyesuaikan secara proporsional */
-    min-height: 580px;    /* Memberikan ruang vertikal yang cukup untuk teks dan tombol */
-    
-    /* --- PENGATURAN POSISI AKURAT --- */
-    /* Menghilangkan margin minus statis (-75px) yang merusak layout Safari.
-       Sebagai gantinya, gunakan transform untuk menggeser posisi "kurang ke kiri sedikit" dengan aman */
-    margin: 0 auto; 
-    transform: translateX(-15px); /* Geser angka ini: -20px jika ingin lebih ke kiri, -5px jika ingin lebih ke kanan */
+    /* UBAH DI SINI */
+    margin: 0 0 0 -50px; /* Atur angka 50px ini: makin kecil makin ke kiri */
     
     display: flex;
     flex-direction: column;
@@ -480,8 +475,11 @@ html, body {
 
 /* FRAME FOTO LINGKARAN (Gambar 4) */
 .card-image-wrapper {
-width: 100%; 
+   width: 100%; 
     max-width: 210px; /* Ukuran maksimal di layar besar/MacBook M2 */
+    
+    /* Gunakan aspect-ratio agar bentuk oval tetap konsisten */
+    aspect-ratio: 2 / 3; 
     
     margin: 0 auto;
     border-radius: 50%;
@@ -497,7 +495,6 @@ width: 100%;
     width: 100%;
     height: 100%;
     object-fit: cover;
-     display: block;
 }
 .container-mempelai {
     position: relative;
@@ -576,16 +573,7 @@ width: 100%;
     100% { transform: rotate(8deg); }
 }
 
-/* Responsif Mobile */
-@media (max-width: 480px) {
-    .card-image-wrapper {
-        width: 180px;
-        height: 180px;
-    }
-    .card-info-box {
-        min-width: 260px;
-    }
-}
+
 
     /* --- Section Event (Countdown) --- */
 /* Container Utama Section Event */
@@ -716,24 +704,6 @@ width: 100%;
     transform: translateY(-3px);
 }
 
-/* Responsif Mobile */
-@media (max-width: 480px) {
-    #countdown-timer {
-        gap: 8px;
-    }
-    .time-box {
-        min-width: 65px;
-        padding: 10px;
-    }
-    .main-title {
-        font-size: 2.5rem;
-    }
-    .event-card-wrappe {
-        width: 90%;
-        padding: 50px 20px 30px;
-    }
-}
-
 
 
 
@@ -785,17 +755,6 @@ width: 100%;
 }
 
 
-
-/* Mobile Adjustments */
-@media (max-width: 480px) {
-    .scrapbook-wrapper {
-        column-gap: 10px;
-    }
-    .scrapbook-wrapper img {
-        border-radius: 20px !important;
-        border-width: 2.5px !important;
-    }
-}
 
 /* --- Section Gift --- */
 .section-gift {
@@ -2284,6 +2243,27 @@ window.toggleMusic = function() {
     }
 }
 
+document.addEventListener('DOMContentLoaded', function() {
+    
+    const isMusicShouldPlay = localStorage.getItem('isMusicPlaying') === 'true';
+    if (isMusicShouldPlay) {
+        music.muted = false;
+        
+        music.play().then(() => {
+            
+            updateMusicIcon(true);
+        }).catch(error => {
+            
+            // console.log("Autoplay blocked on load.", error);
+            localStorage.setItem('isMusicPlaying', 'false');
+            updateMusicIcon(false);
+            
+        });
+    } else {
+        // Tampilkan status PAUSED (ikon mute)
+        updateMusicIcon(false);
+    }
+});
 
 document.getElementById('open-invitation-btn').addEventListener('click', function() {
     const cover = document.getElementById('cover-page');
