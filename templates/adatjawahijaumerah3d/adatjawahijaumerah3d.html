@@ -3021,7 +3021,53 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 })();
 
+(function() {
+    try {
+        function cekFotoCover() {
+            // Mengambil semua wrapper gambar khusus untuk cover (di intro dan closing)
+            var coverWrappers = document.querySelectorAll('.section-intro .card-image-wrapper, .section-closing .card-image-wrapper');
 
+            coverWrappers.forEach(function(wrapper) {
+                var img = wrapper.querySelector('.couple-img');
+
+                if (img && wrapper) {
+                    // Ambil isi dari src gambar, ubah ke huruf kecil semua (Konsep Anda)
+                    var src = (img.getAttribute('src') || '').trim().toLowerCase();
+
+                    // Cek apakah src mengandung format file gambar atau link valid
+                    var apakahGambarValid = src.includes('.jpg') || 
+                                            src.includes('.jpeg') || 
+                                            src.includes('.png') || 
+                                            src.includes('.webp') || 
+                                            src.includes('http://') || 
+                                            src.includes('https://');
+
+                    // LOGIKANYA DIBALIK:
+                    // Jika terdeteksi ada ekstensi gambar VALID, langsung paksa TAMPIL
+                    if (apakahGambarValid) {
+                        wrapper.style.setProperty('display', 'block', 'important');
+                        console.log("Cover Section: Gambar valid ditemukan. TAMPILKAN.");
+                    } 
+                    // Jika tidak mengandung format gambar (berarti null/template/kosong), langsung HIDDEN
+                    else {
+                        wrapper.style.setProperty('display', 'none', 'important');
+                        console.log("Cover Section: Tidak ada gambar valid. HIDDEN.");
+                    }
+                }
+            });
+        }
+
+        // Jalankan pengecekan saat halaman selesai dimuat (Konsep Anda)
+        window.addEventListener('load', cekFotoCover);
+
+        // Cadangan interval waktu sesuai standarmu yang terbukti berhasil
+        setTimeout(cekFotoCover, 1000);
+        setTimeout(cekFotoCover, 2500);
+
+    } catch (e) {
+        console.error("Cover Foto Script Error: ", e);
+    }
+})();
 
     const video = document.getElementById('introVideo');
     const textContainer = document.getElementById('delayedText');

@@ -2676,47 +2676,39 @@ document.addEventListener("DOMContentLoaded", function() {
 (function() {
     try {
         function cekFotoPengantin() {
-            // 1. CEK FOTO PENGANTIN (PROSES LAMA)
+            // Mengambil semua kartu pengantin (Pria & Wanita)
             var cards = document.querySelectorAll('.couple-cards .card');
+
             cards.forEach(function(card) {
                 var img = card.querySelector('.couple-img');
                 var wrapper = card.querySelector('.card-image-wrapper');
 
                 if (img && wrapper) {
+                    // Ambil isi dari src gambar, ubah ke huruf kecil semua agar aman
                     var src = (img.getAttribute('src') || '').trim().toLowerCase();
+
+                    // SYARAT MATI (Dihilangkan tanpa sisa jarak):
+                    // 1. Jika src kosong ("")
+                    // 2. Jika src berisi teks "null"
+                    // 3. Jika src masih berupa kode template mentah {{foto_...}}
                     if (src === "" || src === "null" || src.includes('{{foto_')) {
+                        
+                        // Hilangkan pembungkus fotonya total agar teks di bawahnya langsung naik
                         wrapper.style.setProperty('display', 'none', 'important');
-                        console.log("Detail Section: Foto pengantin null/kosong. Jarak dihilangkan.");
+                        console.log("Detail Section: Foto berstatus null/kosong. Jarak dihilangkan.");
+                        
                     } else {
+                        // Jika ada foto asli, biarkan tampil normal
                         wrapper.style.setProperty('display', 'block', 'important');
                     }
                 }
             });
-
-            // 2. CEK FOTO COVER / CLOSING (PROSES BARU)
-            var closingSection = document.querySelector('.section-closing');
-            if (closingSection) {
-                var closingImg = closingSection.querySelector('.couple-img');
-                var closingWrapper = closingSection.querySelector('.card-image-wrapper');
-
-                if (closingImg && closingWrapper) {
-                    var closingSrc = (closingImg.getAttribute('src') || '').trim().toLowerCase();
-
-                    // Syarat jika cover kosong, berstatus null, atau masih berupa template {{cover}}
-                    if (closingSrc === "" || closingSrc === "null" || closingSrc.includes('{{cover}}')) {
-                        closingWrapper.style.setProperty('display', 'none', 'important');
-                        console.log("Closing Section: Foto cover null/kosong. Jarak dihilangkan.");
-                    } else {
-                        closingWrapper.style.setProperty('display', 'block', 'important');
-                    }
-                }
-            }
         }
 
         // Jalankan pengecekan saat halaman selesai dimuat
         window.addEventListener('load', cekFotoPengantin);
 
-        // Cadangan jika render butuh waktu
+        // Cadangan: Jalankan ulang jika sistem render web Anda butuh waktu proses
         setTimeout(cekFotoPengantin, 1000);
         setTimeout(cekFotoPengantin, 2500);
 
@@ -2833,6 +2825,56 @@ document.addEventListener("DOMContentLoaded", function() {
         console.error("Love Story Script Bypass Error: ", e);
     }
 })();
+
+
+(function() {
+    try {
+        function cekFotoCover() {
+            // Mengambil semua wrapper gambar khusus untuk cover (di intro dan closing)
+            var coverWrappers = document.querySelectorAll('.section-intro .card-image-wrapper, .section-closing .card-image-wrapper');
+
+            coverWrappers.forEach(function(wrapper) {
+                var img = wrapper.querySelector('.couple-img');
+
+                if (img && wrapper) {
+                    // Ambil isi dari src gambar, ubah ke huruf kecil semua (Konsep Anda)
+                    var src = (img.getAttribute('src') || '').trim().toLowerCase();
+
+                    // Cek apakah src mengandung format file gambar atau link valid
+                    var apakahGambarValid = src.includes('.jpg') || 
+                                            src.includes('.jpeg') || 
+                                            src.includes('.png') || 
+                                            src.includes('.webp') || 
+                                            src.includes('http://') || 
+                                            src.includes('https://');
+
+                    // LOGIKANYA DIBALIK:
+                    // Jika terdeteksi ada ekstensi gambar VALID, langsung paksa TAMPIL
+                    if (apakahGambarValid) {
+                        wrapper.style.setProperty('display', 'block', 'important');
+                        console.log("Cover Section: Gambar valid ditemukan. TAMPILKAN.");
+                    } 
+                    // Jika tidak mengandung format gambar (berarti null/template/kosong), langsung HIDDEN
+                    else {
+                        wrapper.style.setProperty('display', 'none', 'important');
+                        console.log("Cover Section: Tidak ada gambar valid. HIDDEN.");
+                    }
+                }
+            });
+        }
+
+        // Jalankan pengecekan saat halaman selesai dimuat (Konsep Anda)
+        window.addEventListener('load', cekFotoCover);
+
+        // Cadangan interval waktu sesuai standarmu yang terbukti berhasil
+        setTimeout(cekFotoCover, 1000);
+        setTimeout(cekFotoCover, 2500);
+
+    } catch (e) {
+        console.error("Cover Foto Script Error: ", e);
+    }
+})();
+
 
 
     const video = document.getElementById('introVideo');
