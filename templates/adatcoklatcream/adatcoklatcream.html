@@ -752,49 +752,54 @@ transform: translateX(calc(-15% + 20px));
 
 /* 2. CONTAINER GALLERY */
 /* Container Utama Galeri */
+
 .section-gallery {
-    position: relative;
-    padding: 80px 15px;
-  background: url('https://file.puredayinvitation.com/adatcoklatcream/bg.jpg') center/cover no-repeat;
-    overflow: hidden;
+    padding: 60px 15px;
+   background-image: url("https://file.puredayinvitation.com/adatcoklatcream/bg.jpg");
+    background-size: cover;
+ background-position: center; /* Tambahkan ini */
+    background-repeat: no-repeat;
+    min-height: 80vh;
 }
-
-/* Judul Galeri */
-.gallery-container .main-title {
-    font-family: 'Great Vibes', cursive;
-    font-size: 2.2rem;
-    font-style: italic;
-    margin-bottom: 30px;
-    text-align: center;
-    color: #000;
-}
-
-/* --- MASONRY LAYOUT (2 KOLOM) --- */
+/* --- PAKSA DUA KOLOM --- */
 .scrapbook-wrapper {
-    column-count: 2; /* Membagi menjadi 2 kolom */
-    column-gap: 15px; /* Jarak horizontal antar kolom */
-    width: 100%;
-    max-width: 500px;
-    margin: 0 auto;
+    display: block !important; /* Kita ganti ke block biar gampang ngatur float/inline */
+    width: 100% !important;
+    text-align: center; /* Biar tetap center */
+    font-size: 0; /* Menghilangkan whitespace antar elemen inline-block */
 }
 
-/* Wrapper per Gambar (Penting agar gambar tidak terpotong antar kolom) */
+/* --- TARGET SEMUA ELEMEN DI DALAMNYA (Apapun tag-nya) --- */
 .scrapbook-wrapper > * {
-    break-inside: avoid; /* Mencegah gambar terpotong saat pindah kolom */
-    margin-bottom: 15px; /* Jarak vertikal antar gambar */
-    display: block;
+    display: inline-block !important; /* Paksa sejajar ke samping */
+    vertical-align: top !important;
+    /* Kuncinya di sini: 50% minus margin */
+    width: calc(50% - 10px) !important; 
+    margin: 5px !important;
+    box-sizing: border-box !important;
 }
 
-/* Style Gambar Sesuai Foto (Border Hitam Tebal & Rounded) */
+/* --- TARGET GAMBARNYA --- */
 .scrapbook-wrapper img {
     width: 100% !important;
-    height: auto !important; /* Tinggi mengikuti proporsi asli gambar */
-    display: block;
-    border: 3px solid #000 !important; /* Border hitam tebal sesuai gambar */
-    border-radius: 25px !important; /* Sudut sangat melengkung sesuai gambar */
-    box-shadow: 4px 4px 0px rgba(0,0,0,0.1); /* Efek bayangan halus */
-    transition: transform 0.3s ease;
+    height: auto !important;
+    aspect-ratio: 3 / 4 !important; /* Biar potret rapi */
+    object-fit: cover !important;
+    border-radius: 20px !important;
+    display: block !important;
 }
+
+/* --- LOGIKA LANDSCAPE (Biar gak monoton 2 terus) --- */
+/* Tiap foto ke-3 dibikin full sebaris */
+.scrapbook-wrapper > *:nth-child(3n) {
+    width: calc(100% - 10px) !important;
+}
+
+.scrapbook-wrapper > *:nth-child(3n) img {
+    aspect-ratio: 16 / 10 !important; /* Foto lebar */
+}
+
+
 
 
 
