@@ -434,7 +434,7 @@ transform: translateX(calc(-15% + 20px));
     font-family: Andada, serif;
     font-size: 0.9rem;
     color: #555;
-    margin-bottom: 15px;
+    margin-bottom: -15px;
     text-align: center;
 }
 
@@ -730,7 +730,23 @@ transform: translateX(calc(-15% + 20px));
     transform: translateY(-3px);
 }
 
+.btn-maps-link {
+    font-family: Andada, serif;
+    background-color: #5d4037;
+    color: #dee6ee;
+    text-decoration: none;
+    padding: 10px 25px;
+    display: inline-block;
+    width: 80%;
+    font-weight: bold;
+   transition: 0.3s;
+}
 
+.btn-maps-link:hover {
+    background-color: #a07567;
+    color: #dee6ee;
+    transform: translateY(-2px);
+}
 
 
 
@@ -1132,6 +1148,7 @@ transform: translateX(calc(-15% + 20px));
 
 .template-status-btn {
     flex: 1;
+     font-family: Andada, serif;
     padding: 10px;
     border: none;
     border-radius: 8px;
@@ -1144,15 +1161,16 @@ transform: translateX(calc(-15% + 20px));
 }
 
 .template-status-btn.status-active {
-    background: #c0a688; /* Warna coklat tema */
+    background: #5d4037; /* Warna coklat tema */
     color: white;
+     font-family: Andada, serif;
 }
 
 /* --- TOMBOL KIRIM --- */
 .btn-submit {
     width: 100%;
     padding: 15px;
-    background-color: #c0a688; /* Sesuai gambar referensi */
+    background-color: #5d4037; /* Sesuai gambar referensi */
     color: white;
     border: none;
     font-family: Andada, serif;
@@ -1171,7 +1189,7 @@ transform: translateX(calc(-15% + 20px));
 }
 
 .btn-submit:hover {
-    background-color: #a38768;
+    background-color: #a07567;
     transform: translateY(-2px);
 }
 
@@ -1533,9 +1551,11 @@ transform: translateX(calc(-15% + 20px));
 
     <div id="main-content">
     <div id="closing-page" class="template-cover-container">
+        <div class="border-run border-top"></div>
+    <div class="border-run border-bottom"></div>
     <div class="template-cover-overlay"></div>
-
-    <!-- Baris border dan kipas sudah dihapus total dari sini -->
+ <img src="https://file.puredayinvitation.com/adatcoklatcream/kipaskiri.png" class="png-kipas kipas-kiri" alt="decor">
+    <img src="https://file.puredayinvitation.com/adatcoklatcream/kipaskanan.png" class="png-kipas kipas-kanan" alt="decor">
 
     <div class="template-cover-content-wrapper animate-down">
         <div class="frame-center">
@@ -1788,8 +1808,12 @@ transform: translateX(calc(-15% + 20px));
         </section>
         
      <section id="comments-list-section" class="section-comments-list">
+         <img src="https://file.puredayinvitation.com/adatcoklatcream/kipaskiri.png" class="png-kipas kipas-kiri" alt="decor">
+    <img src="https://file.puredayinvitation.com/adatcoklatcream/kipaskanan.png" class="png-kipas kipas-kanan" alt="decor">
+
         <div class="border-run border-top"></div>
      <div class="border-run border-bottom"></div>
+     
     <div class="container animate-up">
         <p class="subtitle-top">UCAPAN TAMU</p>
         <h2 class="main-title font-cursive">Komentar Terbaru</h2>
