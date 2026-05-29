@@ -121,15 +121,29 @@
     letter-spacing: 3px;
     color: #a3353c;
     text-transform: uppercase;
-     text-align: center;
+    text-align: center;
+    
+    /* Garis tepi luar menggunakan shadow, warna merah dijamin aman */
+    text-shadow: 
+        -1px -1px 0 #fff,  
+         1px -1px 0 #fff,
+        -1px  1px 0 #fff,
+         1px  1px 0 #fff;
 }
 
 .main-title {
-      font-family: 'Bilbo Swash Caps', cursive;
+    font-family: 'Bilbo Swash Caps', cursive;
     font-size: 2.4rem;
     color: #a3353c;
     margin: 10px 0 20px;
-     text-align: center;
+    text-align: center;
+    
+    /* Garis tepi luar menggunakan shadow, warna merah dijamin aman */
+    text-shadow: 
+        -1px -1px 0 #fff,  
+         1px -1px 0 #fff,
+        -1px  1px 0 #fff,
+         1px  1px 0 #fff;
 }
 
 /* --- Tipografi --- */
@@ -898,16 +912,15 @@ body {
 
 /* Bingkai Foto Oval Responsif */
 .card-image-wrapper {
-    /* Gunakan % agar lebar foto selalu proporsional dengan lebar kontainer */
-    width: 100%; 
-    max-width: 210px; /* Ukuran maksimal di layar besar/MacBook M2 */
+    /* UBAH BAGIAN INI */
+    width: 50%;        /* Mengambil 50% dari lebar layar HP */
+    max-width: 320px;   /* Batas maksimal di laptop/MacBook agar tidak kegedean */
     
-    /* Gunakan aspect-ratio agar bentuk oval tetap konsisten */
+    /* TETAPKAN BAGIAN INI */
     aspect-ratio: 2 / 3; 
-    
     margin: 0 auto 20px;
     border: 2px solid #a3353c;
-    border-radius: 150px; /* Membuat bentuk oval sempurna */
+    border-radius: 150px; /* Bentuk oval otomatis mengikuti proporsi baru */
     overflow: hidden;
     position: relative;
     box-shadow: 0 10px 25px rgba(0,0,0,0.1);
