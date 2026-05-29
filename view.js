@@ -191,6 +191,28 @@ app.get('/undangan/:slug', async (req, res) => {
                 </div>`;
         }).join("");
 
+                const loveStoryHTML = Array.isArray(invitation.love_story)
+  ? invitation.love_story
+      .map((story, index) => {
+          const imgHTML = story.img_story 
+            ? `<div class="ls-card-img"><img src="${story.img_story}" alt="${story.title_story || 'Story'}"></div>` 
+            : '';
+
+          return `
+            <div class="ls-item">
+                <div class="ls-icon-heart"></div>
+                <div class="ls-card">
+                    ${imgHTML}
+                    <h3 class="ls-card-title">${story.title_story || ''}</h3>
+                    <p class="ls-card-body">
+                        ${story.text_story || ''}
+                    </p>
+                </div>
+            </div>`;
+      })
+      .join("")
+  : "";
+
         // 11. Replacements
         const replacements = {
             "{{id}}": invitation.id,
@@ -211,6 +233,7 @@ app.get('/undangan/:slug', async (req, res) => {
             "{{tanggal_acara_baca}}": formatIndonesianDateonly(invitation.event_date),
             "{{cover}}": invitation.cover_image,
             "{{dalil}}": invitation.dalil,
+             "{{lovestori}}": loveStoryHTML,
             "{{bank_details_table}}": bankCardHTML,
             "{{foto_pria}}": foto_pria,
             "{{foto_wanita}}": foto_wanita,
