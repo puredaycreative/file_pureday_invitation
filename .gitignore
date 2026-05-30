@@ -16,6 +16,8 @@ lerna-debug.log*
 .env.development.local
 .env.test.local
 .env.production.local
+server.js
+view.js
 
 # OS Metadata (Mac & Windows)
 .DS_Store
