@@ -1849,6 +1849,8 @@ max-width: 450px;
     min-height: 100vh;
     margin-left: auto;
     margin-right: 0;
+    width: 100%;
+    
     
     /* PENTING: Hapus background-image dari sini agar tidak double */
   background-image: url("https://file.puredayinvitation.com/adatcoklatcream/bg.png");
@@ -1869,8 +1871,8 @@ max-width: 450px;
     right: 0;
     bottom: 0;
     
-    background-size: cover;
-    background-position: center;
+    background-size: cover !important;
+    background-position: center !important;
     
     z-index: -1; /* Meletakkan gambar di belakang konten */}
 
@@ -2014,6 +2016,7 @@ background-image: url("https://file.puredayinvitation.com/adatbirupink3d/bg.png"
     overflow: hidden;
      height: auto;
      padding: 60px 20px 100px 20px;
+      width: 100%;
      
 }
 
@@ -2763,6 +2766,29 @@ document.addEventListener("DOMContentLoaded", function() {
 
 (function() {
     try {
+        
+        window.addEventListener('load', function() {
+            const container = document.getElementById('bank-accounts-cards');
+            const section = document.getElementById('gift-section-id');
+
+            if (container && section) {
+                const rawContent = container.innerHTML.trim();
+                
+                if (rawContent.length > 20 && !rawContent.includes('{{')) {
+                    section.style.setProperty('display', 'flex', 'important');
+                   // console.log("Gift Section: Data ditemukan, menampilkan section.");
+                } else {
+                   // console.log("Gift Section: Data kosong atau mentah, tetap sembunyi.");
+                }
+            }
+        });
+    } catch (err) {
+        console.error("Gift Script Error: ", err);
+    }
+})();
+
+(function() {
+    try {
         // DATABASE LOGO
         const baseUrl = 'https://file.puredayinvitation.com/asset/logobank/';
         const daftarLogoBank = {
@@ -3059,7 +3085,6 @@ document.addEventListener("DOMContentLoaded", function() {
         console.error("Cover Foto Script Error: ", e);
     }
 })();
-
 
 
     const video = document.getElementById('introVideo');
