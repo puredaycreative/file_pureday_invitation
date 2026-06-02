@@ -613,9 +613,11 @@
     .section-event-timer,
     .section-event,
     .section-gallery,
+    .section-love-story,
     .section-gift,
     .section-comments,
-    .section-comments-list
+    .section-comments-list,
+    .section-closing
 
      {
         width: 100%;
@@ -1403,6 +1405,149 @@ body {
 }
 
 
+/* --- Love Story Section --- */
+.section-love-story {
+   padding: 60px 16px;
+    font-family: Andada, serif;
+    display: flex;
+    justify-content: center;
+}
+
+.love-story-container {
+    width: 100%;
+    max-width: 600px; /* Membatasi lebar agar pas dengan layout mobile/tablet */
+    margin: 0 auto;
+}
+
+/* --- Struktur Timeline Jaringan Garis --- */
+.love-story-timeline {
+    position: relative;
+    padding: 10px 0;
+}
+
+/* Membuat garis vertikal lurus abu-abu di sisi kiri */
+.love-story-timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 40px; /* Jarak pas dari kiri untuk menyelaraskan garis */
+    width: 4px;
+    background-color: #929292; /* Warna abu-abu solid sesuai gambar */
+    z-index: 1;
+}
+
+/* --- Item Bungkus per Cerita (Dinamis) --- */
+.ls-item {
+    position: relative;
+    margin-bottom: 40px;
+    padding-left: 95px; /* Memberi ruang di kiri agar kartu tidak menabrak lingkaran hati */
+}
+
+/* Menghilangkan margin bawah untuk item cerita terakhir */
+.ls-item:last-child {
+    margin-bottom: 0;
+}
+
+/* --- Lingkaran Putih + Icon Hati --- */
+.ls-icon-heart {
+    position: absolute;
+    left: 22px; /* Mengatur posisi pas di tengah-tengah garis vertikal */
+    top: 0;
+    width: 30px;
+    height: 30px;
+    background-color: #ffffff;
+    border: 4px solid #929292; /* Frame abu-abu tebal sesuai gambar */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+
+/* Karakter Hati Hitam di Tengah Lingkaran */
+.ls-icon-heart::before {
+    content: '♥';
+    color: #000000;
+    font-size: 1.5rem;
+}
+
+/* --- Kartu Putih Konten (Scrapbook Card) --- */
+.ls-card {
+    background-color: #ffffff;
+    border-radius: 20px; /* Sudut melengkung halus sesuai gambar */
+    padding: 24px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* Shadow tipis agar smooth */
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Pembungkus Foto di Dalam Kartu */
+.ls-card-img {
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 24px;
+}
+
+.ls-card-img img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+/* --- Tipografi & Teks --- */
+.ls-card-title {
+    font-size: 1rem;
+    font-family: Andada, serif;
+    color: #000000;
+    margin: 0 0 12px 0;
+    font-weight: 400;
+}
+
+.ls-card-date {
+    font-size: 1.05rem;
+    font-family: Andada, serif;
+    color: #222222;
+    margin-bottom: 24px;
+}
+
+.ls-card-body {
+    font-family: Andada, serif;
+    font-size: 0.7rem;
+    line-height: 1.6;
+    color: #111111;
+    margin: 0;
+    text-align: justify; /* Rata kiri sesuai gaya teks di gambar */
+}
+
+/* --- Optimasi Khusus Layar HP Kecil --- */
+@media (max-width: 480px) {
+    .love-story-timeline::before {
+        left: 25px; /* Geser garis lebih ke kiri pada mobile */
+    }
+    
+    .ls-item {
+        padding-left: 68px; /* Potong padding agar area teks kartu tetap luas */
+    }
+    
+    .ls-icon-heart {
+        left: 3px;
+        width: 48px;
+        height: 48px;
+        border-width: 3px;
+    }
+    
+    .ls-icon-heart::before {
+        font-size: 1.2rem;
+    }
+    
+    .ls-card {
+        padding: 16px;
+    }
+}
+
 
 
 /* --- Section Gift --- */
@@ -1985,6 +2130,67 @@ background-image: url("https://file.puredayinvitation.com/templates/basicgreen/b
 }
 
 
+/* Styling Section Penutup */
+.section-closing {
+    padding: 60px 0px;
+    background-image: url("https://file.puredayinvitation.com/templates/basicgreen/bg2.jpg");
+    background-size: cover;
+
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.content-closing-wrapper {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.closing-statement, .thanks-statement {
+  
+    line-height: 1.6;
+    margin-bottom: 20px;
+    font-weight: 500;
+     font-family: Andada, serif;
+    font-size: 13px;
+    color: #444;
+    line-height: 1.8;
+    text-align: center;
+    padding: 0 15%; /* Semakin besar persentasenya, semakin rapat teks ke tengah */
+    display: block;
+}
+
+.salam-closing {
+    font-family: 'Great Vibes', cursive; /* Gunakan font latin/script */
+    font-size: 1.5rem;
+    margin: 30px 0;
+    font-weight: normal;
+    text-align: center;
+    color: #3d6552; /* Warna cokelat tua sesuai gambar */
+   
+}
+
+.signature-wrapper {
+    margin-top: 40px;
+      text-align: center;
+}
+
+.regards-text {
+       font-family: Andada, serif;
+    font-size: 13px;
+    color: #444;
+    line-height: 1.8;
+  
+    margin-bottom: 10px;
+}
+
+.couple-nickname {
+        line-height: 0.9;    /* Mengatur kerapatan baris agar tidak terlalu renggang */
+ font-size: 2rem;
+    font-family: 'Rouge Script', cursive;
+    color: #3d6552;
+  
+}
+
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Bad+Script&family=Allerta&display=swap');
 
@@ -2163,18 +2369,18 @@ background-image: url("https://file.puredayinvitation.com/templates/basicgreen/b
     <div id="main-content">
         
 
-
-
 <section class="section section-detail">
     <div class="content-detail-wrapper">
+<h4 class="salam-closing animate-left">
+            Assalamu'alaikum Wr. Wb.
+        </h4>
         
-        <p class="quote-opening">
+        <p class="quote-opening animate-left">
             Tanpa mengurangi rasa hormat, kami mengundang Bapak/Ibu/Saudara/i serta kerabat sekalian untuk menghadiri acara pernikahan kami.
         </p>
 
         <div class="couple-cards">
-            <!-- Kartu Pria -->
-            <div class="card">
+            <div class="card animate-left">
                 <div class="card-image-wrapper">
                     <img src="{{foto_pria}}" alt="Foto Pria" class="couple-img">
                 </div>
@@ -2182,14 +2388,11 @@ background-image: url("https://file.puredayinvitation.com/templates/basicgreen/b
                 <p class="parent-info">Putra dari Bapak {{nama_bapak_pria}} & Ibu {{nama_ibu_pria}}</p>
                 <p class="address-info">{{alamat_pria}}</p>
             </div>
-
-            <!-- Ampersand / Pembatas -->
-            <div class="ampersand-divider">
+                <div class="ampersand-divider animate-left">
                 <h2 class="ampersand-text">&</h2>
             </div>
-
-            <!-- Kartu Wanita -->
-            <div class="card">
+            
+            <div class="card animate-left">
                 <div class="card-image-wrapper">
                     <img src="{{foto_wanita}}" alt="Foto Wanita" class="couple-img">
                 </div>
@@ -2199,14 +2402,14 @@ background-image: url("https://file.puredayinvitation.com/templates/basicgreen/b
             </div>
         </div>
 
-        <p class="quote-closing">
+        <p class="quote-closing animate-left">
             "Segala sesuatu Kami ciptakan berpasang-pasangan agar kamu mengingat (kebesaran Allah)."<br>
             <span>— QS Adz-Dzariyat: 49</span>
         </p>
-        
     </div>
-</section>
 
+  
+</section>
 
 
 
@@ -2241,6 +2444,30 @@ background-image: url("https://file.puredayinvitation.com/templates/basicgreen/b
         </div>
     </div>
  
+</section>
+
+
+<section id="gallery-section-id" class="section-gallery">
+    <div class="gallery-container animate-left">
+        <p class="subtitle-top">OUR SWEET MEMORY</p>
+        <h2 class="main-title font-cursive">Photo Gallery</h2>
+        
+        <div class="scrapbook-wrapper animate-left">
+            {{galeri}}
+        </div>
+    </div>
+</section>
+        
+
+<section id="love-story-section-id" class="section-love-story">
+    <div class="love-story-container animate-left">
+        <p class="subtitle-top">OUR SWEET STORY</p>
+        <h2 class="main-title font-cursive">Perjalanan Cinta</h2>
+        
+        <div class="love-story-timeline animate-left">
+            {{lovestori}}
+        </div>
+    </div>
 </section>
 
 
@@ -2326,6 +2553,29 @@ background-image: url("https://file.puredayinvitation.com/templates/basicgreen/b
 
  
   
+</section>
+
+<section class="section section-closing">
+    <div class="content-closing-wrapper">
+            <div class="card-image-wrapper animate-left">
+                   <img src="{{cover}}" alt="cover" class="couple-img">
+                </div>
+      
+
+        <p class="thanks-statement animate-left">
+          Kehadiran Bapak/Ibu/Saudara sekalian merupakan kebahagiaan tersendiri bagi kami. Terima kasih atas kesediaannya meluangkan waktu serta memberikan doa restu bagi pernikahan kami.
+        </p>
+
+        <h4 class="salam-closing animate-left">
+            Wassalamu'alaikum Wr. Wb.
+        </h4>
+
+        <div class="signature-wrapper animate-left">
+            <p class="regards-text">Yang Berbahagia</p>
+            <h2 class="couple-nickname">{{nama_pria}}  &  {{nama_wanita}}</h2>
+        </div>
+
+    </div>
 </section>
 
 
@@ -2730,6 +2980,54 @@ document.addEventListener("DOMContentLoaded", function() {
 
     } catch (e) {
         console.error("Love Story Script Bypass Error: ", e);
+    }
+})();
+
+(function() {
+    try {
+        function cekFotoCover() {
+            // Mengambil semua wrapper gambar khusus untuk cover (di intro dan closing)
+            var coverWrappers = document.querySelectorAll('.section-intro .card-image-wrapper, .section-closing .card-image-wrapper');
+
+            coverWrappers.forEach(function(wrapper) {
+                var img = wrapper.querySelector('.couple-img');
+
+                if (img && wrapper) {
+                    // Ambil isi dari src gambar, ubah ke huruf kecil semua (Konsep Anda)
+                    var src = (img.getAttribute('src') || '').trim().toLowerCase();
+
+                    // Cek apakah src mengandung format file gambar atau link valid
+                    var apakahGambarValid = src.includes('.jpg') || 
+                                            src.includes('.jpeg') || 
+                                            src.includes('.png') || 
+                                            src.includes('.webp') || 
+                                            src.includes('http://') || 
+                                            src.includes('https://');
+
+                    // LOGIKANYA DIBALIK:
+                    // Jika terdeteksi ada ekstensi gambar VALID, langsung paksa TAMPIL
+                    if (apakahGambarValid) {
+                        wrapper.style.setProperty('display', 'block', 'important');
+                        console.log("Cover Section: Gambar valid ditemukan. TAMPILKAN.");
+                    } 
+                    // Jika tidak mengandung format gambar (berarti null/template/kosong), langsung HIDDEN
+                    else {
+                        wrapper.style.setProperty('display', 'none', 'important');
+                        console.log("Cover Section: Tidak ada gambar valid. HIDDEN.");
+                    }
+                }
+            });
+        }
+
+        // Jalankan pengecekan saat halaman selesai dimuat (Konsep Anda)
+        window.addEventListener('load', cekFotoCover);
+
+        // Cadangan interval waktu sesuai standarmu yang terbukti berhasil
+        setTimeout(cekFotoCover, 1000);
+        setTimeout(cekFotoCover, 2500);
+
+    } catch (e) {
+        console.error("Cover Foto Script Error: ", e);
     }
 })();
 
