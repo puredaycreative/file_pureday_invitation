@@ -138,7 +138,7 @@ html, body {
 .subtitle-top2 {
     font-size: 0.75rem;
     letter-spacing: 3px;
-    color: #ead8d2;
+    color: #af7c88;
     text-transform: uppercase;
 
     text-align: center;
@@ -147,7 +147,7 @@ html, body {
 .main-title2 {
       font-family: 'Bilbo Swash Caps', cursive;
     font-size: 2.4rem;
-    color: #ead8d2;
+    color: #af7c88;
     margin: 10px 0 20px;
     text-align: center;
 }
@@ -520,7 +520,7 @@ html, body {
 .template-cover-title {
     font-family: 'Rouge Script', cursive;
     font-size: 3.8rem;
-    color: #ded4d4;
+    color: #af7c88;
       margin: 10px 0;
     font-weight: 300;
     margin-top: 0px;}
@@ -565,27 +565,24 @@ html, body {
 
 /* Container Utama */
 .section-intro {
-    display: grid;
-    grid-template-rows: 60vh 40vh;
-    height: 100vh;
-    width: 100vw;
-    margin: 0 auto; /* Menjaga tetap di tengah secara horizontal */
-    padding: 0;
-    overflow: hidden;
-    background-color: #a36484;
-    position: relative;
+       display: grid;
+    grid-template-rows: auto auto; 
+ margin: 0 auto; /* Menjaga tetap di tengah secara horizontal */
+   overflow: hidden !important;
 }
 
 /* Logic untuk posisi Landscape agar tetap di tengah seperti layar HP */
 @media (min-aspect-ratio: 1/1) {
-    .template-cover-container, .section-intro, 
+     .template-cover-container, .section-intro, 
     .section-detail,
     .section-event-timer,
     .section-event,
     .section-gallery,
+    .section-love-story,
     .section-gift,
     .section-comments,
     .section-comments-list
+    .section-closing
 
      {
         width: 100%;
@@ -654,7 +651,7 @@ html, body {
     font-size: 2.8rem;
     font-family: 'Rouge Script', cursive;
     text-align: right;
-    color: #ead8d2;
+    color: #af7c88;
     margin-top: 10px;
 }
 
@@ -731,7 +728,7 @@ html, body {
 /* Quote Opening */
 .quote-opening {
     font-family: Andada, serif;
-    font-size: 0.95rem;
+    font-size: 0.8rem;
     line-height: 1.6;
     color: #ead8d2;
     margin-bottom: 40px;
@@ -769,9 +766,10 @@ html, body {
 /* Frame Foto Persegi Panjang */
 .card-image-wrapper {
     position: relative;
-    width: 100%; /* Mengikuti lebar card-item */
+    width: 70%; /* Mengikuti lebar card-item */
     aspect-ratio: 3 / 4; /* Mengunci rasio kotak (3 lebar, 4 tinggi) agar tetap persegi panjang */
-    
+    margin-left: auto;
+    margin-right: auto;
     border: 2px solid #ead8d2; 
     border-radius: 10px;
     padding: 5px; /* Jarak bingkai ke foto */
@@ -807,7 +805,7 @@ html, body {
 .card-name {
     font-family: 'Rouge Script', cursive;
     font-size: 2.2rem;
-    color: #ead8d2;
+    color: #af7c88;
     margin-bottom: 8px;
     margin: 10px 0;
     font-weight: 400;
@@ -823,7 +821,7 @@ html, body {
 .address-info {
     font-family: Andada, serif;
     font-size: 0.8rem;
-    color: #ead8d2;
+    color: #e4e0df;
     margin-top: 5px;
 }
 
@@ -831,7 +829,7 @@ html, body {
 .quote-closing {
     margin-top: 50px;
     font-family: Andada, serif;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     color: #ead8d2;
     line-height: 1.5;
 }
@@ -1273,11 +1271,154 @@ html, body {
     aspect-ratio: 16 / 10 !important; /* Foto lebar */
 }
 
+/* --- Love Story Section --- */
+.section-love-story {
+    background-color: #1c2536; /* Warna cokelat muda/khaki hangat sesuai gambar */
+    padding: 60px 16px;
+    font-family: Andada, serif;
+    display: flex;
+    justify-content: center;
+}
+
+.love-story-container {
+    width: 100%;
+    max-width: 600px; /* Membatasi lebar agar pas dengan layout mobile/tablet */
+    margin: 0 auto;
+}
+
+/* --- Struktur Timeline Jaringan Garis --- */
+.love-story-timeline {
+    position: relative;
+    padding: 10px 0;
+}
+
+/* Membuat garis vertikal lurus abu-abu di sisi kiri */
+.love-story-timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 40px; /* Jarak pas dari kiri untuk menyelaraskan garis */
+    width: 4px;
+    background-color: #929292; /* Warna abu-abu solid sesuai gambar */
+    z-index: 1;
+}
+
+/* --- Item Bungkus per Cerita (Dinamis) --- */
+.ls-item {
+    position: relative;
+    margin-bottom: 40px;
+    padding-left: 95px; /* Memberi ruang di kiri agar kartu tidak menabrak lingkaran hati */
+}
+
+/* Menghilangkan margin bawah untuk item cerita terakhir */
+.ls-item:last-child {
+    margin-bottom: 0;
+}
+
+/* --- Lingkaran Putih + Icon Hati --- */
+.ls-icon-heart {
+    position: absolute;
+    left: 22px; /* Mengatur posisi pas di tengah-tengah garis vertikal */
+    top: 0;
+    width: 30px;
+    height: 30px;
+    background-color: #ffffff;
+    border: 4px solid #929292; /* Frame abu-abu tebal sesuai gambar */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+
+/* Karakter Hati Hitam di Tengah Lingkaran */
+.ls-icon-heart::before {
+    content: '♥';
+    color: #000000;
+    font-size: 1.5rem;
+}
+
+/* --- Kartu Putih Konten (Scrapbook Card) --- */
+.ls-card {
+    background-color: #ffffff;
+    border-radius: 20px; /* Sudut melengkung halus sesuai gambar */
+    padding: 24px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* Shadow tipis agar smooth */
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Pembungkus Foto di Dalam Kartu */
+.ls-card-img {
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 24px;
+}
+
+.ls-card-img img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+/* --- Tipografi & Teks --- */
+.ls-card-title {
+    font-size: 1rem;
+    font-family: Andada, serif;
+    color: #000000;
+    margin: 0 0 12px 0;
+    font-weight: 400;
+}
+
+.ls-card-date {
+    font-size: 1.05rem;
+    font-family: Andada, serif;
+    color: #222222;
+    margin-bottom: 24px;
+}
+
+.ls-card-body {
+    font-family: Andada, serif;
+    font-size: 0.7rem;
+    line-height: 1.6;
+    color: #111111;
+    margin: 0;
+    text-align: justify; /* Rata kiri sesuai gaya teks di gambar */
+}
+
+/* --- Optimasi Khusus Layar HP Kecil --- */
+@media (max-width: 480px) {
+    .love-story-timeline::before {
+        left: 25px; /* Geser garis lebih ke kiri pada mobile */
+    }
+    
+    .ls-item {
+        padding-left: 68px; /* Potong padding agar area teks kartu tetap luas */
+    }
+    
+    .ls-icon-heart {
+        left: 3px;
+        width: 48px;
+        height: 48px;
+        border-width: 3px;
+    }
+    
+    .ls-icon-heart::before {
+        font-size: 1.2rem;
+    }
+    
+    .ls-card {
+        padding: 16px;
+    }
+}
+
 
 
 
 /* --- Section Gift --- */
-/* Sembunyikan section secara default agar tidak crash/kosong */
 #gift-section-id {
     display: none !important;
 }
@@ -1852,6 +1993,66 @@ html, body {
 }
 
 
+/* Styling Section Penutup */
+.section-closing {
+    padding: 60px 0px;
+ background-color: #1c2536; 
+  background-size: cover;
+
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.content-closing-wrapper {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.closing-statement, .thanks-statement {
+  
+    line-height: 1.6;
+    margin-bottom: 20px;
+    font-weight: 500;
+     font-family: Andada, serif;
+    font-size: 13px;
+    color: #ead8d2;
+    line-height: 1.8;
+    text-align: center;
+    padding: 0 15%; /* Semakin besar persentasenya, semakin rapat teks ke tengah */
+    display: block;
+}
+
+.salam-closing {
+    font-family: 'Great Vibes', cursive; /* Gunakan font latin/script */
+    font-size: 1.5rem;
+    margin: 30px 0;
+    font-weight: normal;
+    text-align: center;
+    color: #af7c88; /* Warna cokelat tua sesuai gambar */
+   
+}
+
+.signature-wrapper {
+    margin-top: 40px;
+      text-align: center;
+}
+
+.regards-text {
+       font-family: Andada, serif;
+    font-size: 13px;
+    color: #ead8d2;
+    line-height: 1.8;
+  
+    margin-bottom: 10px;
+}
+
+.couple-nickname {
+        line-height: 0.9;    /* Mengatur kerapatan baris agar tidak terlalu renggang */
+ font-size: 2rem;
+    font-family: 'Rouge Script', cursive;
+    color: #af7c88;
+  
+}
 
 
 
@@ -2088,6 +2289,9 @@ html, body {
     <img src="https://file.puredayinvitation.com/flowerred/bungakiritengah.webp" class="flower-layer lc-l1">
     <img src="https://file.puredayinvitation.com/flowerred/tangkaikiritengah.webp" class="flower-layer lc-l2">
 </div> -->
+  <h4 class="salam-closing animate-left">
+            Assalamu'alaikum Wr. Wb.
+        </h4>
         
         <p class="quote-opening animate-left">
             <!-- Assalamu’alaikum Wr. Wb. <br><br> -->
@@ -2206,6 +2410,18 @@ html, body {
 </section>
         
     
+<section id="love-story-section-id" class="section-love-story">
+    <div class="love-story-container animate-left">
+        <p class="subtitle-top2">OUR SWEET STORY</p>
+        <h2 class="main-title2 font-cursive">Perjalanan Cinta</h2>
+        
+        <div class="love-story-timeline animate-left">
+            {{lovestori}}
+        </div>
+    </div>
+</section>
+
+
 <section id="gift-section-id" class="section-gift">
      <div class="flower-container top-right animate-right">
    <img src="https://file.puredayinvitation.com/flowerbluepink/daun1.webp" class="flower-layer tr-l1">
@@ -2384,6 +2600,32 @@ html, body {
 
   
 </section>
+
+<section class="section section-closing">
+  
+    <div class="content-closing-wrapper">
+            <div class="card-image-wrapper animate-left">
+                   <img src="{{cover}}" alt="cover" class="couple-img">
+                </div>
+      
+
+        <p class="thanks-statement animate-left">
+          Kehadiran Bapak/Ibu/Saudara sekalian merupakan kebahagiaan tersendiri bagi kami. Terima kasih atas kesediaannya meluangkan waktu serta memberikan doa restu bagi pernikahan kami.
+        </p>
+
+        <h4 class="salam-closing animate-left">
+            Wassalamu'alaikum Wr. Wb.
+        </h4>
+
+        <div class="signature-wrapper animate-left">
+            <p class="regards-text">Yang Berbahagia</p>
+            <h2 class="couple-nickname">{{nama_pria}}  &  {{nama_wanita}}</h2>
+        </div>
+
+    </div>
+   
+</section>
+
 
 
 <footer class="pureday-footer">
@@ -2791,6 +3033,65 @@ document.addEventListener("DOMContentLoaded", function() {
 })();
 
 
+(function() {
+    try {
+        function cekFotoCover() {
+            // Mengambil semua wrapper gambar khusus untuk cover (di intro dan closing)
+            var coverWrappers = document.querySelectorAll('.section-intro .card-image-wrapper, .section-closing .card-image-wrapper');
+
+            coverWrappers.forEach(function(wrapper) {
+                var img = wrapper.querySelector('.couple-img');
+
+                if (img && wrapper) {
+                    // Ambil isi dari src gambar, ubah ke huruf kecil semua (Konsep Anda)
+                    var src = (img.getAttribute('src') || '').trim().toLowerCase();
+
+                    // Cek apakah src mengandung format file gambar atau link valid
+                    var apakahGambarValid = src.includes('.jpg') || 
+                                            src.includes('.jpeg') || 
+                                            src.includes('.png') || 
+                                            src.includes('.webp') || 
+                                            src.includes('http://') || 
+                                            src.includes('https://');
+
+                    // LOGIKANYA DIBALIK:
+                    // Jika terdeteksi ada ekstensi gambar VALID, langsung paksa TAMPIL
+                    if (apakahGambarValid) {
+                        wrapper.style.setProperty('display', 'block', 'important');
+                        console.log("Cover Section: Gambar valid ditemukan. TAMPILKAN.");
+                    } 
+                    // Jika tidak mengandung format gambar (berarti null/template/kosong), langsung HIDDEN
+                    else {
+                        wrapper.style.setProperty('display', 'none', 'important');
+                        console.log("Cover Section: Tidak ada gambar valid. HIDDEN.");
+                    }
+                }
+            });
+        }
+
+        // Jalankan pengecekan saat halaman selesai dimuat (Konsep Anda)
+        window.addEventListener('load', cekFotoCover);
+
+        // Cadangan interval waktu sesuai standarmu yang terbukti berhasil
+        setTimeout(cekFotoCover, 1000);
+        setTimeout(cekFotoCover, 2500);
+
+    } catch (e) {
+        console.error("Cover Foto Script Error: ", e);
+    }
+})();
+
+document.addEventListener("DOMContentLoaded", function() {
+        const wrapper = document.querySelector('.bg-couple-wrapper');
+        const img = wrapper ? wrapper.querySelector('.img-couple') : null;
+
+        // Jika tidak ada gambar atau src-nya kosong, hapus wrapper
+        if (!img || !img.getAttribute('src') || img.getAttribute('src').trim() === "") {
+            if (wrapper) {
+                wrapper.remove(); // Menghapus total dari struktur HTML
+            }
+        }
+    });
 
 
 
