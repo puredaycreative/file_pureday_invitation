@@ -2329,6 +2329,8 @@ html, body {
                 <p class="address-info">{{alamat_pria}}</p>
              <a id="instagram-link-pria" 
    href="https://www.instagram.com/{{ig_pria}}" 
+   target="_blank" 
+   rel="noopener noreferrer"
    data-ig="{{ig_pria}}"
    style="display: inline-flex; align-items: center; padding: 4px 10px; background: linear-gradient(45deg, #833ab4, #fd1d1d, #fcaf45); color: white; text-decoration: none; font-family: 'Andada SC', serif; font-size: 12px; border-radius: 50px; box-shadow: 0 1px 4px rgba(0,0,0,0.2); transition: transform 0.2s;"
    onmouseover="this.style.transform='scale(1.05)'" 
@@ -2342,7 +2344,7 @@ html, body {
 
 <script>
     (function(el) {
-        if (!el.dataset.ig || el.dataset.ig.trim() === "" || el.dataset.ig.includes("{{")) {
+        if (!el || !el.dataset.ig || el.dataset.ig.trim() === "" || el.dataset.ig.includes("{{")) {
             el.style.display = 'none';
         }
     })(document.getElementById('instagram-link-pria'));
@@ -2362,9 +2364,11 @@ html, body {
                 <h3 class="card-name">{{nama_wanita_lengkap}}</h3>
                 <p class="parent-info">Putri dari Bapak {{nama_bapak_wanita}} & Ibu {{nama_ibu_wanita}}</p>
                 <p class="address-info">{{alamat_wanita}}</p>
-                <a id="instagram-link-wanita" 
+        a id="instagram-link-wanita" 
    href="https://www.instagram.com/{{ig_wanita}}" 
-   data-ig="{{ig_wanita}}"
+   target="_blank" 
+   rel="noopener noreferrer"
+   data-ig="{{ig_pria}}"
    style="display: inline-flex; align-items: center; padding: 4px 10px; background: linear-gradient(45deg, #833ab4, #fd1d1d, #fcaf45); color: white; text-decoration: none; font-family: 'Andada SC', serif; font-size: 12px; border-radius: 50px; box-shadow: 0 1px 4px rgba(0,0,0,0.2); transition: transform 0.2s;"
    onmouseover="this.style.transform='scale(1.05)'" 
    onmouseout="this.style.transform='scale(1)'">
@@ -2377,7 +2381,7 @@ html, body {
 
 <script>
     (function(el) {
-        if (!el.dataset.ig || el.dataset.ig.trim() === "" || el.dataset.ig.includes("{{")) {
+        if (!el || !el.dataset.ig || el.dataset.ig.trim() === "" || el.dataset.ig.includes("{{")) {
             el.style.display = 'none';
         }
     })(document.getElementById('instagram-link-wanita'));
