@@ -629,7 +629,7 @@ body {
 /* Bingkai Foto Oval Responsif */
 .card-image-wrapper {
     /* Gunakan % agar lebar foto selalu proporsional dengan lebar kontainer */
-    width: 70%; 
+    width: 50%; 
     max-width: 210px; /* Ukuran maksimal di layar besar/MacBook M2 */
     
     /* Gunakan aspect-ratio agar bentuk oval tetap konsisten */
@@ -2234,51 +2234,43 @@ body {
 </section>
 
 
-        <section id="comments-section-id" class="section section-comments bg-tengah">
-            <div class="container an">
-                <p class="subtitle-top">UCAPAN & DO'A</p>
-                <h2 class="main-title font-cursive">Kirimkan Ucapan Terbaik</h2>
-                
-                <div class="detail-box animate-on-scroll" style="margin-bottom: 40px;">
-                    <form id="comment-form" onsubmit="submitComment(event)">
-                        <div class="form-group">
-                            <label for="comment-name-input">Nama Anda (Wajib):</label>
-                            <input 
-                                type="text" 
-                                id="comment-name-input" 
-                                class="form-control" 
-                                value="[Nama Tamu]"
-                                required
-                            >
-                        </div>
-                        <div class="form-group">
-                            <label for="comment-message-input">Pesan Ucapan:</label>
-                            <textarea id="comment-message-input" placeholder="Tuliskan ucapan dan doa terbaik Anda..." required></textarea>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label>Konfirmasi Kehadiran:</label>
-                            <div class="status-btn-group">
-                                <button type="button" id="status-yes" class="template-status-btn status-active" onclick="toggleStatus(this, 'yes')">
-                                    <i class="fas fa-check-circle"></i> Hadir
-                                </button>
-                                <button type="button" id="status-no" class="template-status-btn" onclick="toggleStatus(this, 'no')">
-                                    <i class="fas fa-times-circle"></i> Tidak Hadir
-                                </button>
-                            </div>
-                        </div>
-
-                        <button type="submit" id="submit-comment-btn" class="btn-submit">
-                            Kirim Ucapan
-                        </button>
-                    </form>
+<section id="comments-section-id" class="section section-comments bg-tengah">
+    <div class="container an">
+        <p class="subtitle-top">UCAPAN & DO'A</p>
+        <h2 class="main-title font-cursive">Kirimkan Ucapan Terbaik</h2>
+        
+        <div class="detail-box animate-on-scroll" style="margin-bottom: 40px;">
+            <form id="comment-form" onsubmit="submitComment(event)">
+                <div class="form-group">
+                    <label for="comment-name-input">Nama Anda (Wajib):</label>
+                    <input type="text" id="comment-name-input" class="form-control" value="[Nama Tamu]" required>
+                </div>
+                <div class="form-group">
+                    <label for="comment-message-input">Pesan Ucapan:</label>
+                    <textarea id="comment-message-input" placeholder="Tuliskan ucapan dan doa terbaik Anda..." required></textarea>
                 </div>
                 
+                <div class="form-group">
+                    <label>Konfirmasi Kehadiran:</label>
+                    <div class="status-btn-group">
+                        <button type="button" id="status-yes" class="template-status-btn status-active" onclick="toggleStatus(this, 'yes')">
+                            <i class="fas fa-check-circle"></i> Hadir
+                        </button>
+                        <button type="button" id="status-no" class="template-status-btn" onclick="toggleStatus(this, 'no')">
+                            <i class="fas fa-times-circle"></i> Tidak Hadir
+                        </button>
+                    </div>
+                </div>
 
-                
-        </section>
+                <button type="submit" id="submit-comment-btn" class="btn-submit">
+                    Kirim Ucapan
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
         
-     <section id="comments-list-section" class="section-comments-list bg-tengah">
+<section id="comments-list-section" class="section-comments-list bg-tengah">
     <div class="container animate-up">
         <p class="subtitle-top">UCAPAN TAMU</p>
         <h2 class="main-title font-cursive">Komentar Terbaru</h2>
@@ -2292,6 +2284,8 @@ body {
     
     <div class="flower-bottom"></div>
 </section>
+
+
 
 <section class="section section-closing">
   
@@ -2378,7 +2372,12 @@ body {
 <div id="toast-message"></div>
 
     <script>
+  const rsvp = '{{dalil}}'; 
     
+    if (rsvp === 'false') {
+        document.getElementById('comments-section-id').style.display = 'none';
+        document.getElementById('comments-list-section').style.display = 'none';
+    }
         
         // Data Pernikahan
 const WEDDING_DATE = new Date("{{tanggal_acara}}").getTime(); 
