@@ -1,24 +1,31 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+    <meta property="og:title" content="The Wedding of {{nama_pria}} & {{nama_wanita}}" />
+    <meta property="og:image" content="{{cover}}" />
+    <meta property="og:description" content="Kami mengundang Anda di acara pernikahan kami pada {{tanggal_acara_baca}}" />
+    <meta property="og:url" content="https://www.puredayinvitation.com/{{slug}}" />
+    <meta property="og:type" content="website" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Pureday Invitation: {{nama_pria}} & {{nama_wanita}}</title>
-    <link href="https://fonts.googleapis.com/css?family=Average" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Rouge+Script" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Rouge+Script" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Baloo+Bhaina+2" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap" rel="stylesheet">   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;700&family=Great+Vibes&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;700&family=Great+Vibes&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Rosemary&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-<link href="https://fonts.googleapis.com/css?family=Aclonica" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Architects+Daughter" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Andada" rel="stylesheet">
- <link href="https://fonts.googleapis.com/css?family=Rouge+Script" rel="stylesheet">
-  
+    <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Abel" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Kreon" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Bilbo+Swash+Caps" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=OCR+A&family=Courier+Prime:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Andada" rel="stylesheet">
+       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Bad+Script" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Allerta" rel="stylesheet">
+
 <style>
     /* Animasi Fade In dari Bawah ke Atas */
 @keyframes fadeInUp {
@@ -42,6 +49,52 @@
         opacity: 1;
         transform: translateY(0); /* Selesai di posisi asli */
     }
+}
+
+/* --- ANIMASI DARI KIRI --- */
+.animate-left {
+    opacity: 0;
+    transform: translateX(-50px); /* Mulai dari kiri */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.animate-left.visible {
+    opacity: 1 !important;
+    transform: translateX(0) !important;
+}
+
+/* --- ANIMASI DARI KANAN --- */
+.animate-right {
+    opacity: 0;
+    transform: translateX(50px); /* Mulai dari kanan */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.animate-right.visible {
+    opacity: 1 !important;
+    transform: translateX(0) !important;
+}
+
+.animate-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Class ini akan ditambahkan oleh JS */
+.animate-up.visible {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+.animate-down {
+    opacity: 0;
+    transform: translateY(-30px); 
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.animate-down.visible {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
 }
     /* --- General Styling --- */
     :root {
@@ -106,29 +159,33 @@
         letter-spacing: 2px;
     }
 
-    /* Tombol Aksi Umum */
-    /* .btn-maps-link, .btn-submit, .cover-open-btn {
-        display: inline-flex;
-      font-family: 'Rosemary', cursive;
-        align-items: center;
-        padding: 12px 25px;
-        margin-top: 20px;
-        border: 2px solid var(--color-accent);
-        border-radius: 8px;
-        background-color: var(--color-accent);
-        color: black;
-    
-        text-decoration: none;
-        transition: all 0.3s ease;
-        cursor: pointer;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+
+/* Logic untuk posisi Landscape agar tetap di tengah seperti layar HP */
+@media (min-aspect-ratio: 1/1) {
+      .template-cover-container, .section-intro, 
+    .section-detail,
+    .section-event-timer,
+    .section-event,
+    .section-gallery,
+    .section-love-story,
+    .section-gift,
+    .section-comments,
+    .section-comments-list,
+    .section-closing
+
+     {
+        width: 100%;
+    max-width: 450px; /* Ukuran standar HP agar ramping */
+    margin-left: auto !important;
+    margin-right: auto !important;
+    position: relative;
+    box-sizing: border-box;
+        box-shadow: 0 0 100px rgba(0,0,0,0.5); /* Efek bayangan di kanan kiri */
     }
-    .btn-maps-link:hover, .btn-submit:hover, .cover-open-btn:hover {
-        background-color: var(--color-bg-dark);
-        border-color: var(--color-bg-dark);
-        transform: translateY(-1px);
-    } */
-    
+}
+
+
+
     /* --- COVER SECTION --- */
 .template-cover-container {
     position: relative;
@@ -139,19 +196,21 @@
     justify-content: flex-end; /* Memaksa panel konten ke kanan */
     margin: 0;
     overflow: hidden;
+    
 }
 
 /* --- PANEL KONTEN KANAN (Tempat Background Berada) --- */
 .template-cover-content-wrapper {
     position: relative;
     width: 100%;
-    max-width: 1200px; /* Ukuran HP */
+    max-width: 1200px;
     height: 100vh;
-        background-color: rgba(0, 0, 0, 0.5); 
-    background-blend-mode: multiply;  
-    /* BACKGROUND HANYA DI PANEL INI */
-    background: url({{cover}}) center/cover no-repeat;
     
+    /* Menambahkan linear-gradient untuk efek gelap di atas gambar */
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                url({{cover}}) center/cover no-repeat;
+    
+    opacity: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -161,7 +220,7 @@
     padding: 20px;
     z-index: 10;
     box-sizing: border-box;
-    box-shadow: -10px 0 50px rgba(0,0,0,0.5); /* Bayangan agar kontras dengan sisi kiri */
+    box-shadow: -10px 0 50px rgba(0,0,0,0.5);
 }
 
 /* --- OVERLAY GELAP (Di dalam panel) --- */
@@ -185,6 +244,7 @@
 .template-cover-guest-name { 
        font-family: Average, serif;
     animation-delay: 0.6s; 
+    font-size: 0.8rem;
 }
 .template-cover-title { animation-delay: 0.9s; }
 .template-cover-content-wrapper p:nth-child(5) { animation-delay: 1.2s; } /* Tanggal */
@@ -203,9 +263,12 @@
 
 /* Style tambahan untuk tombol dan teks */
 .template-cover-title {
-    font-family: 'Rouge Script', cursive;
+     font-family: 'Rouge Script', cursive; /* Gunakan font sambung */
     font-size: 3rem;
-    margin: 15px 0;
+    color: #ffffff;
+        margin: 10px 0;
+    font-weight: 300;
+    margin-top: 0px;
 }
 
 .cover-open-btn,.btn-maps-link,.btn-submit {
@@ -323,7 +386,7 @@ body {
     font-family: Andada, serif;
     writing-mode: vertical-rl;
     transform: rotate(180deg) translateX(100px); /* Tetap bawa state awal */
-    font-size: 0.8rem;
+    font-size: 1.4rem;
     color: #fff;
     text-transform: uppercase;
     border-left: 1px solid rgba(255,255,255,0.5);
@@ -335,13 +398,13 @@ body {
     font-size: clamp(3rem, 7vw, 2rem);
     color: #fff;
     /* text-transform: uppercase; */
-    line-height: 1.2;
+  letter-spacing: 1px;
     text-align: left;
 }
 
 .opening-quote {
     font-family: Andada, serif;
-    font-size: 14px;
+   font-size: 0.8rem;
     letter-spacing: 0.3pt;
     position: absolute;
     top: 15%;
@@ -382,7 +445,7 @@ body {
 .main-wrapper-detail {
     width: 100%;
     max-width: 1200px; /* Batas lebar seukuran HP */
-    background: #a92424;
+  
     position: relative;
 }
 
@@ -469,29 +532,30 @@ body {
 
 /* FOTO PROFIL BULAT */
 .card-image-wrapper {
-    width: 150px;
-    height: 150px;
+    width: 300px;
+    height: 500px;
     margin: 0 auto 20px;
-    border-radius: 50%;
-    border: 3px solid rgba(255,255,255,0.4);
+    /* border-radius: 50%; */
+    /* border: 3px solid rgb(255, 255, 255); */
     overflow: hidden;
     box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    background-position: center;
 }
 
 .card-image-wrapper img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    
 }
 
 /* TIPOGRAFI */
 .card-name {
-    font-family: Andada, serif;
-    font-size: 1.4rem;
+    font-family: 'Rouge Script', cursive;
+    font-size: 2.5rem;
     color: #ffffff;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin: 10px 0;
+    margin-top: 30px;
+    letter-spacing: 1px;
 }
 
 .parent-info {
@@ -500,6 +564,14 @@ body {
     color: rgba(255,255,255,0.9);
     margin: 0;
 }
+.address-info {
+   font-family: Abel, sans-serif;
+    font-size: 12px;
+    color: rgba(255,255,255,0.9);
+    margin-top: 5px;
+}
+
+
 
 /* --- ANIMASI TEKS --- */
 .animate-up {
@@ -538,8 +610,8 @@ body {
     
     /* BACKGROUND PINDAH KE SINI */
     /* Kita buang 'fixed' supaya gambar pas di kotak 1200px */
-    background: url({{galeri8}}) center/cover no-repeat;
-    
+   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                url({{galeri8}}) center/cover no-repeat;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -778,14 +850,173 @@ body {
     from { transform: translateX(0); }
     to { transform: translateX(-50%); }
 }
+
+
+
+
+
+
+
+/* --- Love Story Section --- */
+.section-love-story {
+   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                url({{galeri9}}) center/cover no-repeat;
+     padding: 60px 16px;
+    font-family: Andada, serif;
+    display: flex;
+    justify-content: center;
+}
+
+.love-story-container {
+    width: 100%;
+    max-width: 600px; /* Membatasi lebar agar pas dengan layout mobile/tablet */
+    margin: 0 auto;
+}
+
+/* --- Struktur Timeline Jaringan Garis --- */
+.love-story-timeline {
+    position: relative;
+    padding: 10px 0;
+}
+
+/* Membuat garis vertikal lurus abu-abu di sisi kiri */
+.love-story-timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 40px; /* Jarak pas dari kiri untuk menyelaraskan garis */
+    width: 4px;
+    background-color: #92929200; /* Warna abu-abu solid sesuai gambar */
+    z-index: 1;
+}
+
+/* --- Item Bungkus per Cerita (Dinamis) --- */
+.ls-item {
+    position: relative;
+    margin-bottom: 40px;
+    padding-left: 95px; /* Memberi ruang di kiri agar kartu tidak menabrak lingkaran hati */
+}
+
+/* Menghilangkan margin bawah untuk item cerita terakhir */
+.ls-item:last-child {
+    margin-bottom: 0;
+}
+
+/* --- Lingkaran Putih + Icon Hati --- */
+.ls-icon-heart {
+    position: absolute;
+    left: 22px; /* Mengatur posisi pas di tengah-tengah garis vertikal */
+    top: 0;
+    width: 30px;
+    height: 30px;
+    background-color: #ffffff2a;
+    border: 1px solid #ffffff; /* Frame abu-abu tebal sesuai gambar */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+
+/* Karakter Hati Hitam di Tengah Lingkaran */
+.ls-icon-heart::before {
+    content: '♥';
+    color: #ffffff;
+    font-size: 1.5rem;
+}
+
+/* --- Kartu Putih Konten (Scrapbook Card) --- */
+.ls-card {
+    background-color: #ffffff2d;
+    border-radius: 20px; /* Sudut melengkung halus sesuai gambar */
+    padding: 24px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* Shadow tipis agar smooth */
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Pembungkus Foto di Dalam Kartu */
+.ls-card-img {
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 24px;
+}
+
+.ls-card-img img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+/* --- Tipografi & Teks --- */
+.ls-card-title {
+    font-size: 1rem;
+    font-family: Andada, serif;
+    color: #ffffff;
+    margin: 0 0 12px 0;
+    font-weight: 400;
+    text-align: left;
+}
+
+.ls-card-date {
+    font-size: 1.05rem;
+    font-family: Andada, serif;
+    color: #ffffff;
+    margin-bottom: 24px;
+}
+
+.ls-card-body {
+    font-family: Andada, serif;
+    font-size: 0.7rem;
+    line-height: 1.6;
+    color: #ffffff;
+    margin: 0;
+    text-align: justify; /* Rata kiri sesuai gaya teks di gambar */
+}
+
+/* --- Optimasi Khusus Layar HP Kecil --- */
+@media (max-width: 480px) {
+    .love-story-timeline::before {
+        left: 25px; /* Geser garis lebih ke kiri pada mobile */
+    }
+    
+    .ls-item {
+        padding-left: 68px; /* Potong padding agar area teks kartu tetap luas */
+    }
+    
+    .ls-icon-heart {
+        left: 3px;
+        width: 48px;
+        height: 48px;
+        border-width: 3px;
+    }
+    
+    .ls-icon-heart::before {
+        font-size: 1.2rem;
+    }
+    
+    .ls-card {
+        padding: 16px;
+    }
+}
+
+
+
+
+
+
+
 /* --- Section Gift --- */
 .section-gift {
     position: relative;
     width: 100%;
-    max-width: 1200px; 
+  
     margin-left: auto;
     margin-right: 0;
-    height: 100vh;
+  height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -794,7 +1025,6 @@ body {
     /* Hilangkan background-image dari sini */
 }
 
-/* --- LAPISAN BACKGROUND BLUR --- */
 .section-gift::before {
     content: "";
     position: absolute;
@@ -802,15 +1032,17 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    /* Pindahkan background ke sini */
-    background-image: url({{galeri10}}); 
-    background-size: cover;
-    background-position: center;
-    /* ATUR BLUR DI SINI */
-    filter: blur(4px); 
-    /* Sedikit diperbesar biar pinggiran blur tidak putih/kosong */
-    transform: scale(1.1); 
     z-index: 1;
+    
+    /* Perubahan di sini: */
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                url({{galeri10}});
+    background-size: cover; /* Tetap cover agar tidak ada celah kosong */
+    background-position: center;
+    background-repeat: no-repeat;
+    
+    /* Opsional: Jika ingin gambar tetap diam saat discroll (paralax effect) */
+    /* background-attachment: fixed; */
 }
 
 /* --- OVERLAY GELAP (Opsional, agar teks lebih terbaca) --- */
@@ -826,23 +1058,22 @@ body {
 }
 
 
-
-
-
 .gift-container {
-max-width: 450px;
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
-      z-index: 10; 
-    /* Tambahkan ini untuk menurunkan elemen */
-    margin-top: 50px; /* Ubah angka px sesuai keinginan Anda */
-          margin-bottom: 100px;
-    border-radius: 20px; 
-    overflow: hidden;
-    padding: 12px;
+
+    min-height: 100vh;
+    /* Padding bawah 350px agar kartu terakhir tidak terpotong bunga */
+  /* Dari 30px, ubah ke 10px atau 0 */
+    padding: 10px 25px 150px 25px;
+    position: relative;
+    z-index: 10;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    box-shadow: -10px 0 30px rgba(0,0,0,0.05); /* Bayangan di sisi kiri panel */
 }
+
+
+
 
 .bank-accounts-cards {
     display: flex;
@@ -852,14 +1083,14 @@ max-width: 450px;
 }
 
 .bank-accounts-cards > div {
-    background: url('https://file.puredayinvitation.com/asset/cardgrey2.webp') center/cover no-repeat;
-    border-radius: 15px;
+   background-color: #ffffff2a; 
+   border-radius: 15px;
     gap: 10px;
     padding: 10px 20px; /* Padding vertikal dikurangi biar gepeng */
-
+    color: #ffffff;
     position: relative;
     /* KUNCI GEPENG */
-    height: 170px !important; 
+   height: 170px !important; 
     min-height: 130px !important;
     display: flex;
     flex-direction: column;
@@ -880,7 +1111,7 @@ max-width: 450px;
 }
 
 .bank-name { 
-    color: #333 !important;
+    color: #ffffff !important;
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
     font-size: 12px; /* Ukuran disesuaikan dengan kartu gepeng */
@@ -895,7 +1126,6 @@ max-width: 450px;
     content: "";
     width: 40px; 
     height: 30px;
-    background: url('https://file.puredayinvitation.com/asset/pin-card.webp') no-repeat center / contain;
     display: block;
     margin: 0 0 2px 0 !important; /* Rapatkan ke nomor di bawahnya */
     filter: brightness(1.2);
@@ -908,7 +1138,7 @@ max-width: 450px;
     letter-spacing: 1px;
     text-shadow: -1px -1px 1px rgba(255,255,255,0.3), 1px 1px 1px rgba(0,0,0,0.8);
     font-weight: 700 !important; 
-    color: #2d2c2c !important;
+    color: #ffffff !important;
     display: block !important;
     line-height: 1 !important; /* Rapatkan baris */
     margin: 0 !important;
@@ -929,7 +1159,7 @@ max-width: 450px;
     text-transform: uppercase;
     opacity: 0.9;
     text-shadow: -1px -1px 1px rgba(255,255,255,0.3), 1px 1px 1px rgba(0,0,0,0.8);
-    color: #2d2c2c;
+    color: #ffffff;
     margin: 0 !important;
     line-height: 1 !important;
 }
@@ -941,7 +1171,7 @@ max-width: 450px;
     bottom: 10px;
     background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(4px);
-    color: #2d2c2c;
+    color: #ffffff;
     border: 1px solid rgba(255, 255, 255, 0.4);
     padding: 4px 10px;
     border-radius: 6px;
@@ -954,7 +1184,7 @@ max-width: 450px;
 }
 .copy-btn:hover {
     background: #ffffff72;
-    color: #000;
+    color: #ffffff;
     transform: translateY(-2px); /* Efek angkat sedikit saat hover */
 }
 
@@ -963,7 +1193,7 @@ max-width: 450px;
     font-size: 13px;
     line-height: 1.5;
     text-align: center;
-    color: #f7f7f7;
+    color: #ffffff;
     position: relative;
     font-weight: 700;
     /* JARAK ATAS DAN BAWAH */
@@ -979,7 +1209,7 @@ max-width: 450px;
 /* 1. alamat kado */
 /* Container Utama untuk Alamat */
 .address-card {
-    background-color: #ffffff;
+   background-color: #ffffff2a;
     border-radius: 15px;
     /* padding: 20px; */
     margin: 15px 0;
@@ -1001,7 +1231,7 @@ max-width: 450px;
     font-family: 'Bilbo Swash Caps', cursive;
       font-weight: bold;
     font-size: 1.5rem;
-    color: #242322;
+    color: #ffffff;
     margin-bottom: 55px;
 
     letter-spacing: 1px;
@@ -1015,7 +1245,7 @@ max-width: 450px;
     bottom: 10px;
     background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(4px);
-    color: #2d2c2c;
+    color: #ffffff;
     border: 1px solid rgba(255, 255, 255, 0.4);
     padding: 4px 10px;
     border-radius: 6px;
@@ -1030,7 +1260,7 @@ max-width: 450px;
 
 .copy-address-btn:hover {
    background:  rgb(190, 187, 187);
-    color: #000;
+    color: #ffffff;
     transform: translateY(-2px); /* Efek angkat sedikit saat hover */
 }
 
@@ -1046,7 +1276,7 @@ max-width: 450px;
     /* text-transform: uppercase; */
     opacity: 0.9;
     text-align: center;
-    color: #2d2c2c;
+    color: #ffffff;
     
     /* Gunakan margin-top negatif atau margin-bottom untuk mendorong ke atas */
     margin-top: -50px !important; 
@@ -1059,7 +1289,7 @@ max-width: 450px;
     font-family: Andada, serif;
     font-size: 0.65rem;
     text-align: center;
-    color: #444343;
+    color: #ffffff;
     line-height: 1.4;
     margin: 0 auto 30px auto; /* Margin bawah 30px memberi ruang untuk tombol di pojok */
     max-width: 250px;
@@ -1071,11 +1301,10 @@ max-width: 450px;
 
 
     /* --- Section Comments (Ucapan) --- */
-   /* --- CONTAINER UTAMA --- */
 #comments-section-id.section-comments {
     position: relative;
     width: 100%;
-    max-width: 1200px;
+
     min-height: 100vh;
     margin-left: auto;
     margin-right: 0;
@@ -1099,15 +1328,12 @@ max-width: 450px;
     right: 0;
     bottom: 0;
     
-    /* Pindahkan Gambar ke Sini */
-    background-image: url({{galeri11}});
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                url({{galeri11}});
+   
     background-size: cover;
     background-position: center;
-    
-    /* EFEK BLUR */
-    filter: blur(4px); /* Ubah angka px sesuai tingkat blur yang diinginkan */
-    transform: scale(1.1); /* Untuk menghilangkan garis putih di pinggiran akibat blur */
-    
+
     z-index: -1; /* Meletakkan gambar di belakang konten */}
 
 
@@ -1126,7 +1352,7 @@ max-width: 450px;
 
 #comment-form label {
     display: block;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     font-family: Andada, serif;
     color: #f4f2f2;
     margin-bottom: 8px;
@@ -1167,7 +1393,7 @@ max-width: 450px;
     background: rgba(255, 255, 255, 0);
     color: #f4f2f2;
     cursor: pointer;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     transition: 0.3s;
     font-family: Andada, serif;
     box-shadow: 0 4px 10px rgba(0,0,0,0.03);
@@ -1189,7 +1415,7 @@ max-width: 450px;
     border-color: white;
     border-radius: 10px;
     font-weight: bold;
-    font-size: 1rem;
+    font-size: 0.8rem;
     cursor: pointer;
     margin-top: 10px;
     box-shadow: 0 4px 15px rgba(188, 156, 120, 0.3);
@@ -1211,11 +1437,11 @@ max-width: 450px;
 }
 
 .main-title {
-    font-size: 2rem;
-    color: #ebe9e9;
-    margin-bottom: 30px;
+   font-family: 'Rouge Script', cursive;
+    font-size: 2.4rem;
+    color: #ffffff;
+    margin: 10px 0 20px;
     text-align: center;
-     font-family: 'Architects Daughter', cursive;
 }
 
 
@@ -1227,7 +1453,7 @@ max-width: 450px;
 #comments-list-section.section-comments-list {
     position: relative;
     width: 100%;
-    max-width: 1200px;
+  
     min-height: 100vh;
     margin-left: auto;
     margin-right: 0;
@@ -1243,11 +1469,11 @@ max-width: 450px;
     content: "";
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
-    background-image: url({{galeri12}});
-    background-size: cover;
+     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                url({{galeri12}});
+   background-size: cover;
     background-position: center;
-    filter: blur(4px); 
-    transform: scale(1.1);
+    
     z-index: -1;
 }
 
@@ -1256,21 +1482,34 @@ max-width: 450px;
 .comment-item {
     background: rgba(255, 255, 255, 0.1); 
     border: 2px solid #ffffff;
-    border-radius: 15px;
-    padding: 18px;
-    margin-bottom: 15px;
+    border-radius: 5px;
+    
+    /* PADDING VERTIKAL DIKURANGI (18px -> 8px) untuk kesan gepeng */
+    padding: 8px 18px; 
+    
+    margin-bottom: 5px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start; /* SEMUA RATA KIRI */
+    align-items: flex-start;
     text-align: left;
     box-sizing: border-box;
+    
+    /* Opsional: Jika ingin membatasi tinggi agar lebih gepeng lagi */
+    /* min-height: 60px; */
+}
+
+/* Opsional: Jika teks di dalamnya terlalu panjang, 
+   ini akan menjaga box tetap gepeng tanpa melar */
+.comment-item p {
+    margin: 0;
+    line-height: 1.2;
 }
 
 /* --- 4. NAMA PENGIRIM --- */
 .comments-scroll-box > div strong, 
 .comment-name {
     font-family: Andada, serif;
-    font-size: 1.05rem;
+    font-size: 0.8rem;
     color: white;
     font-weight: 700;
     display: inline; /* Biar sejajar */
@@ -1294,7 +1533,7 @@ max-width: 450px;
 .comments-scroll-box p,
 .comment-text {
     font-family: Andada, serif;
-    font-size: 0.95rem;
+    font-size: 0.6rem;
     color: white;
     line-height: 1.4;
     margin: 5px 0;
@@ -1312,7 +1551,7 @@ max-width: 450px;
     display: block; /* Wajib ada agar transform jalan */
 
     /* Atur font ke ukuran minimal yang diizinkan browser dulu */
-    font-size: 10px; 
+    font-size: 0.7rem; 
 
     /* Baru dikecilkan paksa pakai scale */
     transform: scale(0.8); 
@@ -1351,56 +1590,128 @@ max-width: 450px;
 
 
 
-.pureday-footer {
-    background-color: #fdf6e9; /* Samakan dengan warna tema */
-    padding: 12px 10px; /* Sangat tipis */
-    text-align: center;
-    border-top: 1px solid rgba(141, 117, 78, 0.05);
-    width: 100%;
+/* Styling Section Penutup */
+.section-closing {
+    padding: 60px 0px;
+   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                url({{cover}});
+    background-size: cover;
+    background-position: center;
+    
+    background-repeat: no-repeat;
+ 
 }
 
-.footer-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-    flex-wrap: wrap;
+.content-closing-wrapper {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.closing-statement, .thanks-statement {
+   margin-top: 20px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    font-weight: 500;
+     font-family: Andada, serif;
+    font-size: 13px;
+    color: #fffbfb;
+    line-height: 1.8;
+    text-align: center;
+    padding: 0 15%; /* Semakin besar persentasenya, semakin rapat teks ke tengah */
+    display: block;
+}
+
+.salam-closing {
+    font-family: 'Great Vibes', cursive; /* Gunakan font latin/script */
+    font-size: 1.5rem;
+    margin: 30px 0;
+    font-weight: normal;
+    text-align: center;
+    color: #fffbfb; /* Warna cokelat tua sesuai gambar */
+   
+}
+
+.signature-wrapper {
+    margin-top: 40px;
+      text-align: center;
+}
+
+.regards-text {
+       font-family: Andada, serif;
+    font-size: 13px;
+    color: #fffbfb;
+    line-height: 1.8;
+  
+    margin-bottom: 10px;
+}
+
+.couple-nickname {
+        line-height: 0.9;    /* Mengatur kerapatan baris agar tidak terlalu renggang */
+ font-size: 2rem;
+    font-family: 'Rouge Script', cursive;
+    color: #fffbfb;
+  
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Bad+Script&family=Allerta&display=swap');
+
+.pureday-footer-section {
+    /* Memaksa elemen ini berada di urutan bawah alur dokumen */
+    display: block;
+    width: 100%;
+    position: relative;
+    clear: both;
+    margin: 0;
+    padding: 0;
+}
+
+.footer-container {
+    /* Efek Frame HP di Tengah */
+    width: 100%;
+    max-width: 450px; 
+    margin: 0 auto; /* Menjaga posisi di tengah saat landscape */
+    background-color: #d6cfc8; /* Warna nempel dengan konten atas */
+    text-align: center;
+   padding: 15px 20px 60px 20px;
+    box-sizing: border-box;
 }
 
 .footer-brand {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 800;
-    font-size: 0.75rem; /* Lebih kecil */
-    color: #8d754e;
-    text-decoration: none;
-    letter-spacing: 1.5px;
+    font-family: 'Allerta', sans-serif;
+    font-size: 15px;
+    color: #000000;
+    text-decoration: none !important; /* Menghapus garis bawah */
+  
+    display: inline-block;
+    margin-bottom: 10px;
 }
 
-.footer-text {
-    font-family: Andada, serif;
-    font-size: 0.65rem;
-    color: #8d754e;
-    opacity: 0.6;
+.footer-made-with {
+    font-family: 'Bad Script', cursive;
+    font-size: 15px;
+    color: #000000;
+    margin-bottom: 20px;
 }
 
-.divider {
-    color: #8d754e;
-    opacity: 0.3;
-    font-size: 0.6rem;
+.heart-icon {
+    color: #4e0707;
 }
 
-.footer-ig {
-    font-family: Andada, serif;
-    font-size: 0.65rem;
-    color: #8d754e;
-    text-decoration: none;
+.footer-socials {
     display: flex;
-    align-items: center;
-    gap: 4px;
+    justify-content: center;
+    gap: 30px;
 }
 
-.footer-ig i {
-    font-size: 0.7rem;
+.social-icon {
+    color: #000000;
+    font-size: 20px;
+    text-decoration: none !important;
+    transition: transform 0.3s ease;
+}
+
+.social-icon:hover {
+    transform: scale(1.1);
 }
 
 
@@ -1498,7 +1809,7 @@ max-width: 450px;
    <div id="cover-page" class="template-cover-container">
     <div class="template-cover-overlay"></div>
     <div class="template-cover-content-wrapper">
-        <p style="color: #ebe9e9; font-size: 1.1rem; margin-bottom: 5px;    font-family: Andada, serif;">Kepada Yth:</p>
+        <p style="color: #ebe9e9; font-size: 0.8rem; margin-bottom: 5px;    font-family: Andada, serif;">Kepada Yth:</p>
         <h3 class="template-cover-guest-name" id="guest-name-display">TAMU UNDANGAN</h3>
         
         <h1 class="template-cover-title">{{nama_pria}} & {{nama_wanita}}</h1>
@@ -1515,7 +1826,8 @@ max-width: 450px;
        <section id="intro-section-id" class="section-intro">
     <div class="intro-content">
         <h1 class="wedding-title">Undangan Pernikahan</h1>
-        <p class="opening-quote">Dengan memohon rahmat dan ridho Allah SWT. Tanpa mengurangi rasa hormat, kami mengundang Anda untuk berkenan menghadiri acara pernikahan kami:</p>
+      
+        <p class="opening-quote">Tanpa mengurangi rasa hormat, kami mengundang Anda untuk berkenan menghadiri acara pernikahan kami:</p>
 
       
 
@@ -1530,7 +1842,7 @@ max-width: 450px;
         </p> -->
 
         <div class="couple-cards">
-            <div class="card groom-card";>
+            <div class="card groom-card">
                 <div class="card-overlay"></div>
                 <div class="card-content">
                     <div class="card-image-wrapper animate-up">
@@ -1538,6 +1850,18 @@ max-width: 450px;
                     </div>
                     <p class="card-name animate-up">{{nama_pria_lengkap}}</p>
                     <p class="parent-info animate-up">Putra dari Bapak {{nama_bapak_pria}} & Ibu {{nama_ibu_pria}}</p>
+                    <p class="address-info">{{alamat_pria}}</p>
+<a id="instagram-link-pria" 
+   href="https://www.instagram.com/{{ig_pria}}" 
+   target="_blank" 
+   rel="noopener noreferrer"
+   data-ig="{{ig_pria}}"
+   style="display: inline-flex; align-items: center; padding: 4px 10px; background: linear-gradient(45deg, #833ab4, #fd1d1d, #fcaf45); color: white; text-decoration: none; font-family: 'Andada SC', serif; font-size: 12px; border-radius: 50px; box-shadow: 0 1px 4px rgba(0,0,0,0.2); transition: transform 0.2s; margin-right: 5px;"
+   onmouseover="this.style.transform='scale(1.05)'" 
+   onmouseout="this.style.transform='scale(1)'">
+   <svg viewBox="0 0 24 24" fill="white" style="width: 14px; height: 14px; margin-right: 5px;"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.073 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.073-4.948-.197-4.354-2.618-6.78-6.979-6.98-1.28-.058-1.688-.072-4.948-.072zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.791-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.209-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+   {{ig_pria}}
+</a>
                 </div>
             </div>
             
@@ -1549,6 +1873,32 @@ max-width: 450px;
                     </div>
                     <p class="card-name animate-up">{{nama_wanita_lengkap}}</p>
                     <p class="parent-info animate-up">Putri dari Bapak {{nama_bapak_wanita}} & Ibu {{nama_ibu_wanita}}</p>
+                      <p class="address-info">{{alamat_wanita}}</p>
+                    <a id="instagram-link-wanita" 
+   href="https://www.instagram.com/{{ig_wanita}}" 
+   target="_blank" 
+   rel="noopener noreferrer"
+   data-ig="{{ig_wanita}}"
+   style="display: inline-flex; align-items: center; padding: 4px 10px; background: linear-gradient(45deg, #833ab4, #fd1d1d, #fcaf45); color: white; text-decoration: none; font-family: 'Andada SC', serif; font-size: 12px; border-radius: 50px; box-shadow: 0 1px 4px rgba(0,0,0,0.2); transition: transform 0.2s;"
+   onmouseover="this.style.transform='scale(1.05)'" 
+   onmouseout="this.style.transform='scale(1)'">
+   <svg viewBox="0 0 24 24" fill="white" style="width: 14px; height: 14px; margin-right: 5px;"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.073 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.073-4.948-.197-4.354-2.618-6.78-6.979-6.98-1.28-.058-1.688-.072-4.948-.072zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.791-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.209-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+   {{ig_wanita}}
+</a>
+
+<script>
+    (function() {
+        ['instagram-link-pria', 'instagram-link-wanita'].forEach(function(id) {
+            var el = document.getElementById(id);
+            if (el) {
+                var val = el.getAttribute('data-ig');
+                if (!val || val.trim() === "" || val.includes("{{")) {
+                    el.style.display = 'none';
+                }
+            }
+        });
+    })();
+</script>
                 </div>
             </div>
         </div>
@@ -1595,6 +1945,17 @@ max-width: 450px;
      
         <div class="scrapbook-wrapper animate-gallery">
             {{galeri}}
+        </div>
+    </div>
+</section>
+
+<section id="love-story-section-id" class="section-love-story">
+    <div class="love-story-container animate-left">
+
+        <h2 class="main-title font-cursive">Perjalanan Cinta</h2>
+        
+        <div class="love-story-timeline animate-left">
+            {{lovestori}}
         </div>
     </div>
 </section>
@@ -1675,14 +2036,44 @@ max-width: 450px;
     
     </section>
 
+<section class="section section-closing">
+    <div class="content-closing-wrapper">
+            <div class="card-image-wrapper animate-left">
+                   <img src="{{cover}}" alt="cover" class="couple-img">
+                </div>
+      
+
+        <p class="thanks-statement animate-left">
+          Kehadiran Bapak/Ibu/Saudara sekalian merupakan kebahagiaan tersendiri bagi kami. Terima kasih atas kesediaannya meluangkan waktu serta memberikan doa restu bagi pernikahan kami.
+        </p>
+
+        <!-- <h4 class="salam-closing animate-left">
+            Wassalamu'alaikum Wr. Wb.
+        </h4> -->
+
+        <div class="signature-wrapper animate-left">
+            <p class="regards-text">Yang Berbahagia</p>
+            <h2 class="couple-nickname">{{nama_pria}}  &  {{nama_wanita}}</h2>
+        </div>
+
+    </div>
+</section>
+
 <footer class="pureday-footer">
-    <div class="footer-content">
-        <span class="footer-text">by</span>
+    <div class="footer-container">
         <a href="https://puredayinvitation.com" target="_blank" class="footer-brand">Pureday Invitation</a>
-        <span class="divider">|</span>
-        <a href="https://www.instagram.com/pureday.invitation?igsh=MTNtemNkMnBmNHByMg%3D%3D&utm_source=qr" target="_blank" class="footer-ig">
-            <i class="fab fa-instagram"></i> pureday.creative
-        </a>
+        <p class="footer-made-with">
+            Made with <span class="heart-icon">❤️</span> by Pureday Invitation
+        </p>
+
+        <div class="footer-socials">
+            <a href="https://www.instagram.com/pureday.invitation?igsh=MTNtemNkMnBmNHByMg%3D%3D&utm_source=qr" target="_blank" class="social-icon">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://wa.me/6285185085802" target="_blank" class="social-icon">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+        </div>
     </div>
 </footer>
 
@@ -1757,6 +2148,69 @@ const GUEST_NAME = guestNameParam ? decodeURIComponent(guestNameParam) : "{{nama
 
 document.getElementById('guest-name-display').textContent = GUEST_NAME;
 document.getElementById('comment-name-input').value = GUEST_NAME;
+
+(function() {
+    try {
+        
+        window.addEventListener('load', function() {
+            const container = document.getElementById('bank-accounts-cards');
+            const section = document.getElementById('gift-section-id');
+
+            if (container && section) {
+                const rawContent = container.innerHTML.trim();
+                
+                if (rawContent.length > 20 && !rawContent.includes('{{')) {
+                    section.style.setProperty('display', 'flex', 'important');
+                   // console.log("Gift Section: Data ditemukan, menampilkan section.");
+                } else {
+                   // console.log("Gift Section: Data kosong atau mentah, tetap sembunyi.");
+                }
+            }
+        });
+    } catch (err) {
+        console.error("Gift Script Error: ", err);
+    }
+})();
+
+
+(function() {
+    try {
+        // Fungsi utama untuk memeriksa isi Perjalanan Cinta
+        function cekLoveStory() {
+            var section = document.getElementById('love-story-section-id');
+            var container = document.querySelector('.love-story-timeline');
+
+            if (container && section) {
+                // CARI ELEMEN NYATA: Kita cek apakah ada class 'ls-item' di dalam timeline
+                var elemenCerita = container.getElementsByClassName('ls-item');
+
+                // JIKA ditemukan minimal ada 1 item cerita nyata
+                if (elemenCerita.length > 0) {
+                    // JIKA ADA ISINYA = SECTION HIDUP!
+                    section.style.setProperty('display', 'block', 'important');
+                    console.log("Love Story terisi: " + elemenCerita.length + " cerita ditemukan. Section HIDUP.");
+                } else {
+                    // JIKA GAADA ISINYA = SECTION MATI
+                    section.style.setProperty('display', 'none', 'important');
+                    console.log("Love Story kosong: Tidak ada item cerita. Section MATI.");
+                }
+            }
+        }
+
+        // Jalankan pengecekan pertama saat halaman selesai dimuat
+        window.addEventListener('load', cekLoveStory);
+
+        // Cadangan 1: Jalankan setelah 1 detik
+        setTimeout(cekLoveStory, 1000);
+
+        // Cadangan 2: Jalankan setelah 2.5 detik (mengantisipasi sistem template yang lambat)
+        setTimeout(cekLoveStory, 2500);
+
+    } catch (e) {
+        console.error("Love Story Script Bypass Error: ", e);
+    }
+})();
+
 
 //animasi transisi
 document.addEventListener("DOMContentLoaded", function() {
@@ -1833,9 +2287,8 @@ function updateMusicIcon(isPlaying) {
             iconElement.className = isVolumeOnDisplay ? musicIconClass : muteIconClass;
         }
         
-        // Warna merah (aktif) jika sedang play
-        floatingMusicToggle.style.color = isPlaying ? 'var(--netflix-red)' : 'var(--netflix-grey)';
-        floatingMusicToggle.style.borderColor = isPlaying ? 'var(--netflix-red)' : 'var(--netflix-grey)';
+        floatingMusicToggle.style.color = isPlaying ? '#ffffff' : '#ffffff';
+        floatingMusicToggle.style.borderColor = isPlaying ? '#ffffff' : '#ffffff';
     }
 }
 
