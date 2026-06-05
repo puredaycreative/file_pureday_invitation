@@ -369,6 +369,52 @@ body {
     transform: translateX(0);
 }
 
+/* --- ANIMASI DARI KIRI --- */
+.animate-left {
+    opacity: 0;
+    transform: translateX(-50px); /* Mulai dari kiri */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.animate-left.visible {
+    opacity: 1 !important;
+    transform: translateX(0) !important;
+}
+
+/* --- ANIMASI DARI KANAN --- */
+.animate-right {
+    opacity: 0;
+    transform: translateX(50px); /* Mulai dari kanan */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.animate-right.visible {
+    opacity: 1 !important;
+    transform: translateX(0) !important;
+}
+
+.animate-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Class ini akan ditambahkan oleh JS */
+.animate-up.visible {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+.animate-down {
+    opacity: 0;
+    transform: translateY(-30px); 
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.animate-down.visible {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
 /*
 /* --- CONTAINER UTAMA --- */
 #intro-section-id.section-intro {
@@ -512,158 +558,168 @@ body {
 
 
 
-/* --- CONTAINER UTAMA SECTION DETAIL --- */
+/* Container Section */
 .section-detail {
-    position: relative;
-    min-height: 100vh;
-
-    
-    background-image: url('https://file.puredayinvitation.com/flowercream/bg.webp'); /* Samakan dengan halaman sebelumnya */
+    width: 100%;
+    display: flex;
+     overflow: hidden; 
+    justify-content: center;
+    padding: 80px 15px;
+    background-image: url('https://file.puredayinvitation.com/flowercream/bg.webp'); 
     background-size: cover;
     background-position: center;
-    /* background-color: #fdf6e9; */
-    
-    box-shadow: -10px 0 30px rgba(0,0,0,0.05);
-    overflow: hidden;
-    padding: 60px 20px 150px 20px; /* Padding bawah besar agar tidak tertutup bunga */
-    box-sizing: border-box;
-    text-align: center;
 }
 
-/* --- DEKORASI BUNGA KIRI & KANAN BAWAH --- */
-/* --- 1. KONDISI DIAM (NGUMPET DI BAWAH) --- */
-.section-detail::before,
-.section-detail::after {
+#detail-section-id::before {
     content: "";
     position: absolute;
-    bottom: 0;
-    width: 500px; /* Ukuran sudah diperbesar biar mantap */
+    top: 0; 
+    left: 0;
+    width: 500px; 
     height: 500px;
+    background: url('https://file.puredayinvitation.com/flowercream/kiri-atas.webp') no-repeat top left / contain;
     z-index: 5;
     pointer-events: none;
-    background-repeat: no-repeat;
-    background-size: contain !important;
 
-    /* EFEK TRANSISI */
+    /* Animasi Keluar */
     opacity: 0;
-
-   
-opacity: 0;
-    transform: translate(40px, -40px); /* Keluar ke pojok kanan atas */
+    transform: translate(-40px, -40px);
     transition: all 1.2s ease-out;
-    transition-delay: 0.2s; /* Biar munculnya gantian, lebih elegan */
-    
 }
 
-/* Bunga Kiri Bawah - Posisi Awal */
-.section-detail::before {
-    left: 0;
-    background-image: url('https://file.puredayinvitation.com/flowercream/kiri-bawah.webp');
-    background-position: bottom left;
-    /* Ngumpet ke pojok kiri bawah luar */
-    transform: translate(-50px, 50px); 
-}
-
-/* Bunga Kanan Bawah - Posisi Awal */
-.section-detail::after {
+/* Bunga Kanan Atas (Sekarang menempel ke Container Utama) */
+#detail-section-id::after {
+    content: "";
+    position: absolute;
+    top: 0; 
     right: 0;
-    background-image: url('https://file.puredayinvitation.com/flowercream/kanan-bawah.webp');
-    background-position: bottom right;
-    /* Ngumpet ke pojok kanan bawah luar */
-    transform: translate(50px, 50px);
-    transition-delay: 0.2s; /* Biar gantian munculnya */
+    width: 500px; 
+    height: 500px;
+    background: url('https://file.puredayinvitation.com/flowercream/kanan-atas.webp') no-repeat top right / contain;
+    z-index: 5;
+    pointer-events: none;
+
+    /* Animasi Keluar */
+    opacity: 0;
+    transform: translate(40px, -40px);
+    transition: all 1.2s ease-out;
+    transition-delay: 0.2s;
 }
 
-/* --- 2. KONDISI AKTIF (MUNCUL SAAT DISCOLL) --- */
-/* Begitu .section-detail dapet class .visible atau .active dari JS */
-.section-detail.visible::before,
-.section-detail.visible::after,
-.section-detail.active::before,
-.section-detail.active::after {
-     opacity: 1 !important;
+/* --- 2. ANIMASI SAAT SCROLL (VISIBLE) --- */
+#detail-section-id.visible::before,
+#detail-section-id.visible::after {
+    opacity: 1 !important;
     transform: translate(0, 0) !important;
 }
 
-/* --- TYPOGRAPHY --- */
-.quote-opening, .quote-closing {
-    margin-top: 50px;
-    font-family: Andada, serif;
-    font-size: 0.9rem;
-    color: #333;
-    line-height: 1.4;
-    margin-bottom: 20px;
-}
-
-.card-name {
-    font-family: 'Rouge Script', cursive;
-    font-size: 2.2rem;
-    
-  
-    font-weight: 400;
-    margin: 10px 0 5px 0;
-    color: #232323;
-}
-
-.parent-info {
-   font-family: Abel, sans-serif;
-    font-size: 0.9rem;
-    color: #232323;
-    margin: 0;
-}
-
-.address-info {
-    font-family: Andada, serif;
-    font-size: 0.8rem;
-    color: #232323;
-    margin-top: 5px;
-}
-
-/* --- FRAME FOTO MELENGKUNG (OVAL) --- */
-.card-image-wrapper {
-    position: relative;
-    max-width: 210px;
+/* Kontainer Utama (Bentuk Arch Atas-Bawah) */
+.content-detail-wrapper {
+   background-image: url("https://file.puredayinvitation.com/adatcoklatcream/bg.png");
+    width: 92%; /* Memberi sedikit jarak di layar mobile */
+    max-width: 420px; 
+    padding: 100px 25px; /* Kurangi padding samping jika foto terasa terlalu kecil */
+    border: 1.5px solid #a3633d;
+    border-radius: 300px; /* Tetap melengkung atas dan bawah */
     margin: 0 auto;
-   width: 100%; 
-    aspect-ratio: 2 / 3 ;/* Mengunci rasio kotak (3 lebar, 4 tinggi) agar tetap persegi panjang */
-    margin-left: auto;
-    margin-right: auto;
-   
-    overflow: hidden;
-    border: 1px solid #bc9c78; /* Garis frame emas */
-    border-radius: 120px 120px 120px 120px; /* Bentuk lonjong */
-    padding: 10px;
     box-sizing: border-box;
 }
 
-.card-image-wrapper img {
+
+/* Bingkai Foto Oval Responsif */
+.card-image-wrapper {
+    /* Gunakan % agar lebar foto selalu proporsional dengan lebar kontainer */
+    width: 100%; 
+    max-width: 210px; /* Ukuran maksimal di layar besar/MacBook M2 */
+    
+    /* Gunakan aspect-ratio agar bentuk oval tetap konsisten */
+    aspect-ratio: 2 / 3; 
+    
+    margin: 0 auto 20px;
+    border: 2px solid #a3633d;
+    border-radius: 150px; /* Membuat bentuk oval sempurna */
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+/* Pastikan gambar di dalamnya memenuhi bingkai tanpa distorsi */
+.couple-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 110px 110px 110px 110px; /* Mengikuti frame */
+    display: block;
 }
 
-/* Diamond Ornamen Samping */
-.card-image-wrapper::before, 
-.card-image-wrapper::after {
-    content: "♦";
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #bc9c78;
-    font-size: 14px;
-}
-.card-image-wrapper::before { left: -12px; }
-.card-image-wrapper::after { right: -12px; }
-
-/* Spasi antar kartu pasangan */
 .couple-cards {
     display: flex;
-    flex-direction: column;
-    gap: 50px; /* Jarak antara Groom dan Bride */
-    margin-bottom: 50px;
+    /* WAJIB: Memaksa elemen di dalamnya (pria & wanita) untuk selalu ke bawah */
+    flex-direction: column !important; 
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 40px; /* Jarak antara foto pria dan wanita */
 }
 
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+}
 
+/* Typography (Nama & Ortu) */
+.card-name {
+    font-family: 'Rouge Script', cursive;
+    font-size: 2.2rem;
+    color: #a3633d;
+    margin: 10px 0;
+    font-weight: 400;
+}
+
+.parent-info {
+    font-family: Andada, serif;
+    font-size: 14px;
+    color: #555;
+    margin: 5px 0;
+    line-height: 1.4;
+}
+
+.address-info {
+    font-size: 14px;
+    font-style: italic;
+    color: #888;
+}
+
+/* Simbol & */
+.ampersand-divider {
+    margin: -50px -50px;
+}
+
+.ampersand-text {
+    font-family: 'Rouge Script', cursive;
+    font-size: 48px;
+    color: #a3633d;
+    font-style: italic;
+}
+
+/* Quote */
+.quote-opening, .quote-closing {
+    font-family: Andada, serif;
+    font-size: 13px;
+    color: #444;
+    line-height: 1.8;
+    text-align: center;
+}
+
+.quote-closing span {
+    display: block;
+    margin-top: 8px;
+    font-weight: bold;
+    color: #a3633d;
+     text-align: center;
+}
 
 
     /* --- Section Event (Countdown) --- */
@@ -1805,7 +1861,7 @@ opacity: 0;
     margin: 30px 0;
     font-weight: normal;
     text-align: center;
-    color: #202020; /* Warna cokelat tua sesuai gambar */
+    color: #a3633d; /* Warna cokelat tua sesuai gambar */
    
 }
 
@@ -1827,7 +1883,7 @@ opacity: 0;
         line-height: 0.9;    /* Mengatur kerapatan baris agar tidak terlalu renggang */
  font-size: 2rem;
     font-family: 'Rouge Script', cursive;
-    color: #202020;
+    color: #a3633d;
   
 }
 
@@ -2024,23 +2080,25 @@ opacity: 0;
 </section>
 
 
-        <section class="section section-detail bg-tengah" style="padding-top: 0;">
-            <div><br>
-                  <h4 class="salam-closing animate-left">
+<section id="detail-section-id" class="section section-detail">
+    <div class="content-detail-wrapper">
+         <h4 class="salam-closing animate-left">
             Assalamu'alaikum Wr. Wb.
         </h4>
-                <p class="quote-opening animate-up">
-                    Tanpa mengurangi rasa hormat, kami mengundang Anda untuk berkenan menghadiri acara pernikahan kami:
-                </p>
+        
+        <p class="quote-opening">
+            Tanpa mengurangi rasa hormat, kami mengundang Bapak/Ibu/Saudara/i serta kerabat sekalian untuk menghadiri acara pernikahan kami.
+        </p>
 
-                <div class="couple-cards animate-up">
-                    <div class="card groom-card animate-up" data-delay="0.0s">
-                        <div class="card-image-wrapper">
-                            <img src="{{foto_pria}}" alt="Foto Pria">
-                        </div>
-                              <h3 class="card-name">{{nama_pria_lengkap}}</h3>
-                <p class="parent-info">Putra dari Bapak {{nama_bapak_pria}} & Ibu {{nama_ibu_pria}}</p>
-                <p class="address-info">{{alamat_pria}}</p>
+        <div class="couple-cards">
+            <!-- Kartu Pria -->
+            <div class="card">
+                <div class="card-image-wrapper animate-left">
+                    <img src="{{foto_pria}}" alt="Foto Pria" class="couple-img">
+                </div>
+                <h3 class="card-name animate-left">{{nama_pria_lengkap}}</h3>
+                <p class="parent-info animate-left">Putra dari Bapak {{nama_bapak_pria}} & Ibu {{nama_ibu_pria}}</p>
+                <p class="address-info animate-left">{{alamat_pria}}</p>
 <a id="instagram-link-pria" 
    href="https://www.instagram.com/{{ig_pria}}" 
    target="_blank" 
@@ -2052,15 +2110,21 @@ opacity: 0;
    <svg viewBox="0 0 24 24" fill="white" style="width: 14px; height: 14px; margin-right: 5px;"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.073 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.073-4.948-.197-4.354-2.618-6.78-6.979-6.98-1.28-.058-1.688-.072-4.948-.072zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.791-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.209-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
    {{ig_pria}}
 </a>
-             </div>
-                    
-                    <div class="card bride-card animate-up" data-delay="0.3s">
-                        <div class="card-image-wrapper">
-                            <img src="{{foto_wanita}}" alt="Foto Wanita">
-                        </div>
-                        <p class="card-name">{{nama_wanita_lengkap}}</p>
-                        <p class="parent-info">Putri dari Bapak {{nama_bapak_wanita}} & Ibu {{nama_ibu_wanita}}</p>
-                        <p class="address-info">{{alamat_wanita}}</p>
+            </div>
+
+            <!-- Ampersand / Pembatas -->
+            <div class="ampersand-divider animate-left">
+                <h2 class="ampersand-text">&</h2>
+            </div>
+
+            <!-- Kartu Wanita -->
+            <div class="card">
+                <div class="card-image-wrapper animate-left">
+                    <img src="{{foto_wanita}}" alt="Foto Wanita" class="couple-img">
+                </div>
+                <h3 class="card-name animate-left">{{nama_wanita_lengkap}}</h3>
+                <p class="parent-info animate-left">Putri dari Bapak {{nama_bapak_wanita}} & Ibu {{nama_ibu_wanita}}</p>
+                <p class="address-info animate-left">{{alamat_wanita}}</p>
 <a id="instagram-link-wanita" 
    href="https://www.instagram.com/{{ig_wanita}}" 
    target="_blank" 
@@ -2086,15 +2150,16 @@ opacity: 0;
         });
     })();
 </script>
-                    </div>
-                </div>
-
-                <p class="quote-closing animate-up">
-                    Segala sesuatu Kami ciptakan berpasang-pasangan agar kamu mengingat (kebesaran Allah).<br><br>
-                   ~ QS Adz-Dzariyat: 49
-                </p>
             </div>
-        </section>
+        </div>
+
+        <p class="quote-closing animate-left">
+            "Segala sesuatu Kami ciptakan berpasang-pasangan agar kamu mengingat (kebesaran Allah)."<br>
+            <span>— QS Adz-Dzariyat: 49</span>
+        </p>
+        
+    </div>
+</section>
 
      <section id="event-section-id" class="section section-event bg-tengah">
     <div >
