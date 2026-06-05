@@ -2184,6 +2184,43 @@ document.getElementById('comment-name-input').value = GUEST_NAME;
     }
 })();
 
+(function() {
+    try {
+        function cekDuplikasiTanggal() {
+            var ribbonDate = document.querySelector('#event-section-id .ribbon-date');
+            var eventItemList = document.querySelector('#event-section-id .event-item-list');
+
+            if (ribbonDate && eventItemList) {
+                var teksTanggal = ribbonDate.textContent.trim().toLowerCase();
+                var teksKonten = eventItemList.textContent.trim().toLowerCase();
+
+                if (teksTanggal !== "" && !teksTanggal.includes('{{')) {
+                    
+                    var tanggalRapat = teksTanggal.replace(/[\s\(\)]+/g, '');
+                    var kontenRapat = teksKonten.replace(/[\s\(\)]+/g, '');
+                    
+                    if (kontenRapat.includes(tanggalRapat)) {
+                        
+                        ribbonDate.style.setProperty('display', 'none', 'important');
+                        console.log("Event Section: Format kurung terdeteksi. Ribbon-date DISEMBUNYIKAN.");
+                        
+                    } else {
+                        ribbonDate.style.setProperty('display', 'block', 'important');
+                    }
+                }
+            }
+        }
+
+        window.addEventListener('load', cekDuplikasiTanggal);
+        setTimeout(cekDuplikasiTanggal, 500);
+        setTimeout(cekDuplikasiTanggal, 1500);
+        setTimeout(cekDuplikasiTanggal, 3000);
+
+    } catch (e) {
+        console.error("Event Date Brackets-Bypass Error: ", e);
+    }
+})();
+
 
 (function() {
     try {
