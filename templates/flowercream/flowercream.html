@@ -176,6 +176,32 @@
 .bg-tengah {
     box-shadow: 0 0 40px rgba(0,0,0,0.1);
 }
+
+
+@media (min-aspect-ratio: 1/1) {
+     .template-cover-container, .section-intro, 
+    .section-detail,
+    .section-event-timer,
+    .section-event,
+    .section-gallery,
+    .section-love-story,
+    .section-gift,
+    .section-comments,
+    .section-comments-list,
+    .section-closing
+
+     {
+        width: 100%;
+    max-width: 450px; /* Ukuran standar HP agar ramping */
+    margin-left: auto !important;
+    margin-right: auto !important;
+    position: relative;
+    box-sizing: border-box;
+        box-shadow: 0 0 100px rgba(0,0,0,0.5); /* Efek bayangan di kanan kiri */
+    }
+}
+
+
     
     /* --- COVER SECTION --- */
 #cover-page {
@@ -425,7 +451,7 @@ body {
 /* --- TYPOGRAPHY --- */
 .wedding-title {
     font-family: 'Rouge Script', cursive;
-    font-size: 3.8rem;
+    font-size: 2.8rem;
     color: #333;
     margin-bottom: 5px;
 }
@@ -595,14 +621,14 @@ opacity: 0;
 /* --- FRAME FOTO MELENGKUNG (OVAL) --- */
 .card-image-wrapper {
     position: relative;
-   height: 280px;
+    max-width: 210px;
     margin: 0 auto;
-     width: 70%; /* Mengikuti lebar card-item */
-    aspect-ratio: 3 / 4; /* Mengunci rasio kotak (3 lebar, 4 tinggi) agar tetap persegi panjang */
+   width: 100%; 
+    aspect-ratio: 2 / 3 ;/* Mengunci rasio kotak (3 lebar, 4 tinggi) agar tetap persegi panjang */
     margin-left: auto;
     margin-right: auto;
    
-    
+    overflow: hidden;
     border: 1px solid #bc9c78; /* Garis frame emas */
     border-radius: 120px 120px 120px 120px; /* Bentuk lonjong */
     padding: 10px;
@@ -770,12 +796,14 @@ opacity: 0;
     font-size: 1rem;
     display: block;
     margin-bottom: 5px;
+    
 }
 
 .event-row b {
     color: #333;
 }
 .btn-maps-link {
+    margin-top: 25px;
     font-family: Andada, serif;
     background-color: #f5e6d3;
     color: #2a2928;
@@ -803,7 +831,7 @@ opacity: 0;
 
 .main-title {
     font-family: 'Rouge Script', cursive;
-    font-size: 3.5rem;
+    font-size: 2.5rem;
     margin-top: 5px;
     color: #333;
 }
@@ -1651,12 +1679,14 @@ opacity: 0;
     position: relative;
     z-index: 10;
     margin-top: 30px;
+    padding-bottom: 50px;
 }
 
 .comments-scroll-box {
-    max-height: 550px; /* Tinggi maksimal sebelum skrol muncul */
+    
+    max-height: 400px; /* Tinggi maksimal sebelum skrol muncul */
     overflow-y: auto;
-    padding: 10px 10px 200px 10px; /* Padding bawah besar agar tidak tertutup bunga */
+    padding: 10px 10px 50px 10px; /* Padding bawah besar agar tidak tertutup bunga */
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -2060,7 +2090,7 @@ opacity: 0;
                 </div>
 
                 <p class="quote-closing animate-up">
-                    Segala sesuatu Kami ciptakan berpasang-pasangan agar kamu mengingat (kebesaran Allah).<br>
+                    Segala sesuatu Kami ciptakan berpasang-pasangan agar kamu mengingat (kebesaran Allah).<br><br>
                    ~ QS Adz-Dzariyat: 49
                 </p>
             </div>
