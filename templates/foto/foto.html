@@ -185,7 +185,16 @@
 }
 
 
-
+#cover-page {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999; /* Pastikan menutupi layar */
+transition: transform 2s cubic-bezier(0.65, 0, 0.35, 1), 
+                opacity 2s ease-out;
+}
     /* --- COVER SECTION --- */
 .template-cover-container {
     position: relative;
@@ -196,7 +205,10 @@
     justify-content: flex-end; /* Memaksa panel konten ke kanan */
     margin: 0;
     overflow: hidden;
-    
+     transition: transform 1s ease-in-out; /* Durasi animasi 1 detik */
+}
+.slide-up {
+    transform: translateY(-100%);
 }
 
 /* --- PANEL KONTEN KANAN (Tempat Background Berada) --- */
@@ -2323,58 +2335,115 @@ window.toggleMusic = function() {
 }
 
 
+// document.getElementById('open-invitation-btn').addEventListener('click', function() {
+//     // Ambil semua elemen dengan hati-hati
+//     const cover = document.getElementById('cover-page');
+//     cover.classList.add('slide-up');
+//     const mainContent = document.getElementById('main-content');
+//     const introSection = document.getElementById('intro-section-id');
+//     const body = document.body;
+
+
+//     // 1. Langsung paksa Main Content terlihat (agar tidak hitam)
+//     if (mainContent) {
+//         mainContent.style.display = 'block'; 
+//         mainContent.style.visibility = 'visible';
+//         mainContent.style.opacity = '1';
+//         floatingMusicToggle.classList.add('visible'); // Tampilkan tombol mengambang
+//     }
+
+//     // 2. Hilangkan Cover dengan animasi halus
+//     if (cover) {
+//         cover.style.transition = 'opacity 0.8s ease';
+//         cover.style.opacity = '0';
+        
+//         setTimeout(() => {
+//             cover.style.display = 'none';
+//             body.classList.remove('scroll-locked');
+//         }, 800);
+//     }
+
+//     // 3. Jalankan animasi teks dari kanan
+//     setTimeout(() => {
+//         if (introSection) {
+//             introSection.classList.add('active');
+//         }
+//     }, 300); // Jeda sedikit supaya mata user siap melihat transisi
+
+    
+//     // Logic untuk memutar musik saat undangan dibuka:
+//     const wasPlaying = localStorage.getItem('isMusicPlaying') !== 'false';
+//     if (wasPlaying) {
+//          // Panggil play secara langsung untuk memulai musik, update icon akan mengikuti
+//         music.play().then(() => {
+//             updateMusicIcon(true);
+//         }).catch(e => {
+//             // Jika gagal (autoplay block), tetap tampilkan ikon mute
+//             updateMusicIcon(false);
+//             console.log("Autoplay blocked, user must click the floating button.");
+//         });
+//     } else {
+//         updateMusicIcon(false); // Pastikan ikon tetap mute jika sebelumnya dimatikan
+//     }
+
+//     startCountdown();
+// });
+
+
+
 document.getElementById('open-invitation-btn').addEventListener('click', function() {
-    // Ambil semua elemen dengan hati-hati
     const cover = document.getElementById('cover-page');
     const mainContent = document.getElementById('main-content');
     const introSection = document.getElementById('intro-section-id');
     const body = document.body;
 
-    // 1. Langsung paksa Main Content terlihat (agar tidak hitam)
+    // 1. Tampilkan konten utama
     if (mainContent) {
         mainContent.style.display = 'block'; 
         mainContent.style.visibility = 'visible';
         mainContent.style.opacity = '1';
-        floatingMusicToggle.classList.add('visible'); // Tampilkan tombol mengambang
+        if (typeof floatingMusicToggle !== 'undefined') {
+            floatingMusicToggle.classList.add('visible');
+        }
     }
 
-    // 2. Hilangkan Cover dengan animasi halus
+    // 2. Animasi Cover: Geser ke atas dan buat menghilang
     if (cover) {
-        cover.style.transition = 'opacity 0.8s ease';
-        cover.style.opacity = '0';
+        // Pastikan transisi mencakup transform dan opacity
+      cover.style.transition = 'transform 2s cubic-bezier(0.65, 0, 0.35, 1), opacity 2s ease-out';
+    cover.style.transform = 'translateY(-100%)'; 
+    cover.style.opacity = '0';
         
         setTimeout(() => {
             cover.style.display = 'none';
             body.classList.remove('scroll-locked');
-        }, 800);
+        }, 2000);
     }
 
-    // 3. Jalankan animasi teks dari kanan
+    // 3. Animasi teks (tetap dengan jeda)
     setTimeout(() => {
         if (introSection) {
             introSection.classList.add('active');
         }
-    }, 300); // Jeda sedikit supaya mata user siap melihat transisi
+    }, 300);
 
-    
-    // Logic untuk memutar musik saat undangan dibuka:
+    // 4. Logic Musik
     const wasPlaying = localStorage.getItem('isMusicPlaying') !== 'false';
-    if (wasPlaying) {
-         // Panggil play secara langsung untuk memulai musik, update icon akan mengikuti
+    if (wasPlaying && typeof music !== 'undefined') {
         music.play().then(() => {
             updateMusicIcon(true);
         }).catch(e => {
-            // Jika gagal (autoplay block), tetap tampilkan ikon mute
             updateMusicIcon(false);
-            console.log("Autoplay blocked, user must click the floating button.");
         });
     } else {
-        updateMusicIcon(false); // Pastikan ikon tetap mute jika sebelumnya dimatikan
+        updateMusicIcon(false);
     }
 
-    startCountdown();
+    // Pastikan startCountdown terdefinisi
+    if (typeof startCountdown === 'function') {
+        startCountdown();
+    }
 });
-
 
 document.addEventListener('DOMContentLoaded', () => {
     // Pastikan status icon disetel berdasarkan Local Storage
