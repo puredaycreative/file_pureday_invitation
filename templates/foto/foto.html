@@ -278,14 +278,15 @@ transition: transform 2s cubic-bezier(0.65, 0, 0.35, 1),
      font-family: 'Rouge Script', cursive; /* Gunakan font sambung */
     font-size: 3rem;
     color: #ffffff;
-        margin: 10px 0;
+        /* margin: 10px 0; */
+        margin-bottom: 20px;
     font-weight: 300;
     margin-top: 0px;
 }
 
 .cover-open-btn,.btn-maps-link,.btn-submit {
     display: inline-block;
-    margin-top: 20px;
+    margin-top: 0px;
     padding: 10px 25px;
     
     /* Efek Transparan & Border */
@@ -623,7 +624,7 @@ body {
     /* BACKGROUND PINDAH KE SINI */
     /* Kita buang 'fixed' supaya gambar pas di kotak 1200px */
    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
-                url({{galeri8}}) center/cover no-repeat;
+                url({{galeri7}}) center/cover no-repeat;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -1826,7 +1827,7 @@ body {
         
         <h1 class="template-cover-title">{{nama_pria}} & {{nama_wanita}}</h1>
         
-        <p style="color: #ebe9e9; margin-top: 20px;  font-family: Average, serif;">{{tanggal_acara_baca}}</p>
+        <p style="color: #ebe9e9; margin-top: 25px;  font-family: Average, serif;">{{tanggal_acara_baca}}</p>
         
         <button id="open-invitation-btn" class="cover-open-btn">
             Buka
