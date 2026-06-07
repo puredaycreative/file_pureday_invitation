@@ -936,6 +936,11 @@ body {
     color: #003019;
     margin: 10px 0;
     font-weight: 400;
+       /* Properti tambahan untuk satu baris */
+    white-space: nowrap;      /* Mencegah teks turun ke bawah */
+    overflow: hidden;         /* Menyembunyikan teks yang meluap */
+    text-overflow: ellipsis;  /* Menampilkan titik-titik (...) jika teks terlalu panjang */
+    display: block;           /* Memastikan elemen berperilaku sebagai block */
 }
 
 .parent-info {
@@ -944,6 +949,12 @@ body {
     color: #555;
     margin: 5px 0;
     line-height: 1.4;
+    
+    /* Properti tambahan untuk satu baris */
+    white-space: nowrap;      /* Mencegah teks turun ke bawah */
+    overflow: hidden;         /* Menyembunyikan teks yang meluap */
+    text-overflow: ellipsis;  /* Menampilkan titik-titik (...) jika teks terlalu panjang */
+    display: block;           /* Memastikan elemen berperilaku sebagai block */
 }
 
 .address-info {
