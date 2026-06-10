@@ -556,18 +556,35 @@ transition: transform 2s cubic-bezier(0.65, 0, 0.35, 1),
     }
 }
 
+.title-top{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 1rem;
+    color: #ffffff;
+    font-weight: 300;
+    
+    /* Tambahkan ini */
+    position: absolute;
+    top: 50px; /* Atur jarak dari atas container pembungkusnya */
+    left: 0;
+    right: 0;
+    margin-bottom: 100px;
+    width: 100%;
+}
+
 /* Style tambahan untuk tombol dan teks */
 .template-cover-title {
-     font-family: 'Rouge Script', cursive; /* Gunakan font sambung */
+    font-family: 'Rouge Script', cursive;
     font-size: 3rem;
     color: #ffffff;
-     margin-top: 0;
-    padding-top: 0;
-    
-    /* Tambahan agar tidak terpengaruh oleh elemen lain di atasnya */
-    display: block;
     font-weight: 300;
-   
+    
+    /* Tambahkan ini */
+    position: absolute;
+    top: 50px; /* Atur jarak dari atas container pembungkusnya */
+    left: 0;
+    right: 0;
+    margin-bottom: 100px;
+    width: 100%;
 }
 
 .cover-open-btn,.btn-maps-link,.btn-submit {
@@ -2368,6 +2385,7 @@ max-width: 450px;
     <div class="template-cover-overlay"></div>
     
     <div class="template-cover-content-wrapper">
+        <!-- <p class="title-top">Undangan Pernikahan</p> -->
          <h1 class="template-cover-title">{{nama_pria}} & {{nama_wanita}}</h1>
         
         <p style="color: #ebe9e9; font-size: 0.8rem; margin-bottom: 5px;    font-family: Andada, serif;">Kepada Yth:</p>
