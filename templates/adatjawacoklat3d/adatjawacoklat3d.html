@@ -481,7 +481,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url("https://file.puredayinvitation.com/hitam3d/bg1.jpg");
+    background-image: url("https://file.puredayinvitation.com/templates/adatjawacoklat3d/cover2.jpg");
     background-size: cover;
     background-position: center;
     transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
@@ -650,7 +650,7 @@ body::before {
     width: 100%;
     height: 100%;
     max-width: 450px; /* Lebar maksimal mengikuti layout undangan */
-    background-image: url("https://file.puredayinvitation.com/hitam3d/bg2.jpg") !important;
+    background-image: url("https://file.puredayinvitation.com/templates/adatjawacoklat3d/bg.jpg") !important;
     background-attachment: scroll; /* Tetap scroll karena container-nya sudah fixed */
     background-position: center;
     background-repeat: no-repeat;
@@ -999,7 +999,7 @@ body {
     min-height: 100vh;
     /* KUNCI TENGAH: margin auto kiri dan kanan */
     margin: 0 auto; 
-     background-image: url("https://file.puredayinvitation.com/hitam3d/bg2.jpg");
+     background-image: url("https://file.puredayinvitation.com/templates/adatjawacoklat3d/bg2.jpg");
     box-shadow: 0 0 30px rgba(0,0,0,0.1);
     overflow: hidden;
     padding: 80px 20px;
@@ -1359,7 +1359,7 @@ body {
 /* --- Container Galeri --- */
 .section-gallery {
     padding: 60px 15px;
-   background-image: url("https://file.puredayinvitation.com/hitam3d/bg2.jpg");
+   background-image: url("https://file.puredayinvitation.com/templates/adatjawacoklat3d/bg2.jpg");
     background-size: cover;
     min-height: 80vh;
 }
@@ -2008,7 +2008,7 @@ max-width: 450px;
     min-height: 100vh;
     margin-left: auto;
     margin-right: 0;
-background-image: url("https://file.puredayinvitation.com/hitam3d/bg2.jpg");
+background-image: url("https://file.puredayinvitation.com/templates/adatjawacoklat3d/bg2.jpg");
     overflow: hidden; 
     padding: 80px 20px 0 20px;
     box-sizing: border-box;
@@ -2376,7 +2376,7 @@ background-image: url("https://file.puredayinvitation.com/hitam3d/bg2.jpg");
 <section id="intro-section-id" class="section-intro">
     <div class="video-background-container">
         <video autoplay muted playsinline id="introVideo" class="video-bg">
-            <source src="https://file.puredayinvitation.com/hitam3d/motion2.mp4" type="video/mp4">
+            <source src="https://file.puredayinvitation.com/templates/adatjawacoklat3d/motion.mp4" type="video/mp4">
         </video>
         <div class="video-overlay"></div>
     </div>
@@ -2706,7 +2706,12 @@ background-image: url("https://file.puredayinvitation.com/hitam3d/bg2.jpg");
 <div id="toast-message"></div>
 
     <script>
+      const rsvp = '{{rsvp}}'; 
     
+    if (rsvp === 'false') {
+        document.getElementById('comments-section-id').style.display = 'none';
+        document.getElementById('comments-list-section').style.display = 'none';
+    }
         
         // Data Pernikahan
 const WEDDING_DATE = new Date("{{tanggal_acara}}").getTime(); 
