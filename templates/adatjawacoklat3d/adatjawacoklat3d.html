@@ -9,6 +9,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Pureday Invitation: {{nama_pria}} & {{nama_wanita}}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Bad+Script" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Allerta" rel="stylesheet">
+
         <link href="https://fonts.googleapis.com/css?family=Rouge+Script" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Baloo+Bhaina+2" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;700&family=Great+Vibes&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
@@ -22,11 +26,6 @@
     <link href="https://fonts.googleapis.com/css?family=Bilbo+Swash+Caps" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=OCR+A&family=Courier+Prime:wght@700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Andada" rel="stylesheet">
-       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Bad+Script" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Allerta" rel="stylesheet">
-
-
 <style>
     /* Animasi Fade In dari Bawah ke Atas */
 /* --- ANIMASI TEKS --- */
@@ -117,7 +116,7 @@
 .subtitle-top {
     font-size: 0.75rem;
     letter-spacing: 3px;
-    color: #ffffff;
+    color: #fdf6e9;
     text-transform: uppercase;
      text-align: center;
 }
@@ -125,7 +124,7 @@
 .main-title {
       font-family: 'Bilbo Swash Caps', cursive;
     font-size: 2.4rem;
-    color: #ffffff;
+    color: #fdf6e9;
     margin: 10px 0 20px;
      text-align: center;
 }
@@ -134,7 +133,7 @@
 .subtitle-top2 {
     font-size: 0.75rem;
     letter-spacing: 3px;
-    color: #ffffff;
+    color: #171616;
     text-transform: uppercase;
 
     text-align: center;
@@ -143,7 +142,7 @@
 .main-title2 {
       font-family: 'Bilbo Swash Caps', cursive;
     font-size: 2.4rem;
-    color: #ffffff;
+    color: #171616;
     margin: 10px 0 20px;
     text-align: center;
 }
@@ -467,139 +466,147 @@
 
     /* --- CONTAINER UTAMA (FULL SCREEN) --- */
 /* Pastikan container menahan semua elemen di dalamnya */
-
 #cover-page {
     position: relative;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    z-index: 1000;
+}
+
+/* Background utama yang akan ditarik ke atas */
+.cover-bg-base {
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 9999; /* Pastikan menutupi layar */
-transition: transform 2s cubic-bezier(0.65, 0, 0.35, 1), 
-                opacity 2s ease-out;
+    background-image: url("https://file.puredayinvitation.com/hitam3d/bg1.jpg");
+    background-size: cover;
+    background-position: center;
+    transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
+    z-index: 1;
 }
-    /* --- COVER SECTION --- */
-.template-cover-container {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    background-color: #1a1a1a; /* Warna dasar di area kosong (kiri) saat landscape */
-    display: flex;
-    justify-content: flex-end; /* Memaksa panel konten ke kanan */
-    margin: 0;
-    overflow: hidden;
-     transition: transform 1s ease-in-out; /* Durasi animasi 1 detik */
-}
-.slide-up {
+
+/* Class untuk menarik background ke atas */
+.bg-pull-up {
     transform: translateY(-100%);
 }
 
-/* --- PANEL KONTEN KANAN (Tempat Background Berada) --- */
+/* Konten teks & bunga juga harus ikut ketarik ke atas */
+.template-cover-content-wrapper, .flower-top, .flower-bottom {
+    transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.content-pull-up {
+    transform: translateY(-100%);
+}
+/* Class Khusus Bunga Atas */
+.flower-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    z-index: 5; /* Di atas background, di bawah teks jika perlu */
+    pointer-events: none; /* Supaya tidak menghalangi klik */
+}
+
+/* Class Khusus Bunga Bawah */
+.flower-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    z-index: 5;
+    pointer-events: none;
+}
+
+/* Opsional: Jika ingin gambar selalu pas di tengah layout 450px */
+.flower-top img, .flower-bottom img {
+    width: 100%;
+    display: block;
+    object-fit: contain;
+}
+
+/* Pastikan konten teks berada di atas bunga */
 .template-cover-content-wrapper {
     position: relative;
-    width: 100%;
-    max-width: 1200px;
-    height: 100vh;
-    
-    /* Menambahkan linear-gradient untuk efek gelap di atas gambar */
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
-                url({{cover}}) center/cover no-repeat;
-    
-    opacity: 1;
+    z-index: 2;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.pureday-content-locker {
+    width: 100%;
+    max-width: 450px;
     text-align: center;
-    color: #ffffff;
-    padding: 20px;
-    z-index: 10;
+    padding: 0 30px;
     box-sizing: border-box;
-    box-shadow: -10px 0 50px rgba(0,0,0,0.5);
 }
 
-/* --- OVERLAY GELAP (Di dalam panel) --- */
-.template-cover-overlay {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    /* Gradient agar teks putih lebih menonjol di atas foto */
-    background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.6));
-    z-index: -1; /* Di bawah teks, tapi di atas background gambar */
+.guest-label {
+    color: #fdf6e9;
+    font-size: 1.1rem;
+    font-family: Andada, serif;
+    margin-bottom: 5px;
 }
 
-/* --- ANIMASI FADE IN DARI ATAS --- */
-.template-cover-content-wrapper > * {
-    opacity: 0;
-    animation: fadeInDown 1s ease-out forwards;
+.template-cover-guest-name {
+     font-family: Andada, serif;
+    color: #fdf6e9;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+       margin-left: 50px;
+    margin-right: 50px;
 }
 
-/* Jeda per baris (Sequence) */
-.template-cover-content-wrapper p:nth-child(2) { animation-delay: 0.3s; } /* Kepada Yth */
-.template-cover-guest-name { 
-       font-family: Average, serif;
-    animation-delay: 0.6s; 
-    font-size: 0.8rem;
-}
-.template-cover-title { animation-delay: 0.9s; }
-.template-cover-content-wrapper p:nth-child(5) { animation-delay: 1.2s; } /* Tanggal */
-.cover-open-btn { animation-delay: 1.5s; }
-
-@keyframes fadeInDown {
-    0% {
-        opacity: 0;
-        transform: translateY(-40px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Style tambahan untuk tombol dan teks */
 .template-cover-title {
-     font-family: 'Rouge Script', cursive; /* Gunakan font sambung */
-    font-size: 3rem;
-    color: #ffffff;
-     margin-top: 0;
-    padding-top: 0;
-    
-    /* Tambahan agar tidak terpengaruh oleh elemen lain di atasnya */
-    display: block;
+   font-family: 'Rouge Script', cursive;
+    font-size: 3.5rem;
+    color: #b39055;
+        margin: 10px 0;
     font-weight: 300;
-   
+    margin-top: 0px;
 }
 
-.cover-open-btn,.btn-maps-link,.btn-submit {
-    display: inline-block;
-    margin-top: 0px;
-    padding: 10px 25px;
-    
-    /* Efek Transparan & Border */
-    background-color: transparent; 
-    border: 1.5px solid #ffffff; /* Border putih yang tegas */
-    
-    color: #ffffff;
-    text-decoration: none;
-    font-size: 1rem;
+.event-date {
+    color: #fdf6e9;
+    margin-top: 15px;
+    font-family: Andada, serif;
+}
+
+/* --- TOMBOL OPEN --- */
+.cover-open-btn {
+    background-color: #b39055;
+    color: #fdf6e9;
+    border: none;
+    padding: 12px 40px;
     border-radius: 50px;
     font-family: Andada, serif;
-    
-    /* Tambahan agar lebih smooth saat disentuh/hover */
-    transition: all 0.3s ease;
+    font-size: 1rem;
+    margin-top: 25px;
     cursor: pointer;
+    box-shadow: #323836;
+    transition: 0.3s ease;
 }
 
-/* Efek saat tombol ditekan atau diarahkan kursor */
-.cover-open-btn:hover,.btn-maps-link:hover, .btn-submit:hover {
-    background-color: rgba(255, 255, 255, 0.2); /* Sedikit putih transparan saat hover */
-    transform: scale(1.05); /* Sedikit membesar */
+.cover-open-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    background-color: #9f814e;
 }
+
 
 
 /* Logic untuk posisi Landscape agar tetap di tengah seperti layar HP */
 @media (min-aspect-ratio: 1/1) {
-   .template-cover-container, .section-intro, 
+     .template-cover-container, .section-intro, 
     .section-detail,
     .section-event-timer,
     .section-event,
@@ -631,52 +638,37 @@ body {
     margin: 0;
     padding: 0;
     min-height: 100vh;
-    background-color: #ffffff;
 }
 
-/* Base style untuk pseudo-element */
+/* Background Utama */
 body::before {
     content: "";
     position: fixed;
     top: 0;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 50%; /* Letakkan di tengah */
+    transform: translateX(-50%); /* Geser ke kiri setengah lebar agar presisi di tengah */
     width: 100%;
     height: 100%;
-    max-width: 450px;
-    
-    /* Animasi Slideshow */
-    animation: slideshow 10s infinite;
-    
+    max-width: 450px; /* Lebar maksimal mengikuti layout undangan */
+    background-image: url("https://file.puredayinvitation.com/hitam3d/bg2.jpg") !important;
+    background-attachment: scroll; /* Tetap scroll karena container-nya sudah fixed */
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     z-index: -1;
 }
 
-/* Keyframes untuk mengganti gambar */
-@keyframes slideshow {
-    0%, 40% {
-        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
-                url({{galeri7}}) center/cover no-repeat;
-    }
-    50%, 90% {
-        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
-                url({{galeri8}}) center/cover no-repeat;
-    }
-    100% {
-        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
-                url({{galeri7}}) center/cover no-repeat;
-    }
+/* Background luar (warna dasar) untuk area di luar 450px */
+body {
+    background-color: #fdf6e9; /* Warna krem tema Pureday */
 }
-
 
 /* --- 2. Transparansi Section --- */
 
 
 .section-detail,
 .section-event,
-.section-gift{
+.section-gif{
     position: relative;
     width: 100%;
     /* Ubah 0.85 menjadi 0.4 agar BG di belakang lebih jelas */
@@ -696,7 +688,7 @@ body::before {
     width: 100% !important;
     height: 100% !important;
     overflow-x: hidden !important;
-    /* background-color: #1e1e1e; */
+    background-color: #1e1e1e;
     }
 
     .section-intro, 
@@ -716,6 +708,40 @@ body::before {
     --bloom-scale: 1.05;
 }
 
+/* Container Utama */
+.section-intro {
+    display: grid;
+    grid-template-rows: 60vh 40vh;
+    height: 100vh;
+    width: 100vw;
+    margin: 0 auto; /* Menjaga tetap di tengah secara horizontal */
+    padding: 0;
+    overflow: hidden;
+    background-color: #ede6e900;
+    position: relative;
+}
+
+
+/* Container Video */
+   
+    .video-background-container, .video-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Video akan menutupi seluruh area 450px */
+    }
+    /* Overlay untuk mempercantik (opsional) */
+    .video-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.3); /* Gelapkan sedikit video agar teks putih terlihat tajam */
+        z-index: 1;
+    }
     /* Class untuk mengunci scroll */
 .lock-scroll {
     overflow: hidden !important;
@@ -724,131 +750,109 @@ body::before {
 }
 
 
-
-
-
-/* --- CONTAINER UTAMA --- */
-.section-intro {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    justify-content: flex-end; /* Tetap di kanan saat landscape */
-    background-color: #1a1a1a; 
-    overflow: hidden;
-    margin: 0;
-}
-
-/* --- PANEL KONTEN KANAN (DIAM DI TEMPAT) --- */
-.intro-content {
-    position: relative;
-    width: 100%;
-    max-width: 1200px; 
-    height: 100vh;
-    
-    /* Background JPG diam, tidak dikasih animasi geser */
-    background: url({{cover}}) center/cover no-repeat;
-    
-    display: flex;
-    flex-direction: row; 
-    align-items: center;
-    justify-content: center;
-    gap: 15px; 
-    padding: 20px;
-    box-sizing: border-box;
-    z-index: 10;
-    
-    /* Panel ini langsung muncul, tidak bergeser */
-    opacity: 0; 
-    transition: opacity 0.8s ease;
-}
-
-/* Saat aktif, panel cuma muncul (fade in) */
-.section-intro.active .intro-content {
-    opacity: 1;
-}
-
-/* Overlay tetap diam */
-.intro-content::after {
-    content: "";
+.bg-content-wrapper {
     position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.4);
-    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Tetap center sebagai titik awal */
+    align-items: center;
+    z-index: 2;
+    
+    /* Tambahkan padding top untuk mendorong teks ke bawah */
+    padding-top: 200px; /* Ubah angka ini (misal 50px - 150px) sampai posisinya pas */
+    box-sizing: border-box; /* Pastikan padding tidak merusak ukuran container */
 }
 
-/* --- ANIMASI KHUSUS TEKS (YANG BERGERAK) --- */
-
-/* Wrapper teks agar bisa digeser secara grup */
-.wedding-title, .couple-names {
-    opacity: 0;
-    transform: translateX(100px); /* Teks mulai dari kanan luar */
-    transition: transform 1.2s cubic-bezier(0.2, 1, 0.3, 1), 
-                opacity 1.2s ease;
+.text-container {
+    width: 100%;
+    text-align: center;
 }
 
-/* Saat aktif, teks meluncur ke kiri (posisi normal) */
-.section-intro.active .wedding-title {
-    opacity: 1;
-    transform: translateX(0);
-    transition-delay: 0.3s; /* Teks vertikal muncul duluan */
+/* Memastikan nama ganti baris dan rata tengah */
+.name-block, 
+.ampersand {
+    display: block;
+    width: 100%;
+    margin: 25px 0;
 }
 
-.section-intro.active .couple-names {
-    opacity: 1;
-    transform: translateX(0);
-    transition-delay: 0.5s; /* Nama muncul belakangan sedikit */
-}
-
-/* --- TIPOGRAFI --- */
 .wedding-title {
-    font-family: Andada, serif;
-    writing-mode: vertical-rl;
-    transform: rotate(180deg) translateX(100px); /* Tetap bawa state awal */
-    font-size: 1.4rem;
-    color: #fff;
+     font-family: Andada, serif;
+     color: #cac8c8;
+      font-size: 1.2rem;
+    letter-spacing: 2px;
     text-transform: uppercase;
-    border-left: 1px solid rgba(255,255,255,0.5);
-    padding-left: 10px;
+     text-align: center;
 }
+
+
 
 .couple-names {
+    line-height: 1.2;    /* Mengatur kerapatan baris agar tidak terlalu renggang */
+ font-size: 3rem;
     font-family: 'Rouge Script', cursive;
-    font-size: clamp(3rem, 7vw, 2rem);
-    color: #fff;
-    /* text-transform: uppercase; */
-  letter-spacing: 1px;
-    text-align: left;
+    color: #cac8c8;
 }
 
-.opening-quote {
-    font-family: Andada, serif;
-   font-size: 0.8rem;
-    letter-spacing: 0.3pt;
+
+
+
+
+/* --- BUNGA DEKORASI (POJOK KANAN BAWAH) --- */
+.flower-decoration {
     position: absolute;
-    top: 15%;
-    width: 100%;
-    
-    /* Tambahkan Padding & Box Sizing */
-    padding: 0 40px; /* Semakin besar angkanya (misal 50px atau 60px), teks semakin sempit ke tengah */
-    box-sizing: border-box; 
-    
-    text-align: center;
-    color: white;
-    opacity: 0;
-    transition: opacity 1s ease 1s;
+    bottom: -10px;
+    right: -10px;
+    width: 260px;
+    height: 260px;
+    pointer-events: none;
+    z-index: 10;
 }
 
-.section-intro.active .opening-quote  {
-    opacity: 1;
+.flower-layer {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 40%; /* Gunakan 100% dari container flower-decoration */
+    transform-origin: bottom right;
+}
+
+/* Animasi Bergerak di Tempat (Swaying) */
+.layer-1 { animation: sway 7s ease-in-out infinite alternate; }
+.layer-2 { animation: sway 8s ease-in-out infinite alternate-reverse; }
+.layer-3 { animation: sway 6s ease-in-out infinite alternate; animation-delay: 0.3s; }
+.layer-4 { animation: swayBloom 5s ease-in-out infinite alternate; }
+
+@keyframes sway {
+    0% { 
+        transform: rotate(0deg) skewX(0deg); 
+    }
+    50% { 
+        transform: rotate(calc(var(--sway-angle) * 0.6)) skewX(var(--sway-skew)); 
+    }
+    100% { 
+        transform: rotate(var(--sway-angle)) skewX(calc(var(--sway-skew) * -1)); 
+    }
+}
+
+@keyframes swayBloom {
+    0% { 
+        transform: rotate(0deg) skew(0deg) scale(1); 
+    }
+    50% { 
+        transform: rotate(var(--sway-angle)) skew(calc(var(--sway-skew) * 1.5)) scale(var(--bloom-scale)); 
+    }
+    100% { 
+        transform: rotate(calc(var(--sway-angle) * 0.5)) skew(0deg) scale(1); 
+    }
 }
 
 
-
-
-
-
+  
 
 
 /* Container Utama Detail */
@@ -857,146 +861,122 @@ body::before {
     box-sizing: border-box;
 }
 
-/* --- CONTAINER UTAMA (DETAIL SECTION) --- */
-/* --- RESET & LAYOUT DASAR --- */
+/* Container Section */
 .section-detail {
-    background-color: transparent;
-    margin: 0;
-    padding: 0;
-    width: 100vw;
-    display: flex;
-    justify-content: flex-end; /* Paksa konten ke kanan saat landscape */
-    overflow-x: hidden;
-}
-
-.main-wrapper-detail {
     width: 100%;
-    max-width: 1200px; /* Batas lebar seukuran HP */
-  
-    position: relative;
-}
-
-/* --- CARD & BACKGROUND --- */
-.card {
-    position: relative;
-    width: 100vw; /* Gunakan vw (viewport width) agar pasti penuh se-layar */
-    height: 100vh;
     display: flex;
-    /* Ini kuncinya: di landscape teks di kanan, di portrait teks di tengah */
-    justify-content: flex-end; 
-    align-items: center;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    overflow: hidden;
-}
-
-/* Link Gambar Langsung */
-.groom-card, .bride-card { 
-    position: relative;
-    /* KUNCI: Lebar harus 100% dari layar monitor, bukan 1200px */
-    width: 100% !important; 
-    min-height: 100vh;
-    display: flex;
-    /* Dorong konten teks ke ujung kanan monitor */
-    justify-content: flex-end; 
-    align-items: center;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    margin: 0 !important;
-    padding: 0 !important;
-}
-
-/* Background tetap dipasang di sini */
-.groom-card { 
-
-}
-.bride-card { 
-   
-}
-
-/* Overlay transparan agar foto di kiri tetap terlihat tapi teks di kanan terbaca */
-.card-overlay {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    /* Gradient: kiri bening, kanan hitam transparan */
-    z-index: 1;
-}
-
-/* AREA KONTEN (Area seukuran HP yang menepi ke kanan) */
-.card-content {
-    position: relative;
-    z-index: 10;
-    width: 100%;
-    max-width: 1200px; /* Lebar teks tetap seukuran mobile */
-    height: 100vh;
-    padding: 40px 20px;
-    display: flex;
-    flex-direction: column;
     justify-content: center;
-    align-items: center;
-    text-align: center;
-    /* Opsional: beri sedikit blur agar area teks lebih elegan */
-    /* background: rgba(0, 0, 0, 0.2);
-    backdrop-filter: blur(5px); */
+    padding: 80px 15px;
+    background: transparent; /* Biar tembus ke background body */
 }
 
-/* Overlay Gelap (Agar Teks Terbaca) */
-.card::after {
-    content: "";
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.8));
-    z-index: 1;
+/* Kontainer Utama (Bentuk Arch Atas-Bawah) */
+.content-detail-wrapper {
+   background-image: url("https://file.puredayinvitation.com/adatcoklatcream/bg.png");
+    width: 92%; /* Memberi sedikit jarak di layar mobile */
+    max-width: 420px; 
+    padding: 100px 25px; /* Kurangi padding samping jika foto terasa terlalu kecil */
+    border: 1.5px solid #b39055;
+    border-radius: 300px; /* Tetap melengkung atas dan bawah */
+    margin: 0 auto;
+    box-sizing: border-box;
 }
 
-/* --- KONTEN TEKS (Z-INDEX TINGGI) --- */
 
-
-/* FOTO PROFIL BULAT */
+/* Bingkai Foto Oval Responsif */
 .card-image-wrapper {
-    width: 300px;
-    height: 500px;
+    /* Gunakan % agar lebar foto selalu proporsional dengan lebar kontainer */
+    width: 100%; 
+    max-width: 210px; /* Ukuran maksimal di layar besar/MacBook M2 */
+    
+    /* Gunakan aspect-ratio agar bentuk oval tetap konsisten */
+    aspect-ratio: 2 / 3; 
+    
     margin: 0 auto 20px;
-    /* border-radius: 50%; */
-    /* border: 3px solid rgb(255, 255, 255); */
+    border: 2px solid #b39055;
+    border-radius: 150px; /* Membuat bentuk oval sempurna */
     overflow: hidden;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-    background-position: center;
+    position: relative;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
 }
 
-.card-image-wrapper img {
+/* Pastikan gambar di dalamnya memenuhi bingkai tanpa distorsi */
+.couple-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    
+    display: block;
 }
 
-/* TIPOGRAFI */
+.couple-cards {
+    display: flex;
+    /* WAJIB: Memaksa elemen di dalamnya (pria & wanita) untuk selalu ke bawah */
+    flex-direction: column !important; 
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 40px; /* Jarak antara foto pria dan wanita */
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+}
+
+/* Typography (Nama & Ortu) */
 .card-name {
     font-family: 'Rouge Script', cursive;
-    font-size: 2.5rem;
-    color: #ffffff;
-    margin-top: 30px;
-    letter-spacing: 1px;
+    font-size: 2.2rem;
+    color: #b39055;
+    margin: 10px 0;
+    font-weight: 400;
 }
 
 .parent-info {
-  font-family: Andada, serif;
-    font-size: 0.85rem;
-    color: rgba(255,255,255,0.9);
-    margin: 0;
-}
-.address-info {
-   font-family: Abel, sans-serif;
-    font-size: 12px;
-    color: rgba(255,255,255,0.9);
-    margin-top: 5px;
+    font-family: Andada, serif;
+    font-size: 14px;
+    color: #555;
+    margin: 5px 0;
+    line-height: 1.4;
 }
 
+.address-info {
+    font-size: 14px;
+    font-style: italic;
+    color: #888;
+}
+
+/* Simbol & */
+.ampersand-divider {
+    margin: -50px -50px;
+}
+
+.ampersand-text {
+    font-family: 'Rouge Script', cursive;
+    font-size: 48px;
+    color: #b39055;
+    font-style: italic;
+}
+
+/* Quote */
+.quote-opening, .quote-closing {
+    font-family: Andada, serif;
+    font-size: 13px;
+    color: #444;
+    line-height: 1.8;
+    text-align: center;
+}
+
+.quote-closing span {
+    display: block;
+    margin-top: 8px;
+    font-weight: bold;
+    color: #b39055;
+     text-align: center;
+}
 
 
 
@@ -1019,11 +999,10 @@ body::before {
     min-height: 100vh;
     /* KUNCI TENGAH: margin auto kiri dan kanan */
     margin: 0 auto; 
-    background-color: transparent;
+     background-image: url("https://file.puredayinvitation.com/hitam3d/bg2.jpg");
     box-shadow: 0 0 30px rgba(0,0,0,0.1);
     overflow: hidden;
     padding: 80px 20px;
-     background-size: cover;
     display: flex;
     flex-direction: column;
     justify-content: center; /* Menengahkan konten secara vertikal */
@@ -1049,7 +1028,7 @@ body::before {
     width: 75px;
     height: 75px;
     background: rgba(255, 255, 255, 0.2); /* Memberikan sedikit kontras transparan */
-    border: 1px dashed #ffffff;
+    border: 1px dashed #fdf6e9;
     border-radius: 50%; 
     display: flex;
     flex-direction: column;
@@ -1067,7 +1046,7 @@ body::before {
     font-size: 1.4rem; /* Sedikit lebih besar agar mudah dibaca */
     font-weight: bold;
     margin: 0;
-    color: #ffffff; /* Putih agar kontras dengan background krem emas */
+    color: #fdf6e9; /* Putih agar kontras dengan background krem emas */
     line-height: 1;
 }
 
@@ -1075,7 +1054,7 @@ body::before {
     font-family: Andada, serif;
     font-size: 0.75rem;
     margin: 0;
-    color: #ffffff;
+    color: #fdf6e9;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
@@ -1086,7 +1065,7 @@ body::before {
 /* --- Container Utama --- */
 /* --- Perbaikan Container Utama --- */
 .section-event {
-    background-color: #b7ab9d01;
+    background-color: #fdf6e901;
     padding: 80px 0;
     text-align: center;
     color: #ffffff;
@@ -1117,10 +1096,11 @@ body::before {
       margin-left: auto;
     margin-right: auto;
 
-   border: 2px solid #ffffff;
-    /* border-radius: 300px; */
+ background-image: url("https://file.puredayinvitation.com/adatcoklatcream/bg.png");
+    border: 2px solid #b39055;
+    border-radius: 300px;
     overflow: hidden;
-    padding: 12px;  
+    padding: 12px;
     box-sizing: border-box; 
     /* Agar padding tidak menambah lebar elemen */
 }
@@ -1140,7 +1120,7 @@ body::before {
 .ribbon-date {
     font-family: Andada, serif;
     padding: 10px 20px;
-    color: #ffffff;
+    color: #171616;
     display: inline-block;
     width: 90%;
    margin-bottom: 20px;
@@ -1148,7 +1128,7 @@ body::before {
 
 .event-item-list {
     font-family: Abel, sans-serif;
-     color: #ffffff;
+     color: #171616;
     padding: 15px 0;
     margin-bottom: 15px;
     display: flex;
@@ -1160,20 +1140,20 @@ body::before {
 .event-row {
     font-family: Andada, serif;
     font-size: 1rem;
-     color: #ffffff;
+     color: #171616;
     display: block;
     margin-bottom: 5px;
 }
 
 .event-row b {
-     color: #ffffff;
+     color: #171616;
 }
 
 /* --- TOMBOL MAPS --- */
 .btn-maps-link {
     font-family: Andada, serif;
-    background-color: #ffffff00;
-    color: #dee6ee;
+    background-color: #b39055;
+    color: #fdf6e9;
     text-decoration: none;
     padding: 10px 25px;
     display: inline-block;
@@ -1183,8 +1163,8 @@ body::before {
 }
 
 .btn-maps-link:hover {
-    background-color: #ffffff00;
-    color: #dee6ee;
+    background-color: #907039;
+    color: #fdf6e9;
 }
 
 
@@ -1379,7 +1359,9 @@ body::before {
 /* --- Container Galeri --- */
 .section-gallery {
     padding: 60px 15px;
-  min-height: 80vh;
+   background-image: url("https://file.puredayinvitation.com/hitam3d/bg2.jpg");
+    background-size: cover;
+    min-height: 80vh;
 }
 /* --- PAKSA DUA KOLOM --- */
 .scrapbook-wrapper {
@@ -1405,7 +1387,7 @@ body::before {
     height: auto !important;
     aspect-ratio: 3 / 4 !important; /* Biar potret rapi */
     object-fit: cover !important;
-    border-radius: 0px !important;
+    border-radius: 20px !important;
     display: block !important;
 }
 
@@ -1420,8 +1402,11 @@ body::before {
 }
 
 
+
+
 /* --- Love Story Section --- */
 .section-love-story {
+    background-image: url("https://file.puredayinvitation.com/adatcoklatcream/bg.png");
    padding: 60px 16px;
     font-family: Andada, serif;
     display: flex;
@@ -1448,7 +1433,7 @@ body::before {
     bottom: 0;
     left: 40px; /* Jarak pas dari kiri untuk menyelaraskan garis */
     width: 4px;
-    background-color: #ffffff; /* Warna abu-abu solid sesuai gambar */
+    background-color: #929292; /* Warna abu-abu solid sesuai gambar */
     z-index: 1;
 }
 
@@ -1471,8 +1456,8 @@ body::before {
     top: 0;
     width: 30px;
     height: 30px;
-    background-color: #00000000;
-    border: 2px solid #ffffff; /* Frame abu-abu tebal sesuai gambar */
+    background-color: #ffffff;
+    border: 4px solid #929292; /* Frame abu-abu tebal sesuai gambar */
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -1483,16 +1468,15 @@ body::before {
 /* Karakter Hati Hitam di Tengah Lingkaran */
 .ls-icon-heart::before {
     content: '♥';
-    color: #ffffff;
+    color: #000000;
     font-size: 1.5rem;
 }
 
 /* --- Kartu Putih Konten (Scrapbook Card) --- */
 .ls-card {
-    background-color: #ffffff00;
+    background-color: #ffffff;
     border-radius: 20px; /* Sudut melengkung halus sesuai gambar */
     padding: 24px;
-    border-color: white;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* Shadow tipis agar smooth */
     width: 100%;
     box-sizing: border-box;
@@ -1517,7 +1501,7 @@ body::before {
 .ls-card-title {
     font-size: 1rem;
     font-family: Andada, serif;
-    color: #ffffff;
+    color: #000000;
     margin: 0 0 12px 0;
     font-weight: 400;
 }
@@ -1525,7 +1509,7 @@ body::before {
 .ls-card-date {
     font-size: 1.05rem;
     font-family: Andada, serif;
-    color: #ffffff;
+    color: #222222;
     margin-bottom: 24px;
 }
 
@@ -1533,7 +1517,7 @@ body::before {
     font-family: Andada, serif;
     font-size: 0.7rem;
     line-height: 1.6;
-    color: #ffffff;
+    color: #111111;
     margin: 0;
     text-align: justify; /* Rata kiri sesuai gaya teks di gambar */
 }
@@ -1580,7 +1564,7 @@ body::before {
     min-height: 100vh; 
     height: auto; 
     
-    background-color: #1e579400;
+    background-color: #fdf6e900;
     background-size: cover;
     background-position: center;
     box-shadow: 0 0 30px rgba(0,0,0,0.1);
@@ -1601,8 +1585,9 @@ max-width: 450px;
     /* Tambahkan ini untuk menurunkan elemen */
     margin-top: 50px; /* Ubah angka px sesuai keinginan Anda */
           margin-bottom: 50px;
-   
-    border-radius: 0px; 
+    background-image: url("https://file.puredayinvitation.com/adatcoklatcream/bg.png");
+    border: 2px solid #b39055;
+    border-radius: 20px; 
     overflow: hidden;
     padding: 12px;
     box-sizing: border-box;
@@ -1616,10 +1601,11 @@ max-width: 450px;
 }
 
 .bank-accounts-cards > div {
-    border-radius: 0px;
+    background: url('https://file.puredayinvitation.com/asset/cardgrey2.webp') center/cover no-repeat;
+    border-radius: 15px;
     gap: 10px;
     padding: 10px 20px; /* Padding vertikal dikurangi biar gepeng */
-    color: #ffffff;
+    color: #333;
     position: relative;
     /* KUNCI GEPENG */
     height: 170px !important; 
@@ -1643,7 +1629,7 @@ max-width: 450px;
 }
 
 .bank-name { 
-    color: #ffffff !important;
+    color: #333 !important;
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
     font-size: 12px; /* Ukuran disesuaikan dengan kartu gepeng */
@@ -1658,6 +1644,7 @@ max-width: 450px;
     content: "";
     width: 40px; 
     height: 30px;
+    background: url('https://file.puredayinvitation.com/asset/pin-card.webp') no-repeat center / contain;
     display: block;
     margin: 0 0 2px 0 !important; /* Rapatkan ke nomor di bawahnya */
     filter: brightness(1.2);
@@ -1670,7 +1657,7 @@ max-width: 450px;
     letter-spacing: 1px;
     text-shadow: -1px -1px 1px rgba(255,255,255,0.3), 1px 1px 1px rgba(0,0,0,0.8);
     font-weight: 700 !important; 
-    color: #ffffff !important;
+    color: #2d2c2c !important;
     display: block !important;
     line-height: 1 !important; /* Rapatkan baris */
     margin: 0 !important;
@@ -1691,7 +1678,7 @@ max-width: 450px;
     text-transform: uppercase;
     opacity: 0.9;
     text-shadow: -1px -1px 1px rgba(255,255,255,0.3), 1px 1px 1px rgba(0,0,0,0.8);
-    color: #ffffff;
+    color: #2d2c2c;
     margin: 0 !important;
     line-height: 1 !important;
 }
@@ -1700,11 +1687,11 @@ max-width: 450px;
 .copy-btn {
     position: absolute;
     right: 15px;
-    bottom: 60px;
-    background: rgba(255, 255, 255, 0);
+    bottom: 10px;
+    background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(4px);
-    color: #ffffff;
-    border: 1px solid rgb(255, 255, 255);
+    color: #2d2c2c;
+    border: 1px solid rgba(255, 255, 255, 0.4);
     padding: 4px 10px;
     border-radius: 6px;
     font-size: 0.6rem;
@@ -1715,8 +1702,8 @@ max-width: 450px;
     z-index: 5;
 }
 .copy-btn:hover {
-    background: #ffffff00;
-    color: #ffffff;
+    background: #ffffff72;
+    color: #000;
     transform: translateY(-2px); /* Efek angkat sedikit saat hover */
 }
 
@@ -1725,7 +1712,7 @@ max-width: 450px;
     font-size: 13px;
     line-height: 1.5;
     text-align: center;
-    color: #ffffff;
+    color: #2d2c2c;
     position: relative;
     font-weight: 700;
     /* JARAK ATAS DAN BAWAH */
@@ -1741,7 +1728,7 @@ max-width: 450px;
 /* 1. alamat kado */
 /* Container Utama untuk Alamat */
 .address-card {
-    background-color: #00000000;
+    background-color: #ffffff;
     border-radius: 15px;
     /* padding: 20px; */
     margin: 15px 0;
@@ -1763,7 +1750,7 @@ max-width: 450px;
     font-family: 'Bilbo Swash Caps', cursive;
       font-weight: bold;
     font-size: 1.5rem;
-    color: #ffffff;
+    color: #242322;
     margin-bottom: 55px;
 
     letter-spacing: 1px;
@@ -1775,10 +1762,10 @@ max-width: 450px;
    position: absolute;
     right: 15px;
     bottom: 10px;
-    background: rgba(255, 255, 255, 0);
+    background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(4px);
-    color: #ffffff;
-    border: 1px solid rgb(255, 255, 255);
+    color: #2d2c2c;
+    border: 1px solid rgba(255, 255, 255, 0.4);
     padding: 4px 10px;
     border-radius: 6px;
     font-size: 0.6rem;
@@ -1791,8 +1778,8 @@ max-width: 450px;
 }
 
 .copy-address-btn:hover {
-   background:  rgba(190, 187, 187, 0);
-    color: #ffffff;
+   background:  rgb(190, 187, 187);
+    color: #000;
     transform: translateY(-2px); /* Efek angkat sedikit saat hover */
 }
 
@@ -1808,7 +1795,7 @@ max-width: 450px;
     /* text-transform: uppercase; */
     opacity: 0.9;
     text-align: center;
-    color: #ffffff;
+    color: #2d2c2c;
     
     /* Gunakan margin-top negatif atau margin-bottom untuk mendorong ke atas */
     margin-top: -50px !important; 
@@ -1821,7 +1808,7 @@ max-width: 450px;
     font-family: Andada, serif;
     font-size: 0.65rem;
     text-align: center;
-    color: #ffffff;
+    color: #444343;
     line-height: 1.4;
     margin: 0 auto 30px auto; /* Margin bawah 30px memberi ruang untuk tombol di pojok */
     max-width: 250px;
@@ -1862,7 +1849,9 @@ max-width: 450px;
     margin-left: auto;
     margin-right: 0;
     
-    /* 1. HAPUS background-image dari sini agar tidak double/salah kaprah */
+    /* PENTING: Hapus background-image dari sini agar tidak double */
+  background-image: url("https://file.puredayinvitation.com/adatcoklatcream/bg.png");
+    
     box-shadow: -10px 0 30px rgba(0,0,0,0.05);
     overflow: hidden;
     padding: 80px 20px 180px 20px;
@@ -1879,16 +1868,12 @@ max-width: 450px;
     right: 0;
     bottom: 0;
     
-    /* 2. PINDAHKAN gambarnya ke sini */
     background-size: cover;
     background-position: center;
-    background-color: transparent;
-    /* 3. TAMBAHKAN efek blur jika diinginkan */
-    /* filter: blur(8px); */ 
-    /* transform: scale(1.1); */ /* Opsional: untuk menghilangkan garis putih di pinggir akibat blur */
     
-    z-index: -1; /* Meletakkan gambar di belakang konten */
-}
+    z-index: -1; /* Meletakkan gambar di belakang konten */}
+
+
 
 /* --- FORM & INPUT STYLING --- */
 .detail-box {
@@ -1906,7 +1891,7 @@ max-width: 450px;
     display: block;
     font-size: 0.9rem;
     font-family: Andada, serif;
-    color: #ffffff;
+    color: #171616;
     margin-bottom: 8px;
     font-weight: 500;
 }
@@ -1914,12 +1899,12 @@ max-width: 450px;
 /* Input & Textarea sesuai gambar */
 #comment-name-input, 
 #comment-message-input {
-    color: #ffffff;
+    color: #171616;
     width: 100%;
     padding: 12px 15px;
     border: 1px solid transparent;
     border-radius: 10px;
-    border-color: #ffffff;
+    border-color: #171616;
     background: rgba(255, 255, 255, 0);
     box-shadow: 0 4px 10px rgba(0,0,0,0.03);
     font-family: Andada, serif;
@@ -1942,7 +1927,7 @@ max-width: 450px;
     padding: 10px;
     border: none;
     border-radius: 8px;
-    background: #ffffff00;
+    background: #958976;
     color: rgb(255, 255, 255);
     cursor: pointer;
     font-size: 0.85rem;
@@ -1952,7 +1937,7 @@ max-width: 450px;
 }
 
 .template-status-btn.status-active {
-    background: #ffffff99; /* Warna coklat tema */
+    background: #b39055; /* Warna coklat tema */
     color: rgb(255, 255, 255);
     font-family: Andada, serif;
     
@@ -1963,8 +1948,8 @@ max-width: 450px;
 .btn-submit {
     width: 100%;
     padding: 15px;
-    background-color: #84766500; /* Sesuai gambar referensi */
-    color: #dee6ee;
+    background-color: #b39055; /* Sesuai gambar referensi */
+    color: white;
     border: none;
     font-family: Andada, serif;
     justify-content: center; /* Tengah secara horizontal */
@@ -1982,7 +1967,7 @@ max-width: 450px;
 }
 
 .btn-submit:hover {
-    background-color: #b7ab9d00;
+    background-color: #9c7d48;
     transform: translateY(-2px);
 }
 
@@ -2016,12 +2001,15 @@ max-width: 450px;
 /* --- 1. SECTION UTAMA --- */
 #comments-list-section.section-comments-list {
     position: relative;
+      background-size: cover;
+    display: block;
+    width: 100%;
+    margin-bottom: 0;
     min-height: 100vh;
     margin-left: auto;
     margin-right: 0;
-     background-size: cover;
-    background-color: transparent;
-     overflow: hidden; 
+background-image: url("https://file.puredayinvitation.com/hitam3d/bg2.jpg");
+    overflow: hidden; 
     padding: 80px 20px 0 20px;
     box-sizing: border-box;
     z-index: 1;
@@ -2045,12 +2033,13 @@ max-width: 450px;
 /* --- 3. KARTU KOMENTAR (ITEM) --- */
 .comments-scroll-box > div, 
 .comment-item {
-    background: rgba(255, 255, 255, 0); 
-    border: 1px solid #ffffff;
+    background: rgba(255, 255, 255, 0.88); 
+    border: 1px solid #171616;
     border-radius: 15px;
   padding:-42px 15px;
+    padding-left: 20px !important;
+   padding-right: 20px !important;
   padding-left: 20px !important;
-  padding-right: 20px !important;
     margin-bottom: 10px;
     display: flex;
     flex-direction: column;
@@ -2064,7 +2053,7 @@ max-width: 450px;
 .comment-name {
     font-family: Andada, serif;
     font-size: 0.8rem;
-    color: #ffffff;
+    color: #171616;
     font-weight: 700;
     display: inline; /* Biar sejajar */
     margin-right: 10px; /* Jarak antara nama dan status */
@@ -2079,7 +2068,7 @@ max-width: 450px;
         font-size: 0.7rem !important;
         background: transparent !important;
         border: none !important;
-        color: #ffffff !important;
+        color: #171616 !important;
         text-transform: uppercase;
     }
 
@@ -2088,7 +2077,7 @@ max-width: 450px;
 .comment-text {
     font-family: Andada, serif;
     font-size: 0.7rem;
-    color: #ffffff;
+    color: #171616;
   margin: 10px 0; 
     /* Line-height merapatkan jarak antar baris kalimat */
     line-height: 1.2;
@@ -2102,7 +2091,7 @@ max-width: 450px;
 .comment-date {
     font-family: Andada, serif;
     text-align: right; 
-    color: #ffffff;
+    color: #171616;
     margin-top: 2px;
     width: 100%;
     display: block;
@@ -2146,12 +2135,11 @@ max-width: 450px;
 }
 
 
-
 /* Styling Section Penutup */
 .section-closing {
     padding: 60px 0px;
-   background-color: transparent;
-    background-size: cover;
+   background-image: url("https://file.puredayinvitation.com/adatcoklatcream/bg.png");
+   background-size: cover;
 
     background-repeat: no-repeat;
     background-position: center;
@@ -2169,7 +2157,7 @@ max-width: 450px;
     font-weight: 500;
      font-family: Andada, serif;
     font-size: 13px;
-    color: #ffffff;
+    color: #444;
     line-height: 1.8;
     text-align: center;
     padding: 0 15%; /* Semakin besar persentasenya, semakin rapat teks ke tengah */
@@ -2182,7 +2170,7 @@ max-width: 450px;
     margin: 30px 0;
     font-weight: normal;
     text-align: center;
-    color: #ffffff; /* Warna cokelat tua sesuai gambar */
+    color: #b39055; /* Warna cokelat tua sesuai gambar */
    
 }
 
@@ -2194,7 +2182,7 @@ max-width: 450px;
 .regards-text {
        font-family: Andada, serif;
     font-size: 13px;
-    color: #ffffff;
+    color: #444;
     line-height: 1.8;
   
     margin-bottom: 10px;
@@ -2204,7 +2192,7 @@ max-width: 450px;
         line-height: 0.9;    /* Mengatur kerapatan baris agar tidak terlalu renggang */
  font-size: 2rem;
     font-family: 'Rouge Script', cursive;
-    color: #ffffff;
+    color: #b39055;
   
 }
 
@@ -2212,7 +2200,7 @@ max-width: 450px;
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Bad+Script&family=Allerta&display=swap');
 
-.pureday-footer {
+.pureday-footer-section {
     /* Memaksa elemen ini berada di urutan bawah alur dokumen */
     display: block;
     width: 100%;
@@ -2270,7 +2258,6 @@ max-width: 450px;
 .social-icon:hover {
     transform: scale(1.1);
 }
-
 
 
     /* --- Floating Music Toggle --- */
@@ -2364,55 +2351,68 @@ max-width: 450px;
 </head>
 <body class="scroll-locked">
 
-   <div id="cover-page" class="template-cover-container">
-    <div class="template-cover-overlay"></div>
-    
-    <div class="template-cover-content-wrapper">
-         <h1 class="template-cover-title">{{nama_pria}} & {{nama_wanita}}</h1>
-        
-        <p style="color: #ebe9e9; font-size: 0.8rem; margin-bottom: 5px;    font-family: Andada, serif;">Kepada Yth:</p>
-        <h3 class="template-cover-guest-name" id="guest-name-display">TAMU UNDANGAN</h3>
-        
-       
-        <p style="color: #ebe9e9; margin-top: 25px;  font-family: Average, serif;">{{tanggal_acara_baca}}</p>
-        
-        <button id="open-invitation-btn" class="cover-open-btn">
-            Buka
-        </button>
+<div id="cover-page" class="template-cover-container">
+   <div id="transition-overlay" class="cover-transition-gate"></div>
+    <div class="cover-bg-base"></div>
+
+ 
+
+    <div class="template-cover-content-wrapper animate-down">
+        <div class="pureday-content-locker">
+            <p class="guest-label">Kepada Yth:</p>
+            <h3 class="template-cover-guest-name" id="guest-name-display">TAMU UNDANGAN</h3>
+            <h1 class="template-cover-title">{{nama_pria}} <br> 
+                & <br>{{nama_wanita}}</h1>
+            <p class="event-date">{{tanggal_acara_baca}}</p>
+            <button id="open-invitation-btn" class="cover-open-btn">Buka</button>
+        </div>
     </div>
+
+ 
 </div>
 
     <div id="main-content">
         
-       <section id="intro-section-id" class="section-intro">
-    <div class="intro-content">
-        <h1 class="wedding-title">Undangan Pernikahan</h1>
-      
-        <p class="opening-quote">Tanpa mengurangi rasa hormat, kami mengundang Anda untuk berkenan menghadiri acara pernikahan kami:</p>
+<section id="intro-section-id" class="section-intro">
+    <div class="video-background-container">
+        <video autoplay muted playsinline id="introVideo" class="video-bg">
+            <source src="https://file.puredayinvitation.com/hitam3d/motion2.mp4" type="video/mp4">
+        </video>
+        <div class="video-overlay"></div>
+    </div>
 
-      
-
-        <h3 class="couple-names">{{nama_pria}} & {{nama_wanita}}</h3>
+    <div id="delayedText" class="bg-content-wrapper" style="display: none;">
+  <div class="text-container">
+    <h1 class="wedding-title animate-left">Undangan Pernikahan</h1>
+    <h3 class="couple-names animate-left">
+        <span class="name-block">{{nama_pria}}</span>
+        <span class="ampersand">&</span>
+        <span class="name-block">{{nama_wanita}}</span>
+    </h3>
+</div>
     </div>
 </section>
 
 
-<section class="section section-detail" style="padding-top: 0;">
-    <div class="main-wrapper-detail">
-        <!-- <p class="quote-opening animate-up">
-            Tanpa mengurangi rasa hormat, kami mengundang Anda untuk berkenan menghadiri acara pernikahan kami:
-        </p> -->
+<section class="section section-detail">
+    <div class="content-detail-wrapper">
+         <h4 class="salam-closing animate-left">
+            Assalamu'alaikum Wr. Wb.
+        </h4>
+        
+        <p class="quote-opening">
+            Tanpa mengurangi rasa hormat, kami mengundang Bapak/Ibu/Saudara/i serta kerabat sekalian untuk menghadiri acara pernikahan kami.
+        </p>
 
         <div class="couple-cards">
-            <div class="card groom-card">
-                <div class="card-overlay"></div>
-                <div class="card-content">
-                    <div class="card-image-wrapper animate-up">
-                        <img src="{{foto_pria}}" alt="Foto Pria">
-                    </div>
-                    <p class="card-name animate-up">{{nama_pria_lengkap}}</p>
-                    <p class="parent-info animate-up">Putra dari Bapak {{nama_bapak_pria}} & Ibu {{nama_ibu_pria}}</p>
-                    <p class="address-info">{{alamat_pria}}</p>
+            <!-- Kartu Pria -->
+            <div class="card">
+                <div class="card-image-wrapper animate-left">
+                    <img src="{{foto_pria}}" alt="Foto Pria" class="couple-img">
+                </div>
+                <h3 class="card-name animate-left">{{nama_pria_lengkap}}</h3>
+                <p class="parent-info animate-left">Putra dari Bapak {{nama_bapak_pria}} & Ibu {{nama_ibu_pria}}</p>
+                <p class="address-info animate-left">{{alamat_pria}}</p>
 <a id="instagram-link-pria" 
    href="https://www.instagram.com/{{ig_pria}}" 
    target="_blank" 
@@ -2424,19 +2424,22 @@ max-width: 450px;
    <svg viewBox="0 0 24 24" fill="white" style="width: 14px; height: 14px; margin-right: 5px;"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.073 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.073-4.948-.197-4.354-2.618-6.78-6.979-6.98-1.28-.058-1.688-.072-4.948-.072zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.791-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.209-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
    {{ig_pria}}
 </a>
-                </div>
             </div>
-            
-            <div class="card bride-card" ;>
-                <div class="card-overlay"></div>
-                <div class="card-content">
-                    <div class="card-image-wrapper animate-up">
-                        <img src="{{foto_wanita}}" alt="Foto Wanita">
-                    </div>
-                    <p class="card-name animate-up">{{nama_wanita_lengkap}}</p>
-                    <p class="parent-info animate-up">Putri dari Bapak {{nama_bapak_wanita}} & Ibu {{nama_ibu_wanita}}</p>
-                      <p class="address-info">{{alamat_wanita}}</p>
-                    <a id="instagram-link-wanita" 
+
+            <!-- Ampersand / Pembatas -->
+            <div class="ampersand-divider animate-left">
+                <h2 class="ampersand-text">&</h2>
+            </div>
+
+            <!-- Kartu Wanita -->
+            <div class="card">
+                <div class="card-image-wrapper animate-left">
+                    <img src="{{foto_wanita}}" alt="Foto Wanita" class="couple-img">
+                </div>
+                <h3 class="card-name animate-left">{{nama_wanita_lengkap}}</h3>
+                <p class="parent-info animate-left">Putri dari Bapak {{nama_bapak_wanita}} & Ibu {{nama_ibu_wanita}}</p>
+                <p class="address-info animate-left">{{alamat_wanita}}</p>
+<a id="instagram-link-wanita" 
    href="https://www.instagram.com/{{ig_wanita}}" 
    target="_blank" 
    rel="noopener noreferrer"
@@ -2461,14 +2464,14 @@ max-width: 450px;
         });
     })();
 </script>
-                </div>
             </div>
         </div>
 
-        <!-- <p class="quote-closing animate-up">
-            Segala sesuatu Kami ciptakan berpasang-pasangan agar kamu mengingat (kebesaran Allah).<br>
-           ~ QS Adz-Dzariyat: 49
-        </p> -->
+        <p class="quote-closing animate-left">
+            "Segala sesuatu Kami ciptakan berpasang-pasangan agar kamu mengingat (kebesaran Allah)."<br>
+            <span>— QS Adz-Dzariyat: 49</span>
+        </p>
+        
     </div>
 </section>
 
@@ -2508,7 +2511,8 @@ max-width: 450px;
  
 </section>
 
-    <section id="gallery-section-id" class="section-gallery">
+
+     <section id="gallery-section-id" class="section-gallery">
     <div class="gallery-container animate-left">
         <p class="subtitle-top">OUR SWEET MEMORY</p>
         <h2 class="main-title font-cursive">Photo Gallery</h2>
@@ -2529,6 +2533,7 @@ max-width: 450px;
         </div>
     </div>
 </section>
+        
     
 <section id="gift-section-id" class="section-gift">
 
@@ -2613,6 +2618,7 @@ max-width: 450px;
   
 </section>
 
+
 <section class="section section-closing">
     <div class="content-closing-wrapper">
             <div class="card-image-wrapper animate-left">
@@ -2636,7 +2642,6 @@ max-width: 450px;
     </div>
 </section>
 
-
 <footer class="pureday-footer">
     <div class="footer-container">
         <!-- Judul Besar -->
@@ -2658,6 +2663,8 @@ max-width: 450px;
         </div>
     </div>
 </footer>
+
+
 
 
 
@@ -2727,7 +2734,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }, observerOptions);
 
     // KUNCINYA DI SINI: Daftarkan semua class pemicu animasi kamu
-    const targets = document.querySelectorAll(' .animate-up, .animate-down, .animate-left, .animate-right, .opening-quote, .card, .animate-left,.animate-fade, .animate-left, .event-item-list, .gallery-vertical-title');
+    const targets = document.querySelectorAll('.section-intro, .animate-up, .animate-down, .animate-left, .animate-right, .opening-quote, .card, .animate-left,.animate-fade, .animate-left, .event-item-list, .gallery-vertical-title');
     
     targets.forEach(el => {
         universalObserver.observe(el);
@@ -2761,7 +2768,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }, observerOptions);
 
-    document.querySelectorAll(' .section-detail, .section-gallery, .comments-section').forEach(el => {
+    document.querySelectorAll('#intro-section-id, .section-detail, .section-gallery, .comments-section').forEach(el => {
         scrollObserver.observe(el);
     });
 });
@@ -2790,6 +2797,103 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 })();
 
+(function() {
+    try {
+        // DATABASE LOGO
+        const baseUrl = 'https://file.puredayinvitation.com/asset/logobank/';
+        const daftarLogoBank = {
+            'bca': baseUrl + 'bca.svg',
+            'mandiri': baseUrl + 'mandiri.svg',
+            'bri': baseUrl + 'bri.svg',
+            'bni': baseUrl + 'bni.svg',
+            'btn': baseUrl + 'btn.svg',
+            'bsi': baseUrl + 'bsi.svg',
+            'muamalat': baseUrl + 'muamalat.svg',
+            'cimb': baseUrl + 'cimb.svg',
+            'permata': baseUrl + 'permata.svg',
+            'mega': baseUrl + 'mega.svg',
+            'ocbc': baseUrl + 'ocbc.svg',
+            'maybank': baseUrl + 'maybank.svg',
+            'sinarmas': baseUrl + 'sinarmas.png',
+            'woori': baseUrl + 'woori-saudara.svg',
+            'jago': baseUrl + 'jago.svg',
+            'jenius': baseUrl + 'jenius.svg',
+            'seabank': baseUrl + 'seabank.svg',
+            'blu': baseUrl + 'blu-bca.png',
+            'aladin': baseUrl + 'aladin.png',
+            'sumut': baseUrl + 'sumut.svg',
+            'nagari': baseUrl + 'nagari.svg',
+            'riau': baseUrl + 'riaukepri.svg',
+            'dki': baseUrl + 'dki.svg',
+            'bjb': baseUrl + 'bjb.svg',
+            'jatim': baseUrl + 'jatim.svg',
+            'kalsel': baseUrl + 'kalsel.svg',
+            'kaltim': baseUrl + 'kaltimtara.svg',
+            'sulut': baseUrl + 'sulutgo.png',
+            'gopay': baseUrl + 'gopay.svg',
+            'dana': baseUrl + 'dana.svg',
+            'ovo': baseUrl + 'ovo.svg',
+            'shopeepay': baseUrl + 'shopeepay.svg',
+            'linkaja': baseUrl + 'linkaja.svg'
+        };
+
+        window.addEventListener('load', function() {
+            const container = document.getElementById('bank-accounts-cards');
+            const section = document.getElementById('gift-section-id');
+
+            if (container && section) {
+                const rawContent = container.innerHTML.trim();
+                
+                // 1. CEK DATA VALID: Memastikan section tampil jika data bukan shortcode mentah
+                if (rawContent.length > 20 && !rawContent.includes('{{')) {
+                    
+                    // 2. BIDIK TARGET SECARA SPESIFIK
+                    // Kita cari semua elemen kartu di dalam container utama
+                    const semuaKartu = container.querySelectorAll('.bank-accounts-cards');
+                    
+                    semuaKartu.forEach(function(kartu) {
+                        // Ambil semua elemen <p class="bank-name"> di dalam KARTU INI SAJA
+                        const barisBankName = kartu.querySelectorAll('.bank-name');
+                        
+                        // KUNCI SUKSES: Baris pertama (index 0) adalah ${ba.bank_name}.
+                        // Kita hanya memproses penggantian logo di baris pertama ini!
+                        if (barisBankName.length > 0) {
+                            const elemenNamaBank = barisBankName[0];
+                            let teksNamaBank = elemenNamaBank.innerHTML.trim();
+                            let sudahGanti = false;
+
+                            // Lakukan pengecekan kata kunci bank di baris pertama ini
+                            Object.keys(daftarLogoBank).forEach(function(keyBank) {
+                                if (sudahGanti) return; // Jika sudah ketemu 1 logo, stop cek bank lain di baris ini
+
+                                const regex = new RegExp('\\b' + keyBank + '\\b', 'gi');
+                                
+                                if (regex.test(teksNamaBank)) {
+                                    const urlLogo = daftarLogoBank[keyBank];
+                                    
+                                    // Ganti teks nama bank dengan tag gambar logo
+                                    elemenNamaBank.innerHTML = `<img src="${urlLogo}" alt="${keyBank.toUpperCase()}" class="logo-bank-gift" style="max-height: 35px; max-width: 120px; display: inline-block; vertical-align: middle; margin-bottom: 5px;">`;
+                                    sudahGanti = true;
+                                }
+                            });
+                        }
+                        
+                        // Baris kedua (index 1) yang berisi ${ba.account_name} SAMA SEKALI TIDAK DISENTUH.
+                        // Jadi nama seperti "Muhammad Abdur Rahman dana riyadi" akan 100% aman berupa teks.
+                    });
+
+                    // 3. TAMPILKAN SECTION
+                    section.style.setProperty('display', 'flex', 'important');
+                    console.log("Gift Section: Target presisi diaktifkan. Nama pemilik aman total!");
+                } else {
+                    console.log("Gift Section: Data kosong.");
+                }
+            }
+        });
+    } catch (err) {
+        console.error("Gift Script DOM Target Error: ", err);
+    }
+})();
 
 (function() {
     try {
@@ -2944,7 +3048,6 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 })();
 
-
 (function() {
     try {
         function cekFotoCover() {
@@ -2994,7 +3097,6 @@ document.addEventListener("DOMContentLoaded", function() {
 })();
 
 
-
     const video = document.getElementById('introVideo');
     const textContainer = document.getElementById('delayedText');
     const body = document.body;
@@ -3002,7 +3104,24 @@ document.addEventListener("DOMContentLoaded", function() {
     // 1. Kunci scroll saat halaman pertama kali dibuka
     //  body.classList.add('lock-scroll');
 
-    
+    video.onended = function() {
+        // 2. Munculkan teks
+        textContainer.style.display = 'block';
+        
+        // Efek Fade In halus
+        textContainer.style.opacity = 0;
+        let opacity = 0;
+        const fadeIn = setInterval(() => {
+            if (opacity >= 1) {
+                clearInterval(fadeIn);
+            }
+            textContainer.style.opacity = opacity;
+            opacity += 0.1;
+        }, 50);
+
+        // 3. BUKA KUNCI SCROLL setelah video selesai
+        body.classList.remove('lock-scroll');
+    };
 
 // --- Music Toggle Logic ---
 
@@ -3024,8 +3143,8 @@ function updateMusicIcon(isPlaying) {
         }
         
         // Warna merah (aktif) jika sedang play
-        floatingMusicToggle.style.color = isPlaying ? '#847665' : '#847665';
-        floatingMusicToggle.style.borderColor = isPlaying ? '#847665' : '#847665';
+        floatingMusicToggle.style.color = isPlaying ? '#b39055' : '#b39055';
+        floatingMusicToggle.style.borderColor = isPlaying ? '#b39055' : '#b39055';
     }
 }
 
@@ -3059,80 +3178,59 @@ window.toggleMusic = function() {
     }
 }
 
-// document.addEventListener('DOMContentLoaded', function() {
-    
-//     const isMusicShouldPlay = localStorage.getItem('isMusicPlaying') === 'true';
-//     if (isMusicShouldPlay) {
-//         music.muted = false;
-        
-//         music.play().then(() => {
-            
-//             updateMusicIcon(true);
-//         }).catch(error => {
-            
-//             // console.log("Autoplay blocked on load.", error);
-//             localStorage.setItem('isMusicPlaying', 'false');
-//             updateMusicIcon(false);
-            
-//         });
-//     } else {
-//         // Tampilkan status PAUSED (ikon mute)
-//         updateMusicIcon(false);
-//     }
-// });
 
 document.getElementById('open-invitation-btn').addEventListener('click', function() {
     const cover = document.getElementById('cover-page');
+    const bgBase = document.querySelector('.cover-bg-base');
+    const content = document.querySelector('.template-cover-content-wrapper');
+    const flowerTop = document.querySelector('.flower-top');
+    const flowerBottom = document.querySelector('.flower-bottom');
     const mainContent = document.getElementById('main-content');
-    const introSection = document.getElementById('intro-section-id');
     const body = document.body;
 
-    // 1. Tampilkan konten utama
-    if (mainContent) {
-        mainContent.style.display = 'block'; 
-        mainContent.style.visibility = 'visible';
-        mainContent.style.opacity = '1';
-        if (typeof floatingMusicToggle !== 'undefined') {
-            floatingMusicToggle.classList.add('visible');
-        }
-    }
+    // 1. Tampilkan konten utama di bawah (masih tertutup cover)
+    mainContent.style.visibility = 'visible';
+    mainContent.style.opacity = '1';
+       floatingMusicToggle.classList.add('visible'); // Tampilkan tombol mengambang
 
-    // 2. Animasi Cover: Geser ke atas dan buat menghilang
-    if (cover) {
-        // Pastikan transisi mencakup transform dan opacity
-      cover.style.transition = 'transform 2s cubic-bezier(0.65, 0, 0.35, 1), opacity 2s ease-out';
-    cover.style.transform = 'translateY(-100%)'; 
+
+    // 2. Tarik semua elemen cover ke atas
+    if (bgBase) bgBase.classList.add('bg-pull-up');
+    if (content) content.classList.add('content-pull-up');
+    if (flowerTop) flowerTop.classList.add('content-pull-up');
+    if (flowerBottom) flowerBottom.classList.add('content-pull-up');
+
+    // 3. Tambahkan efek fade out sedikit pada container agar halus
+    cover.style.transition = 'opacity 1s';
     cover.style.opacity = '0';
-        
-        setTimeout(() => {
-            cover.style.display = 'none';
-            body.classList.remove('scroll-locked');
-        }, 2000);
-    }
 
-    // 3. Animasi teks (tetap dengan jeda)
+    // 4. Setelah animasi tarik (1 detik), hapus cover dari display
     setTimeout(() => {
-        if (introSection) {
-            introSection.classList.add('active');
-        }
-    }, 300);
-
-    // 4. Logic Musik
+        cover.style.display = 'none';
+        body.classList.remove('scroll-locked');
+        
+        if (typeof initIntersectionObserver === 'function') initIntersectionObserver();
+        if (typeof startCountdown === 'function') startCountdown();
+    }, 1000); 
+    
+    
+       // Logic untuk memutar musik saat undangan dibuka:
     const wasPlaying = localStorage.getItem('isMusicPlaying') !== 'false';
-    if (wasPlaying && typeof music !== 'undefined') {
+    if (wasPlaying) {
+         // Panggil play secara langsung untuk memulai musik, update icon akan mengikuti
         music.play().then(() => {
             updateMusicIcon(true);
         }).catch(e => {
+            // Jika gagal (autoplay block), tetap tampilkan ikon mute
             updateMusicIcon(false);
+            console.log("Autoplay blocked, user must click the floating button.");
         });
     } else {
-        updateMusicIcon(false);
+        updateMusicIcon(false); // Pastikan ikon tetap mute jika sebelumnya dimatikan
     }
 
-    // Pastikan startCountdown terdefinisi
-    if (typeof startCountdown === 'function') {
-        startCountdown();
-    }
+    startCountdown();
+    
 });
 
 
